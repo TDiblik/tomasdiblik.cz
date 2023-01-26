@@ -1,0 +1,32 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: #0e2a47;
+  background-image: url("../images/background.svg");
+  backdrop-filter: blur(100px);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* .background-image {
+  background-image: url("../images/background.svg");
+
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+
+/* .container {
+  margin: 20% 10%;
+} */
