@@ -1,0 +1,32 @@
+/* TODO: Don't be dependent on google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap");
+
+:root {
+  --white: #faf8f8;
+  --font-family: "Raleway", Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+
+  color: var(--white);
+
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.9rem;
+  line-height: 21px;
+
+  /* Fix raleway numbers */
+  -webkit-font-feature-settings: "lnum" !important;
+  -moz-font-feature-settings: "lnum" !important;
+  font-feature-settings: "lnum" !important;
+}
+
+.small-text {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.8rem;
+  line-height: 21px;
+}
