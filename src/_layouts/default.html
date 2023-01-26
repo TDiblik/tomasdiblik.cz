@@ -1,19 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/globals.css" />
+    <link rel="stylesheet" href="./assets/css/layout.css" />
 
     <title>{{ page.title }}</title>
   </head>
   <body>
-    <div class="background-image"></div>
     <div class="container">
-      <div class="header"></div>
+      <div class="header">
+        <p>abc</p>
+      </div>
       <main>{{ content }}</main>
-      <footer></footer>
+      <footer>
+        <span class="small-text">
+          © Tomáš Diblík, 2019 -
+          <script type="text/javascript">
+            document.write(new Date().getFullYear());
+          </script>
+        </span>
+        <div class="social-media-icons">
+          <img
+            src="./assets/img/github.svg"
+            alt="Github logo"
+            class="github-logo"
+          />
+          <img src="./assets/img/linkedin-logo.png" alt="LinkedIn logo" />
+          <img
+            src="./assets/img/youtube-logo.png"
+            alt="Youtube logo"
+            class="youtube-logo"
+          />
+          <img
+            src="./assets/img/email-icon.svg"
+            alt="Email icon"
+            class="email-icon"
+          />
+        </div>
+      </footer>
     </div>
   </body>
 </html>
