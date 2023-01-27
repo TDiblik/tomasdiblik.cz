@@ -17,13 +17,11 @@
           <span class="title-text">TD</span>
         </div>
         <div class="menu">
-          {%- comment -%}
           <a
             class="{%if page.highlited_navbar_option == 'Index' %} active {%endif%} subheading-text"
             href="/"
             >About me</a
           >
-          {%- endcomment -%}
           <a
             class="{%if page.highlited_navbar_option == 'Projects' %} active {%endif%} subheading-text"
             href="/pages/projects"
@@ -37,16 +35,21 @@
           <a
             class="{%if page.highlited_navbar_option == 'Blog' %} active {%endif%} subheading-text"
             href="/pages/blog"
-            >Qualifications</a
+            >Work experience</a
           >
-          {%- comment -%}
+          <a
+            class="{%if page.highlited_navbar_option == 'Blog' %} active {%endif%} subheading-text"
+            href="/pages/blog"
+            >Certifications</a
+          >
           <a
             class="{%if page.highlited_navbar_option == 'Blog' %} active {%endif%} subheading-text"
             href="/pages/blog"
             >Tech stack</a
           >
-          {%- endcomment -%}
         </div>
+        <div class="menu-open-icon"></div>
+        <div class="menu-close-icon"></div>
       </div>
       <main>{{ content }}</main>
       <footer>
