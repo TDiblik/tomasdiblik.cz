@@ -10,12 +10,9 @@
   box-sizing: border-box;
 
   color: var(--white);
-
   font-family: var(--font-family);
   font-style: normal;
   font-weight: 400;
-  font-size: 0.9rem;
-  line-height: 21px;
 
   /* Fix raleway numbers */
   -webkit-font-feature-settings: "lnum" !important;
@@ -23,10 +20,34 @@
   font-feature-settings: "lnum" !important;
 }
 
+a {
+  color: var(--white);
+  text-decoration: none;
+}
+a:hover {
+  cursor: pointer;
+}
+
 .small-text {
   font-family: var(--font-family);
   font-style: normal;
-  font-weight: 400;
-  font-size: 0.8rem;
-  line-height: 21px;
+  font-weight: 400 !important;
+  font-size: 0.93rem !important;
+  line-height: 21px !important;
+}
+
+.subheading-text {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 1.5rem !important;
+  line-height: 23px !important;
+}
+
+.title-text {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 3rem !important;
+  line-height: 56px !important;
 }

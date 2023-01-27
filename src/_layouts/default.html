@@ -4,41 +4,83 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="./assets/css/globals.css" />
-    <link rel="stylesheet" href="./assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/globals.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
 
     <title>{{ page.title }}</title>
   </head>
   <body>
     <div class="container">
-      <div class="header">
-        <p>abc</p>
+      <div class="navbar">
+        {%- comment -%} TODO: Create and insert logo {%- endcomment -%}
+        <div class="navbar-logo">
+          <span class="title-text">TD</span>
+        </div>
+        <div class="menu">
+          {%- comment -%}
+          <a
+            class="{%if page.highlited_navbar_option == 'Index' %} active {%endif%} subheading-text"
+            href="/"
+            >About me</a
+          >
+          {%- endcomment -%}
+          <a
+            class="{%if page.highlited_navbar_option == 'Projects' %} active {%endif%} subheading-text"
+            href="/pages/projects"
+            >Projects</a
+          >
+          <a
+            class="{%if page.highlited_navbar_option == 'Blog' %} active {%endif%} subheading-text"
+            href="/pages/blog"
+            >Blog</a
+          >
+          <a
+            class="{%if page.highlited_navbar_option == 'Blog' %} active {%endif%} subheading-text"
+            href="/pages/blog"
+            >Qualifications</a
+          >
+          {%- comment -%}
+          <a
+            class="{%if page.highlited_navbar_option == 'Blog' %} active {%endif%} subheading-text"
+            href="/pages/blog"
+            >Tech stack</a
+          >
+          {%- endcomment -%}
+        </div>
       </div>
       <main>{{ content }}</main>
       <footer>
         <span class="small-text">
-          © Tomáš Diblík, 2019 -
+          © Tomáš Diblík, 2020 -
           <script type="text/javascript">
             document.write(new Date().getFullYear());
           </script>
         </span>
         <div class="social-media-icons">
-          <img
-            src="./assets/img/github.svg"
-            alt="Github logo"
-            class="github-logo"
-          />
-          <img src="./assets/img/linkedin-logo.png" alt="LinkedIn logo" />
-          <img
-            src="./assets/img/youtube-logo.png"
-            alt="Youtube logo"
-            class="youtube-logo"
-          />
-          <img
-            src="./assets/img/email-icon.svg"
-            alt="Email icon"
-            class="email-icon"
-          />
+          <a href="https://github.com/TDiblik/">
+            <img
+              src="/assets/img/github.svg"
+              alt="Github logo"
+              class="github-logo"
+            />
+          </a>
+          <a href="https://www.linkedin.com/in/tdiblik/">
+            <img src="/assets/img/linkedin-logo.png" alt="LinkedIn logo" />
+          </a>
+          <a href="https://www.youtube.com/@tdiblik">
+            <img
+              src="/assets/img/youtube-logo.png"
+              alt="Youtube logo"
+              class="youtube-logo"
+            />
+          </a>
+          <a href="mailto:dibla.tomas@post.cz">
+            <img
+              src="/assets/img/email-icon.svg"
+              alt="Email icon"
+              class="email-icon"
+            />
+          </a>
         </div>
       </footer>
     </div>
