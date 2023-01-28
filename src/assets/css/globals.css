@@ -28,6 +28,12 @@ a {
 a:hover {
   cursor: pointer;
 }
+.underline {
+  text-decoration: underline;
+}
+.underline-on-hover:hover {
+  text-decoration: underline;
+}
 
 .small-text {
   font-family: var(--font-family);

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/assets/css/globals.css" />
     <link rel="stylesheet" href="/assets/css/layout.css" />
 
-    <script src="/assets/js/navbar.js"></script>
+    <script src="/assets/js/layout.js"></script>
 
     <title>{{ page.title }}</title>
   </head>
@@ -16,36 +16,36 @@
       <div class="navbar">
         {%- comment -%} TODO: Create and insert logo {%- endcomment -%}
         <div class="navbar-logo">
-          <span class="title-text">TD</span>
+          <a class="title-text" href="/">TD</a>
         </div>
         <div id="menu" class="not-active">
           <a
-            class="{%if page.highlited_navbar_option == 'Index' %} active {%endif%} subheading-text"
-            href="/"
+            class="{%if page.highlited_navbar_option == 'AboutMe' %} underline {%endif%} subheading-text underline-on-hover"
+            href="/pages/about-me"
             >About me</a
           >
           <a
-            class="{%if page.highlited_navbar_option == 'Projects' %} active {%endif%} subheading-text"
+            class="{%if page.highlited_navbar_option == 'Projects' %} underline {%endif%} subheading-text underline-on-hover"
             href="/pages/projects"
             >Projects</a
           >
           <a
-            class="{%if page.highlited_navbar_option == 'Blog' %} active {%endif%} subheading-text"
+            class="{%if page.highlited_navbar_option == 'Blog' %} underline {%endif%} subheading-text underline-on-hover"
             href="/pages/blog"
             >Blog</a
           >
           <a
-            class="{%if page.highlited_navbar_option == 'WorkExperience' %} active {%endif%} subheading-text"
+            class="{%if page.highlited_navbar_option == 'WorkExperience' %} underline {%endif%} subheading-text underline-on-hover"
             href="/pages/work-experience"
             >Work experience</a
           >
           <a
-            class="{%if page.highlited_navbar_option == 'Certifications' %} active {%endif%} subheading-text"
+            class="{%if page.highlited_navbar_option == 'Certifications' %} underline {%endif%} subheading-text underline-on-hover"
             href="/pages/certifications"
             >Certifications</a
           >
           <a
-            class="{%if page.highlited_navbar_option == 'TechStack' %} active {%endif%} subheading-text"
+            class="{%if page.highlited_navbar_option == 'TechStack' %} underline {%endif%} subheading-text underline-on-hover"
             href="/pages/tech-stack"
             >Tech stack</a
           >
@@ -69,10 +69,7 @@
       <main>{{ content }}</main>
       <footer>
         <span class="small-text">
-          © Tomáš Diblík, 2020 -
-          <script type="text/javascript">
-            document.write(new Date().getFullYear());
-          </script>
+          © Tomáš Diblík, 2020 - <span id="footer-end-date"></span>
         </span>
         <div class="social-media-icons">
           <a href="https://github.com/TDiblik/">

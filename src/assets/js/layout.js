@@ -1,6 +1,11 @@
 var is_navbar_active = false;
 
-window.onload = () => {
+window.addEventListener("load", () => {
+  // Set footer date
+  document.getElementById("footer-end-date").innerText =
+    new Date().getFullYear();
+
+  // Set navbar events
   Object.values(document.getElementsByClassName("menu-icon-wrapper")).forEach(
     (menu_icon_element) => {
       menu_icon_element.addEventListener("click", (e) => {
@@ -28,4 +33,4 @@ window.onload = () => {
       });
     }
   );
-};
+});
