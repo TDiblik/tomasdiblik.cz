@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/assets/css/globals.css" />
     <link rel="stylesheet" href="/assets/css/layout.css" />
 
+    <script src="/assets/js/navbar.js"></script>
+
     <title>{{ page.title }}</title>
   </head>
   <body>
@@ -16,7 +18,7 @@
         <div class="navbar-logo">
           <span class="title-text">TD</span>
         </div>
-        <div class="menu">
+        <div id="menu" class="not-active">
           <a
             class="{%if page.highlited_navbar_option == 'Index' %} active {%endif%} subheading-text"
             href="/"
@@ -48,8 +50,21 @@
             >Tech stack</a
           >
         </div>
-        <div class="menu-open-icon"></div>
-        <div class="menu-close-icon"></div>
+        <div id="open-menu-wrapper" class="menu-icon-wrapper active">
+          <img
+            src="/assets/img/nav-hamburger.svg"
+            alt="Menu to open navbar"
+            class="menu-open-icon"
+          />
+        </div>
+
+        <div id="close-menu-wrapper" class="menu-icon-wrapper">
+          <img
+            src="/assets/img/nav-x.svg"
+            alt="Menu to open navbar"
+            class="menu-close-icon"
+          />
+        </div>
       </div>
       <main>{{ content }}</main>
       <footer>
