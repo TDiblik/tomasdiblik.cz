@@ -37,17 +37,11 @@ body {
   -moz-transition: margin-top 0.5s ease;
   -webkit-transition: margin-top 0.5s ease;
 }
-#menu > .active {
-  text-decoration: underline;
-}
 #menu > * {
   margin-right: 20px;
 }
 #menu > *:last-child {
   margin-right: 0px;
-}
-#menu > a:hover {
-  text-decoration: underline;
 }
 
 .menu-icon-wrapper {
