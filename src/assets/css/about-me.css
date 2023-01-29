@@ -20,6 +20,11 @@
 
 @media (max-width: 1500px) {
   .about-me-image-container {
+    width: 600px;
+  }
+}
+@media (max-width: 1200px) {
+  .about-me-image-container {
     display: none;
   }
 }
