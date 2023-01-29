@@ -45,6 +45,14 @@ a:hover {
   line-height: 21px !important;
 }
 
+.normal-text {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 1.25rem !important;
+  line-height: 27px !important;
+}
+
 .subheading-text {
   font-family: var(--font-family);
   font-style: normal;
@@ -64,7 +72,11 @@ a:hover {
 .biggest-possible-text {
   font-family: var(--font-family);
   font-style: normal;
-  font-weight: 400;
-  font-size: 5rem;
-  line-height: 80px;
+  font-weight: 400 !important;
+  font-size: 5rem !important;
+  line-height: 80px !important;
+}
+
+.strong-text {
+  font-weight: 600 !important;
 }
