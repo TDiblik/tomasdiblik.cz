@@ -48,6 +48,12 @@
             Blog
           </a>
           <a
+            class="{%if page.highlited_navbar_option == 'TechStack' %} underline {%endif%} subheading-text underline-on-hover"
+            href="/pages/tech-stack"
+          >
+            Tech stack
+          </a>
+          <a
             class="{%if page.highlited_navbar_option == 'WorkExperience' %} underline {%endif%} subheading-text underline-on-hover"
             href="/pages/work-experience"
           >
@@ -58,12 +64,6 @@
             href="/pages/certifications"
           >
             Certifications
-          </a>
-          <a
-            class="{%if page.highlited_navbar_option == 'TechStack' %} underline {%endif%} subheading-text underline-on-hover"
-            href="/pages/tech-stack"
-          >
-            Tech stack
           </a>
         </div>
         <div id="open-menu-wrapper" class="menu-icon-wrapper active">
