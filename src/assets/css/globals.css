@@ -3,6 +3,7 @@
 
 :root {
   --white: #faf8f8;
+  --gray: #c7c7c7;
   --primary-color: #0e2a47;
   --secondary-color: #a7bbec;
   --secondary-color-muted: rgba(167, 187, 236, 0.6);
@@ -49,7 +50,7 @@ a:hover {
   font-family: var(--font-family);
   font-style: normal;
   font-weight: 400 !important;
-  font-size: 1.25rem !important;
+  font-size: 1.17rem !important;
   line-height: 27px !important;
 }
 
@@ -58,7 +59,7 @@ a:hover {
   font-style: normal;
   font-weight: 400 !important;
   font-size: 1.5rem !important;
-  line-height: 23px !important;
+  line-height: 27px !important;
 }
 
 .title-text {
@@ -78,5 +79,5 @@ a:hover {
 }
 
 .strong-text {
-  font-weight: 600 !important;
+  font-weight: 500 !important;
 }
