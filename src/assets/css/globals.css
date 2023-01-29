@@ -4,6 +4,8 @@
 :root {
   --white: #faf8f8;
   --primary-color: #0e2a47;
+  --secondary-color: #a7bbec;
+  --secondary-color-muted: rgba(167, 187, 236, 0.6);
   --font-family: "Raleway", Helvetica, Arial, sans-serif;
 }
 
@@ -57,4 +59,12 @@ a:hover {
   font-weight: 400 !important;
   font-size: 3rem !important;
   line-height: 56px !important;
+}
+
+.biggest-possible-text {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 5rem;
+  line-height: 80px;
 }
