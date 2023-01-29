@@ -11,50 +11,60 @@
 
     <script src="/assets/js/layout.js"></script>
 
+    {{ page.additional_headers }}
+
     <title>{{ page.title }}</title>
   </head>
   <body>
     <div class="container">
       <div class="navbar">
-        {%- comment -%} TODO: Create and insert logo {%- endcomment -%}
         <div class="navbar-logo">
-          <a
-            class="{%if page.highlited_navbar_option == 'Index' %} underline {%endif%} title-text underline-on-hover"
-            href="/"
-            >TD</a
-          >
+          <a href="/">
+            <img
+              src="/assets/img/nav-house.svg"
+              width="46"
+              height="46"
+              alt="Houme icon suggesting index page"
+            />
+          </a>
         </div>
         <div id="menu" class="not-active">
           <a
             class="{%if page.highlited_navbar_option == 'AboutMe' %} underline {%endif%} subheading-text underline-on-hover"
             href="/pages/about-me"
-            >About me</a
           >
+            About me
+          </a>
           <a
             class="{%if page.highlited_navbar_option == 'Projects' %} underline {%endif%} subheading-text underline-on-hover"
             href="/pages/projects"
-            >Projects</a
           >
+            Projects
+          </a>
           <a
             class="{%if page.highlited_navbar_option == 'Blog' %} underline {%endif%} subheading-text underline-on-hover"
             href="/pages/blog"
-            >Blog</a
           >
+            Blog
+          </a>
           <a
             class="{%if page.highlited_navbar_option == 'WorkExperience' %} underline {%endif%} subheading-text underline-on-hover"
             href="/pages/work-experience"
-            >Work experience</a
           >
+            Work experience
+          </a>
           <a
             class="{%if page.highlited_navbar_option == 'Certifications' %} underline {%endif%} subheading-text underline-on-hover"
             href="/pages/certifications"
-            >Certifications</a
           >
+            Certifications
+          </a>
           <a
             class="{%if page.highlited_navbar_option == 'TechStack' %} underline {%endif%} subheading-text underline-on-hover"
             href="/pages/tech-stack"
-            >Tech stack</a
           >
+            Tech stack
+          </a>
         </div>
         <div id="open-menu-wrapper" class="menu-icon-wrapper active">
           <img
@@ -72,7 +82,9 @@
           />
         </div>
       </div>
-      <main>{{ content }}</main>
+      <main>
+        <div class="content-container">{{ content }}</div>
+      </main>
       <footer>
         <span class="small-text">
           © Tomáš Diblík, 2020 - <span id="footer-end-date"></span>

@@ -1,0 +1,125 @@
+body {
+  overflow: hidden;
+}
+
+.index-container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.index-header {
+  padding-right: 10%;
+}
+.index-header {
+  margin-bottom: 15px;
+}
+.index-header > h1 {
+  margin: 0px;
+}
+.index-header-underline {
+  width: 100%;
+  height: 10px;
+  color: var(--secondary-color);
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  border: 0px;
+}
+
+.routing-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 35px;
+}
+.routing-button {
+  width: 275px;
+  font-size: 2rem;
+  line-height: 32px;
+  padding: 15px 0px;
+  text-align: center;
+  border: 3px solid var(--white);
+  border-radius: 20px;
+  background-color: transparent;
+
+  transition: background-color 0.5s ease;
+  -o-transition: background-color 0.5s ease;
+  -moz-transition: background-color 0.5s ease;
+  -webkit-transition: background-color 0.5s ease;
+}
+.routing-button:hover {
+  background-color: var(--secondary-color-muted);
+}
+
+.index-subheading {
+  margin-left: 10px;
+}
+.index-subheading > h2 {
+  margin: 0px;
+}
+
+.index-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.index-image-me {
+  height: auto;
+}
+
+@media (min-width: 2000px) {
+  .index-image-me {
+    width: 700px;
+  }
+}
+
+@media (max-width: 2000px) {
+  .index-image-me {
+    width: 550px;
+  }
+}
+
+@media (max-width: 1800px) {
+  .index-header {
+    padding-right: 0%;
+  }
+}
+
+@media (max-width: 992px) {
+  .index-image-me {
+    width: 500px;
+  }
+
+  .index-header > h1 {
+    font-size: 3rem;
+    line-height: 35px;
+  }
+  .index-header-underline {
+    height: 5px;
+  }
+  .index-header {
+    padding-right: 10%;
+  }
+  .index-subheading > h2 {
+    font-size: 1rem !important;
+    line-height: 16px !important;
+  }
+  .index-text-container {
+    width: 100%;
+  }
+  .index-container {
+    padding-top: 5%;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 700px) {
+  .index-image-me {
+    display: none;
+  }
+}
