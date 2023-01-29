@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/assets/css/globals.css" />
     <link rel="stylesheet" href="/assets/css/layout.css" />
 
+    <link rel="icon" type="image/svg" href="/assets/img/logo.svg" />
+
     <script src="/assets/js/layout.js"></script>
 
     <title>{{ page.title }}</title>
@@ -16,7 +18,11 @@
       <div class="navbar">
         {%- comment -%} TODO: Create and insert logo {%- endcomment -%}
         <div class="navbar-logo">
-          <a class="title-text" href="/">TD</a>
+          <a
+            class="{%if page.highlited_navbar_option == 'Index' %} underline {%endif%} title-text underline-on-hover"
+            href="/"
+            >TD</a
+          >
         </div>
         <div id="menu" class="not-active">
           <a
