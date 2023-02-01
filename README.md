@@ -9,3 +9,4 @@ TODO:
 - Generate SEO metadata
 - Add robots.txt (with sitemap link)
 - Add sitemap generation
+- Minify output files (since source code is available on github)
