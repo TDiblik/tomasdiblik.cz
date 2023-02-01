@@ -1,7 +1,7 @@
 <div class="job">
   <div class="job-info">
     <div class="job-logo-wrapper">
-      <a href="{{ include.employer_href }}" {% include outside_link.html %}>
+      <a href="{{ include.employer_href }}" {% include external_link.html %}>
         <img
           class="job-logo"
           src="{{ include.employer_logo_src }}"
@@ -15,7 +15,7 @@
         <a
           href="{{ include.employer_href }}"
           class="underline-on-hover"
-          {% include outside_link.html %}>
+          {% include external_link.html %}>
           {{ include.employer_name }}
         </a>
       </h3>
