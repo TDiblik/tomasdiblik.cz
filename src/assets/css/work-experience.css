@@ -10,15 +10,22 @@
   align-items: center;
   gap: 15px;
   width: 100%;
-  flex-basis: 45%;
-  justify-content: center;
+  flex-basis: 40%;
 }
 
+.job-logo-wrapper {
+  display: flex;
+  justify-content: center;
+  min-width: 130px;
+  max-width: 130px;
+  padding: 5px 0px;
+  border-radius: 8px;
+  background-color: var(--white);
+}
 .job-logo {
   height: 80px;
   width: auto;
-  border-radius: 8px;
-  background-color: var(--white);
+  max-width: 130px;
 }
 
 @media (max-width: 576px) {
@@ -47,6 +54,6 @@
 }
 
 .job-description-paragraph {
-  flex-basis: 55%;
+  flex-basis: 60%;
   text-align: justify;
 }

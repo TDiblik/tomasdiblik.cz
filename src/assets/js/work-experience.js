@@ -29,14 +29,18 @@ window.addEventListener("load", () => {
 
       let time_interval_text = format_month_and_year(start_date);
       time_interval_text += " - ";
-      if (end_date === new Date()) {
+      if (end_date.getTime() === new Date().getTime()) {
         time_interval_text += "present";
       } else {
         time_interval_text += format_month_and_year(end_date);
       }
 
-      let start_end_month_diff = calculate_month_diff(start_date, end_date);
-      let year_diff = start_end_month_diff / 12;
+      let start_end_month_diff = 1;
+      if (start_date.getTime() != end_date.getTime()) {
+        start_end_month_diff = calculate_month_diff(start_date, end_date);
+      }
+
+      let year_diff = Math.floor(start_end_month_diff / 12);
       let month_diff = start_end_month_diff % 12;
 
       time_interval_text += " ( ";
