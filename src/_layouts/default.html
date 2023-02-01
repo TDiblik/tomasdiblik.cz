@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="/assets/css/globals.css" />
     <link rel="stylesheet" href="/assets/css/layout.css" />
 
-    <link rel="icon" type="image/svg" href="/assets/img/logo.svg" />
+    <link
+      rel="icon"
+      type="image/svg"
+      href="/assets/img/logo.svg" />
 
     <script src="/assets/js/layout.js"></script>
 
@@ -24,45 +27,26 @@
               src="/assets/img/nav-house.svg"
               width="46"
               height="46"
-              alt="Houme icon suggesting index page"
-            />
+              alt="Houme icon suggesting index page" />
           </a>
         </div>
         <div id="menu" class="not-active">
-          <a
-            class="{%if page.highlited_navbar_option == 'AboutMe' %} underline {%endif%} subheading-text underline-on-hover"
-            href="/pages/about-me"
-          >
+          <a class="{%if page.highlited_navbar_option == 'AboutMe' %} underline {%endif%} subheading-text underline-on-hover" href="/pages/about-me">
             About me
           </a>
-          <a
-            class="{%if page.highlited_navbar_option == 'Projects' %} underline {%endif%} subheading-text underline-on-hover"
-            href="/pages/projects"
-          >
+          <a class="{%if page.highlited_navbar_option == 'Projects' %} underline {%endif%} subheading-text underline-on-hover" href="/pages/projects">
             Projects
           </a>
-          <a
-            class="{%if page.highlited_navbar_option == 'Blog' %} underline {%endif%} subheading-text underline-on-hover"
-            href="/pages/blog"
-          >
+          <a class="{%if page.highlited_navbar_option == 'Blog' %} underline {%endif%} subheading-text underline-on-hover" href="/pages/blog">
             Blog
           </a>
-          <a
-            class="{%if page.highlited_navbar_option == 'TechStack' %} underline {%endif%} subheading-text underline-on-hover"
-            href="/pages/tech-stack"
-          >
+          <a class="{%if page.highlited_navbar_option == 'TechStack' %} underline {%endif%} subheading-text underline-on-hover" href="/pages/tech-stack">
             Tech stack
           </a>
-          <a
-            class="{%if page.highlited_navbar_option == 'WorkExperience' %} underline {%endif%} subheading-text underline-on-hover"
-            href="/pages/work-experience"
-          >
+          <a class="{%if page.highlited_navbar_option == 'WorkExperience' %} underline {%endif%} subheading-text underline-on-hover" href="/pages/work-experience">
             Work experience
           </a>
-          <a
-            class="{%if page.highlited_navbar_option == 'Certifications' %} underline {%endif%} subheading-text underline-on-hover"
-            href="/pages/certifications"
-          >
+          <a class="{%if page.highlited_navbar_option == 'Certifications' %} underline {%endif%} subheading-text underline-on-hover" href="/pages/certifications">
             Certifications
           </a>
         </div>
@@ -70,16 +54,14 @@
           <img
             src="/assets/img/nav-hamburger.svg"
             alt="Menu to open navbar"
-            class="menu-open-icon"
-          />
+            class="menu-open-icon" />
         </div>
 
         <div id="close-menu-wrapper" class="menu-icon-wrapper">
           <img
             src="/assets/img/nav-x.svg"
             alt="Menu to open navbar"
-            class="menu-close-icon"
-          />
+            class="menu-close-icon" />
         </div>
       </div>
       <main>
@@ -91,41 +73,26 @@
           <span id="footer-end-date" class="small-text"></span>
         </span>
         <div class="social-media-icons">
-          <a href="https://github.com/TDiblik/" {% include outside_link.html %}>
+          <a href="https://github.com/TDiblik/" {% include external_link.html %}>
             <img
               src="/assets/img/github.svg"
               alt="Github logo"
-              class="github-logo"
-            />
+              class="github-logo" />
           </a>
-          <a
-            href="https://www.linkedin.com/in/tdiblik/"
-            {%
-            include
-            outside_link.html
-            %}
-          >
+          <a href="https://www.linkedin.com/in/tdiblik/" {% include external_link.html %}>
             <img src="/assets/img/linkedin-logo.png" alt="LinkedIn logo" />
           </a>
-          <a
-            href="https://www.youtube.com/@tdiblik"
-            {%
-            include
-            outside_link.html
-            %}
-          >
+          <a href="https://www.youtube.com/@tdiblik" {% include external_link.html %}>
             <img
               src="/assets/img/youtube-logo.png"
               alt="Youtube logo"
-              class="youtube-logo"
-            />
+              class="youtube-logo" />
           </a>
-          <a href="mailto:dibla.tomas@post.cz" {% include outside_link.html %}>
+          <a href="mailto:dibla.tomas@post.cz" {% include external_link.html %}>
             <img
               src="/assets/img/email-icon.svg"
               alt="Email icon"
-              class="email-icon"
-            />
+              class="email-icon" />
           </a>
         </div>
       </footer>
