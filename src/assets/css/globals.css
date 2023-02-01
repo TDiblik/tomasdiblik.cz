@@ -17,7 +17,8 @@
   font-family: var(--font-family);
   font-style: normal;
   font-weight: 400;
-  font-size: 1.17rem;
+  font-size: 1rem;
+  line-height: 24px;
 
   /* Fix raleway numbers */
   -webkit-font-feature-settings: "lnum" !important;
