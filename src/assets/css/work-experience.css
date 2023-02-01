@@ -1,7 +1,5 @@
-/* If you uncoment all commented-out properties, text will appear next to the job-info container, but I didn't like how it looked. Might uncoment it in the future */
 .job {
-  /* display: flex;
-  flex-direction: column; */
+  display: flex;
   margin-bottom: 50px;
 }
 
@@ -12,7 +10,7 @@
   align-items: center;
   gap: 15px;
   width: 100%;
-  /* flex-basis: 40%; */
+  flex-basis: 40%;
 }
 
 .job-logo-wrapper {
@@ -30,22 +28,6 @@
   max-width: 130px;
 }
 
-@media (max-width: 576px) {
-  .job-logo {
-    width: 100%;
-    height: auto;
-  }
-}
-@media (max-width: 1400px) {
-  .job {
-    display: block;
-  }
-
-  .job-info {
-    justify-content: flex-start;
-  }
-}
-
 .job-details > * {
   margin: 0;
   margin-bottom: 5px;
@@ -56,6 +38,32 @@
 }
 
 .job-description-paragraph {
-  /* flex-basis: 60%; */
+  flex-basis: 60%;
   text-align: justify;
+}
+
+@media (min-width: 2000px) {
+  .job-info {
+    flex-basis: 30%;
+  }
+  .job-description-paragraph {
+    flex-basis: 70%;
+  }
+}
+
+@media (max-width: 1500px) {
+  .job {
+    display: block;
+  }
+
+  .job-info {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 576px) {
+  .job-logo {
+    width: 100%;
+    height: auto;
+  }
 }
