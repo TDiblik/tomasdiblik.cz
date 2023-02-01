@@ -10,3 +10,4 @@ TODO:
 - Add robots.txt (with sitemap link)
 - Add sitemap generation
 - Minify output files (since source code is available on github)
+- Take different pictures of myself, as those used are 2-3 years old.
