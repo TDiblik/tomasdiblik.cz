@@ -12,6 +12,8 @@ server {
 
         root /www/project_name;
 
+        error_page 404 /404.html;
+
         index index.html;
         location / {
 		try_files $uri $uri.html $uri/ =404;
