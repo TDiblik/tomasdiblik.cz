@@ -1,0 +1,21 @@
+<div
+  class="
+  project-wrapper
+  {% if include.is_open_sourced %}
+    open_sourced
+  {% else %}
+    close_sourced
+  {% endif %}
+  {% if include.is_publicly_available %}
+    publicly_available
+  {% endif %}">
+  <h2 class="strong-text">
+    {{ include.name }}
+  </h2>
+  <p class="project-description small-text">
+    {{ include.description }}
+  </p>
+  <div class="project-links-wrapper">
+    {{ include.links }}
+  </div>
+</div>
