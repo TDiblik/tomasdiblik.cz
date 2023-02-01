@@ -87,27 +87,40 @@
       </main>
       <footer>
         <span class="small-text">
-          © Tomáš Diblík, 2020 - <span id="footer-end-date"></span>
+          © Tomáš Diblík, 2020 -
+          <span id="footer-end-date" class="small-text"></span>
         </span>
         <div class="social-media-icons">
-          <a href="https://github.com/TDiblik/">
+          <a href="https://github.com/TDiblik/" {% include outside_link.html %}>
             <img
               src="/assets/img/github.svg"
               alt="Github logo"
               class="github-logo"
             />
           </a>
-          <a href="https://www.linkedin.com/in/tdiblik/">
+          <a
+            href="https://www.linkedin.com/in/tdiblik/"
+            {%
+            include
+            outside_link.html
+            %}
+          >
             <img src="/assets/img/linkedin-logo.png" alt="LinkedIn logo" />
           </a>
-          <a href="https://www.youtube.com/@tdiblik">
+          <a
+            href="https://www.youtube.com/@tdiblik"
+            {%
+            include
+            outside_link.html
+            %}
+          >
             <img
               src="/assets/img/youtube-logo.png"
               alt="Youtube logo"
               class="youtube-logo"
             />
           </a>
-          <a href="mailto:dibla.tomas@post.cz">
+          <a href="mailto:dibla.tomas@post.cz" {% include outside_link.html %}>
             <img
               src="/assets/img/email-icon.svg"
               alt="Email icon"

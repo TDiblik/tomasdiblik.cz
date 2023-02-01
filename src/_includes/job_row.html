@@ -1,0 +1,30 @@
+<div class="job">
+  <div class="job-info">
+    <div class="job-logo-wrapper">
+      <a href="{{ include.employer_href }}" {% include outside_link.html %}>
+        <img
+          class="job-logo"
+          src="{{ include.employer_logo_src }}"
+          alt="Logo {{ include.employer_name }}"
+          title="Logo {{ include.employer_name }}" />
+      </a>
+    </div>
+    <div class="job-details">
+      <h1 class="strong-text">{{ include.job_title }}</h1>
+      <h3>
+        <a
+          href="{{ include.employer_href }}"
+          class="underline-on-hover"
+          {% include outside_link.html %}>
+          {{ include.employer_name }}
+        </a>
+      </h3>
+      <h3>{{ include.type_of_employment }}</h3>
+      <h3
+        class="job-time-interval"
+        data-start-date="{{ include.employed_from }}"
+        data-end-date="{{ include.employed_to }}"></h3>
+    </div>
+  </div>
+  <p class="normal-text job-description-paragraph">{{ include.job_description }}</p>
+</div>
