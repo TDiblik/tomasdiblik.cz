@@ -1,0 +1,3 @@
+<a href="{{include.href}}" {% if include.is_internal != true %}{% include external_link.html %}{% endif %}class="strong-text underline-on-hover">
+  {{ include.text }} ↗
+</a>

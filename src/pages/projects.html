@@ -4,20 +4,82 @@ layout: default
 title: Projects
 highlited_navbar_option: Projects
 additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
+    <script src="/assets/libraries/vanilla-tilt/vanilla-tilt-1-8-0.min.js"></script>
+    <script src="/assets/js/projects.js"></script>
 ---
 
-<div class="projects-container">
-  <div class="project-wrapper">
-    <h2 class="strong-text">Example project name</h2>
-    <p>Example project description. This should not exceed 75 charaters.</p>
-    <div class="project-links-wrapper">
-      <a href="https://github.com/" target="_blank">Source code ↗</a>
-    </div>
+<div class="project-page-container">
+  <div class="project-type-selector-container">
+    <select id="project-type-selector" class="subheading-text">
+      <option value="all" selected>All</option>
+      <option value="open_sourced">Open-sourced</option>
+      <option value="publicly_available">Publicly available</option>
+      <option value="close_sourced">Close-sourced</option>
+    </select>
+  </div>
+
+  <div class="projects-container">
+
+    {% capture example_project_links %}
+      {% include project_card_link.html 
+       href = "https://github.com/example"
+       text = "Source code" %}
+      {% include project_card_link.html 
+       href = "https://example.com"
+       text = "Example" %}
+      {% include project_card_link.html 
+       href = "/blog/example"
+       text = "Blog"
+       is_internal = true %}
+    {% endcapture %}
+
+    {% include project_card.html 
+     name = "Example project name"
+     description = "
+     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+     tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim
+     convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus
+     sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
+     "
+     is_open_sourced = true
+     is_publicly_available = true
+     links = example_project_links %}
+
+
+    {% include project_card.html 
+     name = "Example project name"
+     description = "
+     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+     tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim
+     convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus
+     sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
+     "
+     is_open_sourced = false
+     is_publicly_available = true
+     links = example_project_links %}
+
+    {% include project_card.html 
+     name = "Example project name"
+     description = "
+     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+     tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim
+     convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus
+     sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
+     "
+     is_open_sourced = false
+     is_publicly_available = false
+     links = example_project_links %}
+
+    {% include project_card.html 
+     name = "Example project name"
+     description = "
+     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+     tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim
+     convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus
+     sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
+     "
+     is_open_sourced = true
+     is_publicly_available = false
+     links = example_project_links %}
   </div>
 </div>
-
-<h1>h1</h1>
-<h2>h2</h2>
-<h3>h3</h3>
-<h4>h4</h4>
-<h5>h5</h5>

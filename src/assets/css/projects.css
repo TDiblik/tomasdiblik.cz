@@ -1,2 +1,78 @@
+.project-page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-type-selector-container {
+  display: flex;
+  justify-content: center;
+}
+
+#project-type-selector {
+  border-radius: 10px;
+  color: var(--white);
+  background-color: var(--secondary-color-nearly-silent);
+  padding: 5px 25px;
+  text-align: center;
+}
+#project-type-selector:hover {
+  cursor: pointer;
+}
+#project-type-selector > option {
+  text-align: center;
+  font-size: 1.25rem;
+  color: var(--white);
+  background-color: var(
+    --secondary-color-nearly-silent-calculated-beforehand-against-primary-color
+  );
+}
+
+.projects-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 50px;
+  padding-top: 2%;
+}
+
 .project-wrapper {
+  width: 325px;
+  margin: 1rem;
+  padding: 1.25rem;
+  border: 0.5px solid var(--gray);
+  border-radius: 8px;
+  box-shadow: 1px 1px 5px var(--gray);
+
+  transition: box-shadow 0.2s ease;
+  -o-transition: box-shadow 0.2s ease;
+  -moz-transition: box-shadow 0.2s ease;
+  -webkit-transition: box-shadow 0.2s ease;
+
+  background-color: var(--secondary-color-nearly-silent);
+}
+.project-wrapper:hover {
+  box-shadow: 2px 2px 10px #f4f4f4;
+}
+.project-wrapper.hidden {
+  display: none;
+}
+
+.project-wrapper * {
+  text-align: center;
+}
+.project-wrapper > *:hover {
+  cursor: default;
+}
+
+.project-description {
+  text-align: justify;
+}
+
+.project-links-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.project-links-wrapper > a:hover {
+  filter: brightness(1.2);
 }
