@@ -5,10 +5,11 @@ development buidl: `bundle exec jekyll serve --livereload` <br/>
 TODO:
 
 - Add content to about-me page
+- Add content to projects page
+- Take different pictures of myself, as those used are 2-3 years old.
 - Go through all images and make them smaller in size
-- Generate SEO metadata
 - Add robots.txt (with sitemap link)
 - Add sitemap generation
+- Generate SEO metadata
 - Minify output files (since source code is available on github)
-- Take different pictures of myself, as those used are 2-3 years old.
-- Add content to projects page
+- Customize 404 page with some kind of game/animation or anything interesting
