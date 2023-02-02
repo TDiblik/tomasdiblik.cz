@@ -1,0 +1,21 @@
+{% assign blog_post_root = '/pages/blog/' | append: include.release_date | append: "/" %}
+
+<a href="{{ blog_post_root | append: include.href }}">
+  <div class="blog-post see-through-container">
+    <div class="blog-post-thumbnail-wrapper">
+      <img
+        class="blog-post-thumbnail"
+        src="{{ blog_post_root | append: 'thumbnail.png' }}"
+        alt="{{ include.thumbnail_alt }}" />
+    </div>
+    <div class="blog-post-info">
+      <div class="blog-post-header">
+        <h1 class="blog-post-title">{{ include.title }}</h1>
+        <span class="blog-post-release-date" title="(dd-mm-yyyy)">{{ include.release_date }}</span>
+      </div>
+      <p class="blog-post-description normal-text">
+        {{ include.description }}
+      </p>
+    </div>
+  </div>
+</a>

@@ -3,6 +3,26 @@ layout: default
 
 title: Projects
 highlited_navbar_option: Blog
+additional_headers: <link rel="stylesheet" href="/assets/css/blog.css" />
+    <link rel="stylesheet" href="/assets/css/see-through-container.css" />
 ---
 
-<p>Blog</p>
+{% include blog_post_preview_card.html 
+ title = "Example blog post"
+ href = "example-blog-post"
+ thumbnail_alt = "Alternative text to the thumbnail"
+ release_date = "02-02-2023"
+ description = "
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+ Ac tortor dignissim convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
+ " %}
+
+{% include blog_post_preview_card.html 
+ title = "Example blog post 2"
+ href = "example-blog-post-2"
+ thumbnail_alt = "Alternative text to the second thumbnail"
+ release_date = "03-02-2023"
+ description = "
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+ Ac tortor dignissim convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
+ " %}

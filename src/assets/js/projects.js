@@ -17,8 +17,11 @@ window.addEventListener("load", () => {
       }
     });
 
-  VanillaTilt.init(document.querySelectorAll(".project-wrapper"), {
-    max: 4,
-    speed: 200,
-  });
+  if (!is_mobile_or_tablet()) {
+    VanillaTilt.init(document.querySelectorAll(".project-wrapper"), {
+      max: 4,
+      speed: 200,
+      scale: 1.03,
+    });
+  }
 });
