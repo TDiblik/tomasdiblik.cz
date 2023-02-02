@@ -4,6 +4,7 @@
   gap: 40px;
   margin-bottom: 40px;
 
+  /* TODO: Isn't 0.95 a little small? Test more the 0.95-0.98 range and decide which is better */
   transform: scale(0.95);
 
   transition: all 0.2s ease !important;
