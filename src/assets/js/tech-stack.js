@@ -1,86 +1,162 @@
-const root_point_usage = 0;
-const nerly_every_day_usage = 1;
-const once_per_week_usage = 2;
-const once_per_month_usage = 3;
+const root_point_usage = "rgba(255, 99, 71, 0.5)";
+const nerly_every_day_usage = "green";
+const once_per_week_usage = "blue";
+const once_per_month_usage = "orange";
 
 const technologies = {
   name: "Me",
   usage: root_point_usage,
-  node_width: 50,
-  children_hidden: false,
   children: [
     {
       name: "C#",
       usage: nerly_every_day_usage,
-      node_width: 50,
-      children_hidden: true,
       children: [
         {
           name: "Dapper",
           usage: nerly_every_day_usage,
-          node_width: 75,
+          children: [
+            {
+              name: "Dapper",
+              usage: nerly_every_day_usage,
+            },
+            {
+              name: "EntityFramework",
+              usage: once_per_week_usage,
+            },
+          ],
         },
         {
-          name: "Entity Framework",
+          name: "EntityFramework",
           usage: once_per_week_usage,
-          node_width: 140,
         },
       ],
     },
     {
       name: "Typescript",
       usage: nerly_every_day_usage,
-      node_width: 90,
-      children_hidden: true,
+      children: [
+        {
+          name: "Dapper",
+          usage: nerly_every_day_usage,
+        },
+        {
+          name: "EntityFramework",
+          usage: once_per_week_usage,
+        },
+      ],
     },
     {
       name: "Python",
       usage: once_per_month_usage,
-      node_width: 75,
-      children_hidden: true,
     },
     {
       name: "Rust",
       usage: once_per_month_usage,
-      node_width: 50,
-      children_hidden: true,
     },
   ],
 };
 
+const character_width = 10; // 12.5
+function calculate_node_width_recursivelly(root_node) {
+  if (root_node.children !== undefined) {
+    for (let i = 0; i < root_node.children.length; i++) {
+      calculate_node_width_recursivelly(root_node.children[i]);
+    }
+  }
+  root_node.node_width = root_node.name.length * character_width + 20; // +20 padding
+}
+
+let already_generated_ids = [];
+function generate_node_nanoids_recursivelly(root_node) {
+  if (root_node.children !== undefined) {
+    for (let i = 0; i < root_node.children.length; i++) {
+      generate_node_nanoids_recursivelly(root_node.children[i]);
+    }
+  }
+
+  // make sure that there are no uuid collisions
+  // This could be optimized by changing the number of generated charaters and then matched agains different possibilities of collisions occuring,
+  // but after profiling, this is not even close to beeing a problem
+  let new_uuid;
+  do {
+    new_uuid = nanoid(32);
+  } while (already_generated_ids.includes(new_uuid));
+  already_generated_ids.push(new_uuid);
+
+  root_node.nanoid = new_uuid;
+}
+
 const graph_element_selector = "#graph";
 const moveable_group_classname = "moveable-group";
 const clickable_group_classname = "clickable-group";
+const hideable_classname = "hideable-group-";
 
 const node_height = 30;
 const node_radius = 10;
-const force_distance = node_radius * node_radius * 20 * -1;
+const force_distance = node_radius * node_radius * node_height * -1;
 
-let max_width;
-let min_width;
-let max_height;
-let min_height;
+let graph_container;
+function update_graph_size() {
+  const main_element = document.querySelector("main");
+
+  let max_width = main_element.offsetWidth;
+  let min_width = -max_width / 2;
+  let max_height = main_element.offsetHeight;
+  let min_height = -max_height / 2;
+
+  graph_container
+    .attr("width", max_width)
+    .attr("height", max_height - max_height * 0.09) // * 0.09 because of top-bottom padding
+    .attr("viewBox", [min_width, min_height, max_width, max_height]);
+}
 
 function construct_drag_events(simulation) {
   return d3
     .drag()
-    .on("start", (event, s) => {
-      if (!event.active) simulation.alphaTarget(0.3).restart();
+    .on("start", (e, s) => {
+      if (!e.active) simulation.alphaTarget(0.3).restart();
       s.fx = s.x;
       s.fy = s.y;
     })
-    .on("drag", (event, s) => {
-      s.fx = event.x;
-      s.fy = event.y;
+    .on("drag", (e, s) => {
+      s.fx = e.x;
+      s.fy = e.y;
+      e.sourceEvent.target.style.cursor = "grabbing";
     })
-    .on("end", (event, s) => {
-      if (!event.active) simulation.alphaTarget(0);
+    .on("end", (e, s) => {
+      if (!e.active) simulation.alphaTarget(0);
       s.fx = null;
       s.fy = null;
     });
 }
 
+function hide_children_recursively(parent, is_first_itteration) {
+  if (parent.children !== undefined) {
+    for (let i = 0; i < parent.children.length; i++) {
+      hide_children_recursively(parent.children[i], false);
+    }
+  }
+
+  const items_to_show_or_hide = document.getElementsByClassName(
+    `${hideable_classname}${parent.nanoid}`
+  );
+
+  const should_hide = is_first_itteration
+    ? parent.has_hidden_children !== true
+    : true;
+  for (let i = 0; i < items_to_show_or_hide.length; i++) {
+    const item = items_to_show_or_hide[i];
+    item.style.display = should_hide ? "none" : "block";
+  }
+  parent.has_hidden_children = should_hide;
+}
+
 window.addEventListener("load", () => {
+  // Prepare data
+  calculate_node_width_recursivelly(technologies);
+  generate_node_nanoids_recursivelly(technologies);
+
+  // Render graph
   const root = d3.hierarchy(technologies);
   const links = root.links();
   const nodes = root.descendants();
@@ -99,41 +175,41 @@ window.addEventListener("load", () => {
     .force("x", d3.forceX())
     .force("y", d3.forceY());
 
-  const svg = d3.select("#graph");
+  graph_container = d3.select(graph_element_selector);
+  update_graph_size();
 
-  max_width = +svg.attr("width");
-  min_width = -max_width / 2;
-  max_height = +svg.attr("height");
-  min_height = -max_height / 2;
-
-  svg.attr("viewBox", [min_width, min_height, max_width, max_height]);
-
-  const link = svg
+  const link = graph_container
     .append("g")
-    .attr("stroke", "#999")
-    .attr("stroke-opacity", 0.6)
+    .attr("stroke", "var(--gray)")
+    .attr("stroke-opacity", 0.5)
     .attr("class", moveable_group_classname)
     .selectAll("line")
     .data(links)
-    .join("line");
+    .join("line")
+    .attr("class", (s) => `${hideable_classname}${s.source.data.nanoid}`);
 
-  const node_group = svg
+  const node_group = graph_container
     .append("g")
-    .attr("fill", "#fff")
-    .attr("stroke", "#000")
-    .attr("stroke-width", 1.5)
+    .attr("fill", "var(--white)")
     .attr("class", moveable_group_classname)
     .selectAll("g")
     .data(nodes)
-    .join("g");
-
-  node_group.attr("class", clickable_group_classname);
-  node_group
+    .join("g")
+    .attr(
+      "class",
+      (s) =>
+        `${clickable_group_classname} ${
+          s.parent ? `${hideable_classname}${s.parent.data.nanoid}` : ""
+        }`
+    )
     .on("click", (e, s) => {
-      console.log(e);
-      console.log(s);
+      if (s.data.children === undefined) {
+        return;
+      }
+      hide_children_recursively(s.data, true);
     })
     .on("mouseover", (e, s) => {
+      e.target.style.cursor = "grab";
       if (s.data.children !== undefined) {
         e.target.style.cursor = "pointer";
       }
@@ -146,8 +222,9 @@ window.addEventListener("load", () => {
     .append("rect")
     .attr("width", (s) => s.data.node_width)
     .attr("height", node_height)
-    .attr("fill", "transparent")
-    .attr("stroke", "#fff")
+    .attr("fill", (s) => s.data.usage)
+    .attr("stroke", "var(--white)")
+    .attr("stroke-width", 1)
     .attr("rx", node_radius)
     .attr("ry", node_radius)
     .call(construct_drag_events(simulation));
@@ -179,7 +256,7 @@ window.addEventListener("load", () => {
 
   const zoom = d3
     .zoom()
-    .scaleExtent([0.25, 1.5])
+    .scaleExtent([0.75, 3.5])
     .on("start", () => {
       document.querySelector(graph_element_selector).style.cursor = "move";
     })
@@ -192,8 +269,12 @@ window.addEventListener("load", () => {
         e.transform
       );
     });
-  svg.call(zoom);
+  graph_container.call(zoom);
 
   // Default zooom
-  svg.transition().call(zoom.scaleBy, 0.75);
+  graph_container
+    .transition()
+    .call(zoom.scaleBy, is_mobile_or_tablet() ? 1 : 2);
 });
+
+window.addEventListener("resize", () => update_graph_size(), true);
