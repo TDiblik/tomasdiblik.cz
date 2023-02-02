@@ -4,11 +4,16 @@
 :root {
   --white: #faf8f8;
   --gray: #c7c7c7;
+  --black: #212529;
+
   --primary-color: #0e2a47;
+  --primary-color-muted: rgba(14, 42, 71, 0.8);
+
   --secondary-color: #a7bbec;
   --secondary-color-muted: rgba(167, 187, 236, 0.6);
   --secondary-color-nearly-silent: rgba(167, 187, 236, 0.1);
   --secondary-color-nearly-silent-calculated-beforehand-against-primary-color: #1e3958;
+
   --font-family: "Raleway", Helvetica, Arial, sans-serif;
 }
 
