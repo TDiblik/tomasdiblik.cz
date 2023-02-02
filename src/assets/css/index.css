@@ -88,11 +88,20 @@ body {
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1550px) {
+  .index-container {
+    padding-top: 10%;
+  }
+  .index-image-me {
+    width: 200px;
+  }
+}
+@media (max-width: 1250px) {
   .index-image-me {
     display: none;
   }
-
+}
+@media (max-width: 992px) {
   .index-header > h1 {
     font-size: 3rem;
     line-height: 35px;
@@ -100,10 +109,15 @@ body {
   .index-header-underline {
     height: 5px;
   }
-  .index-header {
+  .index-header,
+  .index-subheading {
     padding-right: 10%;
   }
   .index-subheading > h2 {
+    font-size: 2rem !important;
+    line-height: 2.3rem !important;
+  }
+  .index-subheading > h2 > span {
     font-size: 2rem !important;
     line-height: 2.3rem !important;
   }

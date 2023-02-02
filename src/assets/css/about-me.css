@@ -23,7 +23,7 @@
     width: 600px;
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .about-me-image-container {
     display: none;
   }
