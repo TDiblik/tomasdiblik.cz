@@ -1,18 +1,31 @@
-const root_point_usage = "rgba(255, 99, 71, 0.5)";
-const nerly_every_day_usage = "green";
-const once_per_week_usage = "blue";
-const once_per_month_usage = "orange";
+// Possible selected color combinations
+
+// Light gray: rgba(211, 211, 211, 0.6)
+// Pale blue: rgba(173, 216, 230, 0.6)
+
+// Light olive: rgba(164, 190, 92, 0.6)
+// Soft green: rgba(191, 227, 180, 0.6)
+
+// Pale pink: rgba(255, 182, 193, 0.6)
+// Light Peach: rgba(255, 229, 180, 0.6)
+
+const root_point_usage = "var(--white)";
+const nerly_every_day_usage = "rgba(173, 216, 230, 0.6)";
+const once_per_week_usage = "rgba(164, 190, 92, 0.6)";
+const once_per_month_usage = "rgba(255, 182, 193, 0.6)";
 
 const technologies = {
-  name: "Me",
+  name: "Me :D",
   usage: root_point_usage,
+  overwrite_fill: "var(--black)",
+  title: "Center point of my knowledge ^_^",
   children: [
     {
       name: "C#",
       usage: nerly_every_day_usage,
       children: [
         {
-          name: "Dapper",
+          name: "ASP.NET Core",
           usage: nerly_every_day_usage,
           children: [
             {
@@ -20,13 +33,17 @@ const technologies = {
               usage: nerly_every_day_usage,
             },
             {
-              name: "EntityFramework",
+              name: "Swagger",
+              usage: nerly_every_day_usage,
+            },
+            {
+              name: "Entity Framework",
               usage: once_per_week_usage,
             },
           ],
         },
         {
-          name: "EntityFramework",
+          name: "Winforms",
           usage: once_per_week_usage,
         },
       ],
@@ -36,11 +53,11 @@ const technologies = {
       usage: nerly_every_day_usage,
       children: [
         {
-          name: "Dapper",
+          name: "React",
           usage: nerly_every_day_usage,
         },
         {
-          name: "EntityFramework",
+          name: "Svelte",
           usage: once_per_week_usage,
         },
       ],
@@ -52,6 +69,11 @@ const technologies = {
     {
       name: "Rust",
       usage: once_per_month_usage,
+    },
+    {
+      name: "Dev tools",
+      usage: once_per_month_usage,
+      // postman, vscode, git, figma, azure devops
     },
   ],
 };
@@ -228,7 +250,6 @@ window.addEventListener("load", () => {
     .attr("rx", node_radius)
     .attr("ry", node_radius)
     .call(construct_drag_events(simulation));
-  node_background_shape.append("title").text((s) => s.data.name);
 
   const node_text = node_group
     .append("text")
@@ -238,8 +259,14 @@ window.addEventListener("load", () => {
     .attr("stroke-width", "0")
     .attr("text-anchor", "middle")
     .attr("alignment-baseline", "middle")
+    .attr("fill", (s) => s.data.overwrite_fill ?? "")
     .text((s) => s.data.name)
     .call(construct_drag_events(simulation));
+
+  node_background_shape
+    .append("title")
+    .text((s) => s.data.title ?? s.data.name);
+  node_text.append("title").text((s) => s.data.title ?? s.data.name);
 
   simulation.on("tick", () => {
     link
@@ -274,7 +301,7 @@ window.addEventListener("load", () => {
   // Default zooom
   graph_container
     .transition()
-    .call(zoom.scaleBy, is_mobile_or_tablet() ? 1 : 2);
+    .call(zoom.scaleBy, is_mobile_or_tablet() ? 1 : 1.5);
 });
 
 window.addEventListener("resize", () => update_graph_size(), true);
