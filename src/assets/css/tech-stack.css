@@ -1,0 +1,28 @@
+/* #graph {
+  height: 100vh;
+  width: 100vw;
+} */
+
+.no-js-notice {
+  display: flex;
+  justify-content: center;
+}
+.no-js-notice > * {
+  margin: 20px 0px;
+}
+
+#graph {
+  width: 100%;
+  max-height: 100vh;
+  height: 100%;
+
+  border: 0.5px solid var(--gray);
+  border-radius: 8px;
+  box-shadow: 1px 1px 5px var(--gray);
+
+  background-color: var(--secondary-color-nearly-silent);
+}
+
+text {
+  font-size: 1rem;
+}
