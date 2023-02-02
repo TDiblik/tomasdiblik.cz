@@ -10,9 +10,23 @@ server {
         include /etc/letsencrypt/options-ssl-nginx.conf;
         ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
-        root /www/project_name;
+        root /www/tomasdiblik.cz;
+
+        location ~* \.(html)$ {
+            expires 3h;
+        }
+        location ~* \.(css|gif|jpg|js|png|ico|otf|sng|xls|doc|exe|jpeg|tgx|tex)$ {
+            expires 30d;
+        }
 
         error_page 404 /404.html;
+        location = /404.html {
+                internal;
+        }
+
+        location = /blog {
+                return 301 https://$host/pages$request_uri
+        }
 
         index index.html;
         location / {
@@ -34,3 +48,5 @@ server {
 
         return 301 https://tomasdiblik.cz$request_uri;
 }
+
+# HTTP to HTTPS redirect is already present on production server as a separate config, no need to include it here.

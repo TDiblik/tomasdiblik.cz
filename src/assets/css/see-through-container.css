@@ -1,0 +1,16 @@
+.see-through-container {
+  padding: 1.25rem;
+  border: 0.5px solid var(--gray);
+  border-radius: 8px;
+  box-shadow: 1px 1px 5px var(--gray);
+
+  transition: box-shadow 0.2s ease;
+  -o-transition: box-shadow 0.2s ease;
+  -moz-transition: box-shadow 0.2s ease;
+  -webkit-transition: box-shadow 0.2s ease;
+
+  background-color: var(--secondary-color-nearly-silent);
+}
+.see-through-container:hover {
+  box-shadow: 2px 2px 10px #f4f4f4;
+}

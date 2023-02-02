@@ -44,12 +44,15 @@ a:hover {
 
 h1 {
   font-size: 2rem;
+  line-height: 40px;
 }
 h2 {
   font-size: 1.5rem;
+  line-height: 27px;
 }
 h3 {
   font-size: 1.17rem;
+  line-height: 27px;
 }
 
 .small-text {
