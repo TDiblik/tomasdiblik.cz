@@ -1,7 +1,7 @@
 .see-through-container {
   padding: 1.25rem;
   border: 0.5px solid var(--gray);
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   box-shadow: 1px 1px 5px var(--gray);
 
   transition: box-shadow 0.2s ease;
