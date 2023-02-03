@@ -22,6 +22,7 @@
   width: 90%;
   height: 90%;
   object-fit: scale-down;
+  max-width: 340px;
 }
 
 @media (min-width: 2000px) {
