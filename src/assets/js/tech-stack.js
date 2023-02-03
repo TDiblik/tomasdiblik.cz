@@ -55,16 +55,16 @@ const technologies = {
           ],
         },
         {
-          name: "ASP.NET 4.8 (legacy support)",
-          title:
-            "At my job, there are some pieces of sofware that still run on ASP.NET 4.8. I have to keep these pieces of software up-to-date and bug-free.",
-          usage: once_per_month_usage,
-        },
-        {
           name: "Winforms",
           title:
             "Whenever development speed matters, and UI's not important, I pick up Winforms for desktop applications.",
           usage: once_per_week_usage,
+        },
+        {
+          name: "ASP.NET 4.8 (legacy support)",
+          title:
+            "At my job, there are some pieces of sofware that still run on ASP.NET 4.8. I have to keep these pieces of software up-to-date and bug-free.",
+          usage: once_per_month_usage,
         },
       ],
     },
@@ -158,16 +158,16 @@ const technologies = {
       usage: nerly_every_day_usage,
       children: [
         {
-          name: "Bootstrap",
-          title:
-            "I have projects with bootstrap versions ranging from v3 to v5. I prefer v5, but I'm able to work with earlier versions.",
-          usage: nerly_every_day_usage,
-        },
-        {
           name: "SASS",
           usage: once_per_month_usage,
           title:
             "Whenever available I try to utilize SCSS, however if it's not available by default, or takes more than couple commands to setup I don't really bother installing it.",
+        },
+        {
+          name: "Bootstrap",
+          title:
+            "I have projects with bootstrap versions ranging from v3 to v5. I prefer v5, but I'm able to work with earlier versions.",
+          usage: nerly_every_day_usage,
         },
       ],
     },
@@ -386,13 +386,13 @@ function update_graph_size() {
 
   graph_container
     .append("text")
-    .attr("x", max_width + min_width - 120)
+    .attr("x", max_width + min_width - 130)
     .attr("y", max_height + min_height - 20)
     .attr("fill", "var(--white)")
     .attr("text-anchor", "middle")
     .attr("alignment-baseline", "middle")
     .attr("class", "graph-helper-group")
-    .text("? - click to expand technologies");
+    .text("? - click technology (node) to expand it");
 }
 
 function generate_helper_row(
