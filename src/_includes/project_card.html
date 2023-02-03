@@ -10,12 +10,12 @@
     publicly_available
   {% endif %}">
 
-  <h2 class="strong-text">
+  <h2 class="strong-text project-title">
     {{ include.name }}
   </h2>
 
   <div class="project-topic-badges">
-    {% if include.is_hobby %}
+    {% if include.is_hobby_project %}
       <span class="project-topic-badge hobby">Hobby</span>
     {% else %}
       <span class="project-topic-badge job">Job</span>

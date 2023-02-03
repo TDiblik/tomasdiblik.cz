@@ -58,6 +58,10 @@
   cursor: default;
 }
 
+.project-title {
+  margin-bottom: 0.7rem;
+}
+
 .project-topic-badges {
   display: flex;
   justify-content: center;
