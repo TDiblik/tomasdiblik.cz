@@ -9,12 +9,29 @@
   {% if include.is_publicly_available %}
     publicly_available
   {% endif %}">
+
   <h2 class="strong-text">
     {{ include.name }}
   </h2>
+
+  <div class="project-topic-badges">
+    {% if include.is_hobby %}
+      <span class="project-topic-badge hobby">Hobby</span>
+    {% else %}
+      <span class="project-topic-badge job">Job</span>
+    {% endif %}
+
+    {% if include.is_open_sourced %}
+      <span class="project-topic-badge open-sourced">Open sourced</span>
+    {% else %}
+      <span class="project-topic-badge close-sourced">Close sourced</span>
+    {% endif %}
+  </div>
+
   <p class="project-description small-text">
     {{ include.description }}
   </p>
+
   <div class="project-links-wrapper">
     {{ include.links }}
   </div>
