@@ -370,7 +370,7 @@ function update_graph_size() {
     .attr("rx", node_radius)
     .attr("ry", node_radius)
     .attr("class", "graph-helper-group")
-    .attr("fill", "var(--primary-color)");
+    .attr("fill", "var(--secondary-color-muted)");
   expand_button_mouse_event_constructor(expand_rect);
 
   const expand_text = graph_container
