@@ -10,14 +10,16 @@
 // Light Peach: rgba(255, 229, 180, 0.6)
 
 const root_point_usage = "var(--white)";
-const nerly_every_day_usage = "rgba(173, 216, 230, 0.6)";
-const once_per_week_usage = "rgba(164, 190, 92, 0.6)";
+const nerly_every_day_usage = "rgba(164, 190, 92, 0.6)";
+const once_per_week_usage = "rgba(173, 216, 230, 0.6)";
 const once_per_month_usage = "rgba(255, 182, 193, 0.6)";
 
 const technologies = {
   name: "Me :D",
+  is_root: true,
   usage: root_point_usage,
   overwrite_fill: "var(--black)",
+  overwrite_stroke: "var(--black)",
   title: "Center point of my knowledge ^_^",
   children: [
     {
@@ -43,6 +45,10 @@ const technologies = {
           ],
         },
         {
+          name: "MAUI Blazor",
+          usage: once_per_month_usage,
+        },
+        {
           name: "Winforms",
           usage: once_per_week_usage,
         },
@@ -55,37 +61,124 @@ const technologies = {
         {
           name: "React",
           usage: nerly_every_day_usage,
+          children: [
+            {
+              name: "@testing-library/react",
+              usage: once_per_month_usage,
+            },
+            {
+              name: "react-query",
+              usage: nerly_every_day_usage,
+            },
+          ],
         },
         {
           name: "Svelte",
           usage: once_per_week_usage,
+          children: [
+            {
+              name: "@testing-library/svelte",
+              usage: once_per_month_usage,
+            },
+            {
+              name: "@sveltestack/svelte-query",
+              usage: once_per_week_usage,
+            },
+            {
+              name: "svelte-spa-router",
+              usage: once_per_week_usage,
+            },
+          ],
         },
       ],
     },
     {
-      name: "Python",
-      usage: once_per_month_usage,
-    },
-    {
       name: "Rust",
       usage: once_per_month_usage,
+      children: [
+        {
+          name: "clap",
+          usage: once_per_month_usage,
+        },
+        {
+          name: "anyhow",
+          usage: once_per_month_usage,
+        },
+        {
+          name: "tui-rs",
+          usage: once_per_month_usage,
+        },
+      ],
+    },
+    {
+      name: "HTML & CSS",
+      usage: nerly_every_day_usage,
+      children: [
+        {
+          name: "Bootstrap",
+          title:
+            "I have projects with bootstrap versions ranging from v3 to v5. I prefer v5, but I'm able to work with earlier versions",
+          usage: nerly_every_day_usage,
+        },
+        {
+          name: "SASS",
+          usage: once_per_month_usage,
+        },
+      ],
     },
     {
       name: "Dev tools",
-      usage: once_per_month_usage,
-      // postman, vscode, git, figma, azure devops
+      usage: nerly_every_day_usage,
+      children: [
+        {
+          name: "Visual Studio Code",
+          usage: nerly_every_day_usage,
+        },
+        {
+          name: "Visual Studio",
+          usage: once_per_week_usage,
+        },
+        {
+          name: "git",
+          usage: nerly_every_day_usage,
+          title:
+            "List some hosting platforms that I use: eg. github, azure devops",
+        },
+        {
+          name: "Docker",
+          usage: nerly_every_day_usage,
+        },
+        {
+          name: "Figma",
+          usage: once_per_week_usage,
+        },
+        {
+          name: "DataGrip",
+          usage: once_per_week_usage,
+        },
+        {
+          name: "Postman",
+          usage: once_per_month_usage,
+        },
+        {
+          name: "Fusion 360",
+          usage: once_per_month_usage,
+          title:
+            "I consider Fusion 360 as part of my tech stack, used for designing parts for my embedded development projects.",
+        },
+      ],
     },
   ],
 };
 
-const character_width = 10; // 12.5
+const character_width = 8; // 12.5
 function calculate_node_width_recursivelly(root_node) {
   if (root_node.children !== undefined) {
     for (let i = 0; i < root_node.children.length; i++) {
       calculate_node_width_recursivelly(root_node.children[i]);
     }
   }
-  root_node.node_width = root_node.name.length * character_width + 20; // +20 padding
+  root_node.node_width = root_node.name.length * character_width + 30; // +20 padding
 }
 
 let already_generated_ids = [];
@@ -130,6 +223,83 @@ function update_graph_size() {
     .attr("width", max_width)
     .attr("height", max_height - max_height * 0.09) // * 0.09 because of top-bottom padding
     .attr("viewBox", [min_width, min_height, max_width, max_height]);
+
+  const previous_instances = document.querySelectorAll(".graph-helper-group");
+  for (let i = 0; i < previous_instances.length; i++) {
+    const previous_instance = previous_instances[i];
+    previous_instance.parentNode.removeChild(previous_instance);
+  }
+
+  graph_container
+    .append("text")
+    .attr("x", max_width + min_width - 120)
+    .attr("y", max_height + min_height - 20)
+    .attr("fill", "var(--white)")
+    .attr("text-anchor", "middle")
+    .attr("alignment-baseline", "middle")
+    .attr("class", "graph-helper-group")
+    .text("? - click to expand technologies");
+
+  generate_helper_row(
+    nerly_every_day_usage,
+    "using nearly every day",
+    190,
+    max_width,
+    min_width,
+    min_height,
+    0
+  );
+
+  generate_helper_row(
+    once_per_week_usage,
+    "using once per week",
+    190,
+    max_width,
+    min_width,
+    min_height,
+    1
+  );
+
+  generate_helper_row(
+    once_per_month_usage,
+    "using once per month",
+    190,
+    max_width,
+    min_width,
+    min_height,
+    2
+  );
+}
+
+function generate_helper_row(
+  color,
+  text,
+  minus_text,
+  max_width,
+  min_width,
+  min_height,
+  i
+) {
+  graph_container
+    .append("rect")
+    .attr("x", max_width + min_width - minus_text)
+    .attr("y", min_height + 5 + 10 * i + 25 * i)
+    .attr("width", 25)
+    .attr("height", 25)
+    .attr("rx", node_radius)
+    .attr("ry", node_radius)
+    .attr("class", "graph-helper-group")
+    .attr("fill", color);
+
+  graph_container
+    .append("text")
+    .attr("x", max_width + min_width - 75)
+    .attr("y", min_height + 10 * i + 20 + 25 * i)
+    .attr("fill", "var(--white)")
+    .attr("text-anchor", "middle")
+    .attr("alignment-baseline", "middle")
+    .attr("class", "graph-helper-group")
+    .text(text);
 }
 
 function construct_drag_events(simulation) {
@@ -190,8 +360,8 @@ window.addEventListener("load", () => {
       d3
         .forceLink(links)
         .id((d) => d.id)
-        .distance(50)
-        .strength(1)
+        .distance(100)
+        .strength(0.5)
     )
     .force("charge", d3.forceManyBody().strength(force_distance))
     .force("x", d3.forceX())
@@ -203,12 +373,23 @@ window.addEventListener("load", () => {
   const link = graph_container
     .append("g")
     .attr("stroke", "var(--gray)")
-    .attr("stroke-opacity", 0.5)
     .attr("class", moveable_group_classname)
     .selectAll("line")
     .data(links)
     .join("line")
-    .attr("class", (s) => `${hideable_classname}${s.source.data.nanoid}`);
+    .attr("class", (s) => `${hideable_classname}${s.source.data.nanoid}`)
+    .attr("stroke-opacity", (s) => {
+      switch (s.source.data.usage) {
+        case root_point_usage:
+          return 0.75;
+        case nerly_every_day_usage:
+          return 0.6;
+        case once_per_week_usage:
+          return 0.55;
+        case once_per_month_usage:
+          return 0.5;
+      }
+    });
 
   const node_group = graph_container
     .append("g")
@@ -217,6 +398,7 @@ window.addEventListener("load", () => {
     .selectAll("g")
     .data(nodes)
     .join("g")
+    .attr("id", (s) => (s.data.is_root ? "graph-root-node" : ""))
     .attr(
       "class",
       (s) =>
@@ -245,7 +427,7 @@ window.addEventListener("load", () => {
     .attr("width", (s) => s.data.node_width)
     .attr("height", node_height)
     .attr("fill", (s) => s.data.usage)
-    .attr("stroke", "var(--white)")
+    .attr("stroke", (s) => s.data.overwrite_stroke ?? "var(--white)")
     .attr("stroke-width", 1)
     .attr("rx", node_radius)
     .attr("ry", node_radius)
@@ -301,7 +483,13 @@ window.addEventListener("load", () => {
   // Default zooom
   graph_container
     .transition()
-    .call(zoom.scaleBy, is_mobile_or_tablet() ? 1 : 1.5);
+    .call(zoom.scaleBy, is_mobile_or_tablet() ? 1 : 1.25);
+
+  // Default children hidden
+  for (let i = 0; i < root.data.children.length; i++) {
+    const child = root.data.children[i];
+    hide_children_recursively(child);
+  }
 });
 
 window.addEventListener("resize", () => update_graph_size(), true);
