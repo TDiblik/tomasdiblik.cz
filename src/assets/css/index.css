@@ -24,7 +24,7 @@ body {
   height: 10px;
   color: var(--secondary-color);
   background-color: var(--secondary-color);
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   border: 0px;
 }
 

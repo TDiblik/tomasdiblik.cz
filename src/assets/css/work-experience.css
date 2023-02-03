@@ -19,7 +19,7 @@
   min-width: 130px;
   max-width: 130px;
   padding: 5px 0px;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   background-color: var(--white);
 }
 .job-logo {
