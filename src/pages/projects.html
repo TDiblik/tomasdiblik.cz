@@ -10,8 +10,6 @@ additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
     <script src="/assets/js/projects.js"></script>
 ---
 
-<!-- Split into professional/hobby -->
-
 <div class="project-page-container">
   <div class="project-type-selector-container">
     <select id="project-type-selector" class="subheading-text">
@@ -28,85 +26,133 @@ additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
   </div>
 
   <div class="projects-container">
-
-    <!--
-    {% capture example_project_links %}
-      {% include project_card_link.html 
-       href = "https://github.com/example"
-       text = "Source code" %}
-      {% include project_card_link.html 
-       href = "https://example.com"
-       text = "Example" %}
-      {% include project_card_link.html 
-       href = "/pages/blog/example"
-       text = "Blog post"
-       is_internal = true %}
-    {% endcapture %}
-
     {% include project_card.html 
-     name = "Example project name"
-     description = "
-     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-     tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim
-     convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus
-     sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
-     "
-     is_open_sourced = false
-     is_publicly_available = true
-     links = example_project_links %}
+     name = "Strava.cz bruteforce default login"
 
-    {% include project_card.html 
-     name = "Example project name"
-     description = "
-     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-     tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim
-     convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus
-     sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
-     "
      is_hobby_project = true
-     is_open_sourced = false
-     is_publicly_available = false
-     links = example_project_links %}
-
-    {% include project_card.html 
-     name = "Example project name"
-     description = "
-     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-     tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim
-     convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus
-     sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
-     "
      is_open_sourced = true
      is_publicly_available = false
-     links = example_project_links %}
-     -->
+     
+     source_code_link = "https://github.com/TDiblik/strava_cz_bruteforce_default_login"
+     blog_post_link = "/pages/blog/TODO"
 
+     description = "
+      One day, my friend noticed that when you get a strava.cz account, intentionally or not, 
+      username and password are the same - at least at the place we got our accounts from. 
+      Also, account's username is a number that goes up gradually - again, at least at the place we got our accounts from. 
+      We wondered how many people did not change their default passwords (beeing same as given username). 
+      This tool is a proof of concept .... or .... This is what happens when I get bored on saturdays .... ba dum tss (I am 100% aware that was a lame joke)
+    "%}
 
-    {% capture example_project_links %}
+    {% capture medifinder_additional_links %}
       {% include project_card_link.html 
-       href = "https://github.com/example"
-       text = "Source code" %}
+       text = "Region's post (cz)"
+       href = "https://kr-kralovehradecky.cz/cz/kraj-volene-organy/tiskove-centrum/aktuality1/kralovehradecky-hackathon-vyhral-prototyp-aplikace-sledujici-stav-silnic-344129/"
+       is_internal = false %}
+       
       {% include project_card_link.html 
-       href = "https://example.com"
-       text = "Example" %}
-      {% include project_card_link.html 
-       href = "/pages/blog/example"
-       text = "Blog post"
-       is_internal = true %}
+       text = "High School's post (cz)"
+       href = "https://www.delta-skola.cz/studenti-delty-zvitezili-v-kralovehradeckem-hackathonu"
+       is_internal = false %}
+
+      {% comment %}
+        Link to facebook video about the event, could be helpful someday in the future? - Could I download it and insert it into blog post about the event? - https://www.facebook.com/watch/?ref=external&v=826700745239253
+
+        {% include project_card_link.html 
+         text = "Region's video (cz)"
+         href = "https://www.facebook.com/watch/?ref=external&v=826700745239253"
+         is_internal = false %}
+      {% endcomment %}
     {% endcapture %}
+    {% include project_card.html 
+     name = "RouteMapper"
+
+     is_hobby_project = true
+     is_open_sourced = true
+     is_publicly_available = false
+     
+     source_code_link = "https://github.com/TDiblik/RouteMapper"
+     blog_post_link = "/pages/blog/TODO"
+     additional_links_end = medifinder_additional_links
+
+     description = "
+      RouteMapper is a social network that enables you to document and vote on broken spots on the roads.
+      This whole idea and app was created in +-6 hours by 
+      Me, 
+      <a href='https://www.linkedin.com/in/michal-vanis/' target='_blank' class='small-text underline' rel='nofollow noreferrer noopener'>Michal Vaniš</a>,
+      <a href='https://www.linkedin.com/in/daniel-bene%C5%A1-6abb7b205/' target='_blank' class='small-text underline' rel='nofollow noreferrer noopener'>Daniel Beneš</a> and
+      <a href='https://www.linkedin.com/in/jan-skl%C3%A1dal-6050a2244/' target='_blank' class='small-text underline' rel='nofollow noreferrer noopener'>Jan Skládal</a>.
+      My second hackathon, and we actually won it!
+      If it were to become real, the idea was, that people will document and upvote broken spots on the road. 
+      We would then match this with region's own datasets of road status, road usage frequency and road repair frequency
+      resulting in algoritmically selected recommendation of roads to fix.
+    "%}
+    
+    {% capture medifinder_additional_links %}
+      {% include project_card_link.html 
+       text = "High School's post (cz)"
+       href = "https://www.delta-skola.cz/funovation-hac22"
+       is_internal = false %}
+    {% endcapture %}
+    {% include project_card.html 
+     name = "Medifinder"
+
+     is_hobby_project = true
+     is_open_sourced = true
+     is_publicly_available = false
+     
+     source_code_link = "https://github.com/TDiblik/Medifinder"
+     blog_post_link = "/pages/blog/TODO"
+     additional_links_end = medifinder_additional_links
+
+     description = "
+      Medifinder is an app that helps you find a doctor in your area, based on symptoms you describe.
+      This whole idea and app was created in 24 hours by 
+      Me, 
+      <a href='https://www.linkedin.com/in/vojtechvolf/' target='_blank' class='small-text underline' rel='nofollow noreferrer noopener'>Vojtěch Volf</a>,
+      <a href='https://www.linkedin.com/in/michal-vanis/' target='_blank' class='small-text underline' rel='nofollow noreferrer noopener'>Michal Vaniš</a> and
+      <a href='https://www.linkedin.com/in/daniel-bene%C5%A1-6abb7b205/' target='_blank' class='small-text underline' rel='nofollow noreferrer noopener'>Daniel Beneš</a>.
+      We came in 2nd place, which is fine, but it's not first :D
+      At first, the app sounded like a good idea, however after the hackathon ended, 
+      we thought about it a little bit more and we decided to abandon the project.
+      Mainly because some of the judges, who we thought could help us with a large scale implementation,
+      didn't think it had a lot of potential.
+    "%}
+
+    {% include project_card.html 
+     name = "Space is awesome website!"
+
+     is_hobby_project = true
+     is_open_sourced = true
+     is_publicly_available = true
+
+     live_version_link = "https://space-is-awesome.tomasdiblik.cz"
+     source_code_link = "https://github.com/TDiblik/space-is-awesome-website"
+
+     description = "
+      As unbelieveable as it may sound, I've been programming webpages 
+      without ever touching css from April 2020 until December 2021! I have been making internal programs,
+      so bootstrap was always more than enought. In January 2021 I decided that enought was enought and I needed to learn css.
+      At school I had a week long assignment, and I challenged myself to do it in 2 days. This is what came out. 
+      The site is not that pretty and has some known bugs, but I've learned a lot while developing it. Since then, my css abilities have grown exponentially!
+    "%}
 
     {% include project_card.html 
      name = "Robot-Assisted Laser Plate Processing"
-     description = "
-     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-     tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim
-     convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus
-     sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
-     "
+
      is_hobby_project = false
      is_open_sourced = false
      is_publicly_available = false
-     links = example_project_links %}
+
+     blog_post_link = "/pages/blog/TODO"
+
+     description = "
+      Believe it or not, but this was my first real programming project - January 2020. 
+      I've written it in Python, because the robotic arm used provided a nice simple Python api.
+      This project has been the initial spark for my programming passion! I have spent 2 months 
+      perfecting this project (back then, I've never spent that much time on anything except games) 
+      and even tho it's a simple python program I'm really proud of it to this day.
+    "%}
 
   </div>
 </div>

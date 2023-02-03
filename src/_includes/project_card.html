@@ -32,7 +32,32 @@
     {{ include.description }}
   </p>
 
-  <div class="project-links-wrapper">
-    {{ include.links }}
+  <div
+    class="project-links-wrapper">
+    {{ include.additional_links_start }}
+
+    {% comment %} TODO: Decide whether to put blog post link before source_code && live_version or after {% endcomment %}
+    {% if include.blog_post_link %}
+      {% include project_card_link.html 
+       text = "Blog post"
+       href = include.blog_post_link
+       is_internal = true %}
+    {% endif %}
+
+    {% if include.live_version_link %}
+      {% include project_card_link.html 
+       text = "Live version"
+       href = include.live_version_link
+       is_internal = false %}
+    {% endif %}
+
+    {% if include.source_code_link %}
+      {% include project_card_link.html 
+       text = "Source code"
+       href = include.source_code_link
+       is_internal = false %}
+    {% endif %}
+
+    {{ include.additional_links_end }}
   </div>
 </div>
