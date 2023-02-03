@@ -25,37 +25,53 @@ const technologies = {
     {
       name: "C#",
       usage: nerly_every_day_usage,
+      title:
+        "C#'s my favourite programming language nad I use it for most of projects at my job.",
       children: [
         {
-          name: "ASP.NET Core",
+          name: "ASP.NET Core (API/MVC)",
+          title:
+            "Whenever I need to write an API, I pickup ASP.NET Core 99% of the time.",
           usage: nerly_every_day_usage,
           children: [
             {
               name: "Dapper",
+              title:
+                "I like to write my own sql queries, so whenever I have the chance, I use Dapper instead of EF.",
               usage: nerly_every_day_usage,
             },
             {
               name: "Swagger",
+              title:
+                "ASP.NET Core + Swagger is a match made in heaven. I don't have to do any kind of extra job, but still receive an easy interface for testing endpoints.",
               usage: nerly_every_day_usage,
             },
             {
               name: "Entity Framework",
+              title:
+                "Sometimes projects already use EF. It would be dumb to all of the sudden start using Dapper, so I use EF sometimes.",
               usage: once_per_week_usage,
             },
           ],
         },
         {
-          name: "MAUI Blazor",
+          name: "ASP.NET 4.8 (legacy support)",
+          title:
+            "At my job, there are some pieces of sofware that still run on ASP.NET 4.8. I have to keep these pieces of software up-to-date and bug-free.",
           usage: once_per_month_usage,
         },
         {
           name: "Winforms",
+          title:
+            "Whenever development speed matters, and UI's not important, I pick up Winforms for desktop applications.",
           usage: once_per_week_usage,
         },
       ],
     },
     {
       name: "Typescript",
+      title:
+        "Typescript's my SECOND favourite programming language. I usually use it exclusively on frontend.",
       usage: nerly_every_day_usage,
       children: [
         {
@@ -65,10 +81,20 @@ const technologies = {
             {
               name: "@testing-library/react",
               usage: once_per_month_usage,
+              title:
+                "I don't usually test, unless the project has a lot of features. However, once I write tests, I mostly utilize getByTestId functionality and mimic user using the tested component.",
             },
             {
               name: "react-query",
               usage: nerly_every_day_usage,
+              title:
+                "Easy way of fetching data, maintaining data's state and passing it INTO component hierarchy.",
+            },
+            {
+              name: "expo",
+              usage: once_per_month_usage,
+              title:
+                "I used to use expo for most of my mobile projects, but svelte native is just more comfortable.",
             },
           ],
         },
@@ -79,14 +105,26 @@ const technologies = {
             {
               name: "@testing-library/svelte",
               usage: once_per_month_usage,
+              title:
+                "I don't usually test, unless the project has a lot of features. However, once I write tests, I mostly utilize getByTestId functionality and mimic user using the tested component.",
             },
             {
               name: "@sveltestack/svelte-query",
               usage: once_per_week_usage,
+              title:
+                "Easy way of fetching data, maintaining data's state and passing it INTO component hierarchy.",
             },
             {
               name: "svelte-spa-router",
               usage: once_per_week_usage,
+              title:
+                "When developing svelte apps, I usually don't care about SEO, so it's ok to use JS router. I should totally try/check svelte kit with static adopter sometime.",
+            },
+            {
+              name: "svelte native",
+              usage: once_per_month_usage,
+              title:
+                "Currentlly my go-to for developing production-ready mobile applications.",
             },
           ],
         },
@@ -95,18 +133,23 @@ const technologies = {
     {
       name: "Rust",
       usage: once_per_month_usage,
+      title:
+        "I usually use rust for developing [TUI's / Performance heavy / Embedded] projects.",
       children: [
         {
           name: "clap",
           usage: once_per_month_usage,
+          title: "Easy way of parsing arguments.",
         },
         {
           name: "anyhow",
           usage: once_per_month_usage,
+          title: "Life saver for simple errors!",
         },
         {
           name: "tui-rs",
           usage: once_per_month_usage,
+          title: "Awesome library for UI's in terminal.",
         },
       ],
     },
@@ -117,12 +160,43 @@ const technologies = {
         {
           name: "Bootstrap",
           title:
-            "I have projects with bootstrap versions ranging from v3 to v5. I prefer v5, but I'm able to work with earlier versions",
+            "I have projects with bootstrap versions ranging from v3 to v5. I prefer v5, but I'm able to work with earlier versions.",
           usage: nerly_every_day_usage,
         },
         {
           name: "SASS",
           usage: once_per_month_usage,
+          title:
+            "Whenever available I try to utilize SCSS, however if it's not available by default, or takes more than couple commands to setup I don't really bother installing it.",
+        },
+      ],
+    },
+    {
+      name: "SQL & NoSQL",
+      usage: nerly_every_day_usage,
+      children: [
+        {
+          name: "MSSQL",
+          usage: nerly_every_day_usage,
+          title:
+            "At my job we mainly use MSSQL, that's why I use it every day, but personally I prefer PostgreSQL.",
+        },
+        {
+          name: "PostgreSQL",
+          usage: once_per_week_usage,
+          title:
+            "For hobby projects that require sql server, I usually use Postgres.",
+        },
+        {
+          name: "SQLite",
+          usage: once_per_month_usage,
+          title: "Sometimes you don't really need a whole db server.",
+        },
+        {
+          name: "Redis",
+          usage: once_per_month_usage,
+          title:
+            "When in-memory caching is not enought, or project deployment is larger than one server.",
         },
       ],
     },
@@ -133,38 +207,49 @@ const technologies = {
         {
           name: "Visual Studio Code",
           usage: nerly_every_day_usage,
+          title:
+            "My code editor of choice. Thow in neovim plugin, some language-specific plugins and it's imo amazing experience.",
         },
         {
           name: "Visual Studio",
           usage: once_per_week_usage,
+          title:
+            "I use Visual Studio for all C# development, because the developer experience is really good. Also, unfortunatelly, for some projects (like Winforms), it's basically a requirement to use Visual Studio.",
         },
         {
           name: "git",
           usage: nerly_every_day_usage,
           title:
-            "List some hosting platforms that I use: eg. github, azure devops",
+            "I use git CLI. I require all commits to be gpg signed 99% of the time. I have worked with Azure DevOps, Github and Bitbucket (ordered by frequency)",
         },
         {
           name: "Docker",
           usage: nerly_every_day_usage,
+          title:
+            "For development, I use docker to run different databases for different projects. For production, since I'm hosting everything on one linux machine, I use docker to separate projects.",
         },
         {
           name: "Figma",
           usage: once_per_week_usage,
+          title:
+            "Before I write any line of code, I make sure that I have designs and all other assets available. This means that I just have to remake 1-to-1 design into HTML. I really like this approach, as it cuts development time drastically.",
         },
         {
           name: "DataGrip",
           usage: once_per_week_usage,
+          title: "My SQL IDE of choice.",
         },
         {
           name: "Postman",
           usage: once_per_month_usage,
+          title:
+            "Whenever I need to hand-craft a specific request, postman comes in handy.",
         },
         {
           name: "Fusion 360",
           usage: once_per_month_usage,
           title:
-            "I consider Fusion 360 as part of my tech stack, used for designing parts for my embedded development projects.",
+            "I consider Fusion 360 as part of my tech stack, because I use it for designing parts for my embedded development projects.",
         },
       ],
     },
@@ -211,6 +296,22 @@ const node_radius = 10;
 const force_distance = node_radius * node_radius * node_height * -1;
 
 let graph_container;
+let graph_root;
+function expand_button_mouse_event_constructor(element) {
+  element
+    .on("click", (e, s) => {
+      for (let i = 0; i < graph_root.data.children.length; i++) {
+        show_children_recursively(graph_root.data.children[i]);
+      }
+    })
+    .on("mouseover", (e, s) => {
+      e.target.style.cursor = "pointer";
+    })
+    .on("mouseout", (e, s) => {
+      e.target.style.cursor = "default";
+    });
+}
+
 function update_graph_size() {
   const main_element = document.querySelector("main");
 
@@ -229,16 +330,6 @@ function update_graph_size() {
     const previous_instance = previous_instances[i];
     previous_instance.parentNode.removeChild(previous_instance);
   }
-
-  graph_container
-    .append("text")
-    .attr("x", max_width + min_width - 120)
-    .attr("y", max_height + min_height - 20)
-    .attr("fill", "var(--white)")
-    .attr("text-anchor", "middle")
-    .attr("alignment-baseline", "middle")
-    .attr("class", "graph-helper-group")
-    .text("? - click to expand technologies");
 
   generate_helper_row(
     nerly_every_day_usage,
@@ -269,6 +360,39 @@ function update_graph_size() {
     min_height,
     2
   );
+
+  const expand_rect = graph_container
+    .append("rect")
+    .attr("x", max_width + min_width - 99)
+    .attr("y", max_height + min_height - 72.5)
+    .attr("width", 100)
+    .attr("height", 35)
+    .attr("rx", node_radius)
+    .attr("ry", node_radius)
+    .attr("class", "graph-helper-group")
+    .attr("fill", "var(--primary-color)");
+  expand_button_mouse_event_constructor(expand_rect);
+
+  const expand_text = graph_container
+    .append("text")
+    .attr("x", max_width + min_width - 50)
+    .attr("y", max_height + min_height - 55)
+    .attr("fill", "var(--white)")
+    .attr("text-anchor", "middle")
+    .attr("alignment-baseline", "middle")
+    .attr("class", "graph-helper-group")
+    .text("Expand all");
+  expand_button_mouse_event_constructor(expand_text);
+
+  graph_container
+    .append("text")
+    .attr("x", max_width + min_width - 120)
+    .attr("y", max_height + min_height - 20)
+    .attr("fill", "var(--white)")
+    .attr("text-anchor", "middle")
+    .attr("alignment-baseline", "middle")
+    .attr("class", "graph-helper-group")
+    .text("? - click to expand technologies");
 }
 
 function generate_helper_row(
@@ -280,10 +404,11 @@ function generate_helper_row(
   min_height,
   i
 ) {
+  const gap_between = 10 * i + 25 * i;
   graph_container
     .append("rect")
     .attr("x", max_width + min_width - minus_text)
-    .attr("y", min_height + 5 + 10 * i + 25 * i)
+    .attr("y", min_height + 15 + gap_between)
     .attr("width", 25)
     .attr("height", 25)
     .attr("rx", node_radius)
@@ -294,7 +419,7 @@ function generate_helper_row(
   graph_container
     .append("text")
     .attr("x", max_width + min_width - 75)
-    .attr("y", min_height + 10 * i + 20 + 25 * i)
+    .attr("y", min_height + 27.5 + gap_between)
     .attr("fill", "var(--white)")
     .attr("text-anchor", "middle")
     .attr("alignment-baseline", "middle")
@@ -343,15 +468,33 @@ function hide_children_recursively(parent, is_first_itteration) {
   parent.has_hidden_children = should_hide;
 }
 
+function show_children_recursively(parent) {
+  if (parent.children !== undefined) {
+    for (let i = 0; i < parent.children.length; i++) {
+      show_children_recursively(parent.children[i], false);
+    }
+  }
+
+  const items_to_show_or_hide = document.getElementsByClassName(
+    `${hideable_classname}${parent.nanoid}`
+  );
+
+  for (let i = 0; i < items_to_show_or_hide.length; i++) {
+    const item = items_to_show_or_hide[i];
+    item.style.display = "block";
+  }
+  parent.has_hidden_children = false;
+}
+
 window.addEventListener("load", () => {
   // Prepare data
   calculate_node_width_recursivelly(technologies);
   generate_node_nanoids_recursivelly(technologies);
 
   // Render graph
-  const root = d3.hierarchy(technologies);
-  const links = root.links();
-  const nodes = root.descendants();
+  graph_root = d3.hierarchy(technologies);
+  const links = graph_root.links();
+  const nodes = graph_root.descendants();
 
   const simulation = d3
     .forceSimulation(nodes)
@@ -360,7 +503,7 @@ window.addEventListener("load", () => {
       d3
         .forceLink(links)
         .id((d) => d.id)
-        .distance(100)
+        .distance(50)
         .strength(0.5)
     )
     .force("charge", d3.forceManyBody().strength(force_distance))
@@ -486,9 +629,8 @@ window.addEventListener("load", () => {
     .call(zoom.scaleBy, is_mobile_or_tablet() ? 1 : 1.25);
 
   // Default children hidden
-  for (let i = 0; i < root.data.children.length; i++) {
-    const child = root.data.children[i];
-    hide_children_recursively(child);
+  for (let i = 0; i < graph_root.data.children.length; i++) {
+    hide_children_recursively(graph_root.data.children[i]);
   }
 });
 
