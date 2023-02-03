@@ -16,4 +16,5 @@ TODO:
 - Generate SEO metadata
 - Minify output files (since source code is available on github)
 - Customize 404 page with some kind of game/animation or anything interesting
+  - Idea: Some kind of fun fact list about this website, for example: Publish date, Number of lines of code,...
 - Check grammar for every single text on every single page using some kind of automated tool

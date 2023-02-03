@@ -1,3 +1,13 @@
-<a href="{{include.href}}" {% if include.is_internal != true %}{% include external_link.html %}{% endif %}class="strong-text underline-on-hover">
+<a
+  href="{{include.href}}"
+
+  {% if include.is_internal %}
+    target="_blank"
+  {% else %}
+    {% include external_link.html %}
+  {% endif %}
+
+  class="strong-text underline-on-hover">
+
   {{ include.text }} ↗
 </a>
