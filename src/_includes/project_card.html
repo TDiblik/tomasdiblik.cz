@@ -58,6 +58,13 @@
        is_internal = false %}
     {% endif %}
 
+    {% if include.youtube_video_link %}
+      {% include project_card_link.html 
+       text = "Youtube video"
+       href = include.youtube_video_link
+       is_internal = false %}
+    {% endif %}
+
     {{ include.additional_links_end }}
   </div>
 </div>
