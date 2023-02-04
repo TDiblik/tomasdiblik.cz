@@ -70,7 +70,7 @@ h3 {
   line-height: 21px !important;
 }
 
-.normal-text {
+.paragraph-text {
   font-family: var(--font-family);
   font-style: normal;
   font-weight: 400 !important;
