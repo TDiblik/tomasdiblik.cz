@@ -256,6 +256,15 @@ const technologies = {
   ],
 };
 
+const graph_element_selector = "#graph";
+const moveable_group_classname = "moveable-group";
+const clickable_group_classname = "clickable-group";
+const hideable_classname = "hideable-group-";
+
+const node_height = 30;
+const node_radius = 10;
+const force_distance = node_radius * node_radius * node_height * -1;
+
 const character_width = 8; // 12.5
 function calculate_node_width_recursivelly(root_node) {
   if (root_node.children !== undefined) {
@@ -286,15 +295,6 @@ function generate_node_nanoids_recursivelly(root_node) {
   root_node.nanoid = new_uuid;
 }
 
-const graph_element_selector = "#graph";
-const moveable_group_classname = "moveable-group";
-const clickable_group_classname = "clickable-group";
-const hideable_classname = "hideable-group-";
-
-const node_height = 30;
-const node_radius = 10;
-const force_distance = node_radius * node_radius * node_height * -1;
-
 let graph_container;
 let graph_root;
 function expand_button_mouse_event_constructor(element) {
@@ -310,6 +310,38 @@ function expand_button_mouse_event_constructor(element) {
     .on("mouseout", (e, s) => {
       e.target.style.cursor = "default";
     });
+}
+
+function generate_helper_row(
+  color,
+  text,
+  minus_text,
+  max_width,
+  min_width,
+  min_height,
+  i
+) {
+  const gap_between = 10 * i + 25 * i;
+  graph_container
+    .append("rect")
+    .attr("x", max_width + min_width - minus_text)
+    .attr("y", min_height + 15 + gap_between)
+    .attr("width", 25)
+    .attr("height", 25)
+    .attr("rx", node_radius)
+    .attr("ry", node_radius)
+    .attr("class", "graph-helper-group")
+    .attr("fill", color);
+
+  graph_container
+    .append("text")
+    .attr("x", max_width + min_width - 75)
+    .attr("y", min_height + 27.5 + gap_between)
+    .attr("fill", "var(--white)")
+    .attr("text-anchor", "middle")
+    .attr("alignment-baseline", "middle")
+    .attr("class", "graph-helper-group")
+    .text(text);
 }
 
 function update_graph_size() {
@@ -393,38 +425,6 @@ function update_graph_size() {
     .attr("alignment-baseline", "middle")
     .attr("class", "graph-helper-group")
     .text("? - click technology (node) to expand it");
-}
-
-function generate_helper_row(
-  color,
-  text,
-  minus_text,
-  max_width,
-  min_width,
-  min_height,
-  i
-) {
-  const gap_between = 10 * i + 25 * i;
-  graph_container
-    .append("rect")
-    .attr("x", max_width + min_width - minus_text)
-    .attr("y", min_height + 15 + gap_between)
-    .attr("width", 25)
-    .attr("height", 25)
-    .attr("rx", node_radius)
-    .attr("ry", node_radius)
-    .attr("class", "graph-helper-group")
-    .attr("fill", color);
-
-  graph_container
-    .append("text")
-    .attr("x", max_width + min_width - 75)
-    .attr("y", min_height + 27.5 + gap_between)
-    .attr("fill", "var(--white)")
-    .attr("text-anchor", "middle")
-    .attr("alignment-baseline", "middle")
-    .attr("class", "graph-helper-group")
-    .text(text);
 }
 
 function construct_drag_events(simulation) {
