@@ -15,14 +15,9 @@
 }
 
 .about-me-image-me {
-  width: 700px;
+  width: 600px;
 }
 
-@media (max-width: 1500px) {
-  .about-me-image-container {
-    width: 600px;
-  }
-}
 @media (max-width: 1300px) {
   .about-me-image-container {
     display: none;

@@ -4,6 +4,7 @@ layout: default
 title: About me
 highlited_navbar_option: AboutMe
 additional_headers: <link rel="stylesheet" href="/assets/css/about-me.css" />
+  <script src="/assets/js/my-age.js"></script>
 ---
 
 <div class="about-me-container">
@@ -19,44 +20,85 @@ additional_headers: <link rel="stylesheet" href="/assets/css/about-me.css" />
       <h1 class="biggest-possible-text strong-text">ABOUT ME</h1>
       <span class="small-text about-me-index-text">(the long version lol)</span>
     </div>
-    <p class="normal-text about-me-paragraph">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim
-      convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus
-      nullam eget. Leo in vitae turpis massa sed elementum tempus egestas.
-      Vehicula ipsum a arcu cursus vitae congue. Id leo in vitae turpis massa
-      sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
-      mattis vulputate enim nulla aliquet porttitor. Amet cursus sit amet
-      dictum. Tortor at risus viverra adipiscing at in tellus integer feugiat.
-      Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum
-      posuere. Placerat duis ultricies lacus sed turpis. Iaculis nunc sed augue
-      lacus
+
+    <p class="paragraph-text about-me-paragraph">
+      Hello there, pal! ^_^
     </p>
-    <p class="normal-text about-me-paragraph">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim
-      convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus
-      nullam eget. Leo in vitae turpis massa sed elementum tempus egestas.
-      Vehicula ipsum a arcu cursus vitae congue. Id leo in vitae turpis massa
-      sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
-      mattis vulputate enim nulla aliquet porttitor. Amet cursus sit amet
-      dictum. Tortor at risus viverra adipiscing at in tellus integer feugiat.
-      Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum
-      posuere. Placerat duis ultricies lacus sed turpis. Iaculis nunc sed augue
-      lacus
+
+    <p class="paragraph-text about-me-paragraph">
+      My name's <span title='(pronounced as "Tomh-hash Dibh-leek.")' class="paragraph-text">Tomáš Diblík</span>, I live in Czech Republic and I'm 
+        <noscript>
+          <span class="paragraph-text">(to find out my age, enable JavaScript, I'm too lazy to update it each year :D)</span>
+        </noscript> 
+        <span class="paragraph-text my-age"></span>
+        I'm curently enrolled in an 
+        <a href="https://www.delta-skola.cz/" class="paragraph-text underline" {% include external_link.html %}>IT High School</a>,
+        and have a passion for making computers do cool things!
     </p>
-    <p class="normal-text about-me-paragraph">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim
-      convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus
-      nullam eget. Leo in vitae turpis massa sed elementum tempus egestas.
-      Vehicula ipsum a arcu cursus vitae congue. Id leo in vitae turpis massa
-      sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
-      mattis vulputate enim nulla aliquet porttitor. Amet cursus sit amet
-      dictum. Tortor at risus viverra adipiscing at in tellus integer feugiat.
-      Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum
-      posuere. Placerat duis ultricies lacus sed turpis. Iaculis nunc sed augue
-      lacus
+
+    <p class="paragraph-text about-me-paragraph">
+      You may notice, that I don't have a lot of large open-source projects and don't contribute to 
+      <a href="https://en.wikipedia.org/wiki/Open-source_software" class="paragraph-text underline" {% include external_link.html %}>OSS</a> that much.
+      That's because I prefer to focus on long-term job projects, which (unfortunately) cannot be open sourced ＞﹏＜.
+      I do this, because I find these projects to be incredibly satisfying as I'm able to help out people in their day-to-day lives
+      developing software that helps them with their work, or makes some processes easier for them. 
+      It's especially fulfilling when people appreciate or constructively criticize the work I do.
+      To be honest, I just feel this really strong adrenaline rush every time my complex program, I've spent months making and perfecting, runs correctly. 
     </p>
+
+    <p class="paragraph-text about-me-paragraph">
+      Nonetheless, I sometimes enjoy making/programming stuff just for the hell of it. 
+      In my spare time I make projects that make me feel happy and self-fulfilled, no matter how complex they are or how much time time they take. 
+      Usually it's some embedded work, 3d printing, TUIs or programming some tools I wish existed.
+      I feel really lucky that I enjoy different things in my professional life (web apps, APIs, servers, desktop apps, mobile apps) and my spare time (listed above), because 
+      it keeps me well-rounded and helps me maintain a healthy work-life balance. 
+      It also helps me to avoid burnout and stay motivated, as I can switch between long-term and short-term projects
+      whenever I feel tired from the former or the latter.
+    </p>
+
+    <p class="paragraph-text about-me-paragraph">
+      I have some specific, sometimes not widely spread, ideas about developing software, which have always worked for me.
+      These ideas are ranging from project development cycle to code style/paradigms.
+      Two examples beeing: 
+
+      1)
+      <a href="https://en.wikipedia.org/wiki/Waterfall_model" class="paragraph-text underline" {% include external_link.html %}>Waterfall</a>
+      (without the UML part) is just straight up good for new projects, whereas 
+      <a href="https://en.wikipedia.org/wiki/Agile_software_development" class="paragraph-text underline" {% include external_link.html %}>Agile</a>
+      is good for projects already in production and shipping new features.
+       
+      2) I feel like, at least for me, the most enjoyable and productive way of writing code is to combine 
+      <a href="https://en.wikipedia.org/wiki/Procedural_programming" class="paragraph-text underline" {% include external_link.html %}>procedural</a>,
+      <a href="https://en.wikipedia.org/wiki/Functional_programming" class="paragraph-text underline" {% include external_link.html %}>functional</a>
+      and 
+      <a href="https://en.wikipedia.org/wiki/Object-oriented_programming" class="paragraph-text underline" {% include external_link.html %}>object oriented</a>
+      principles in a healthy way. I like to keep code 
+      <span class="paragraph-text strong-text">procedural</span>
+       with 
+      <span class="paragraph-text strong-text">functional</span>
+       utility functions and every other required complexity 
+      <span class="paragraph-text strong-text">object oriented</span> (Controllers, Events, DI, etc...).
+      I like to keep away from following whenever possible:
+       <a href="https://www.youtube.com/watch?v=QM1iUe6IofM" class="paragraph-text underline" {% include external_link.html %}>PURE OOP</a>,
+       <a href="https://learn.microsoft.com/en-us/archive/blogs/ericgu/notdd" class="paragraph-text underline" {% include external_link.html %}>TDD</a>,
+       <a href="https://www.youtube.com/watch?v=Bf7vDBBOBUA" class="paragraph-text underline" {% include external_link.html %}>useless comments</a>
+        and 
+       <a href="https://www.youtube.com/watch?v=CFRhGnuXG-4" class="paragraph-text underline" {% include external_link.html %}>needless nesting</a>.
+       Over time, I've naturally started writing code following some of the practices described above, without the need to corect after myself, 
+       and that's my personal style that I find enjoyable. We (as programmers) argue about styles and principles, because we're all deeply
+       passionate about our job/hobby, but at the end of the day, everyone's different and everyone has their own personal style, 
+       that they enjoy and feel comfortable with, and that's what matters the most. 
+       TLDR; As long as you don't have unreasonable requirements, I won't complain and obey :D.
+       Also, just a side note, as long as it works, clients usually don't even care about programming language used xD.
+    </p>
+
+    <p class="paragraph-text about-me-paragraph">
+      Oh, and btw, not only is English my second language, but
+      I've been diagnosed with dyslexia, so if you find any grammar mistakes, please 
+      <a class="paragraph-text underline" href="mailto:dibla.tomas@post.cz?subject=Horrible%20grammar%20mistake!&body=Hello%20there%2C%20Mr.%20Thomas%2C%20you%20have%20made%20a%20terrible%20grammar%20mistake%20%7Bhere%7D!%0D%0AIt's%20a%20mistake%20because%20.....%0D%0A%0D%0AI%20hope%20you%20fix%20it%20soon!%0D%0A%0D%0AHave%20a%20good%20day%2C%0D%0AYour%20kind%20mate%20from%20the%20internet." rel="nofollow noreferrer noopener">
+        let me know</a>!
+      ..... also, please keep in mind, that I'm sorry when my emails/messages look like they have been corrected by an 8 year old (/▽＼)
+    </p>
+
   </div>
 </div>
