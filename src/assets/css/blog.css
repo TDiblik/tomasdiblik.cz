@@ -33,8 +33,27 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
   margin: 15px 0 15px 0;
 }
+
+.block-post-topic-badge {
+  margin-right: auto;
+}
+.block-post-topic-badge.technical {
+  background-color: rgba(51, 153, 255, 0.6);
+}
+.block-post-topic-badge.personal {
+  background-color: rgba(102, 153, 153, 0.6);
+}
+.block-post-topic-badge.tutorial {
+  background-color: rgba(204, 102, 153, 0.6);
+}
+.block-post-topic-badge.pr {
+  background-color: rgba(102, 102, 153, 0.6);
+}
+
 .blog-post-title {
   margin: 0;
 }
@@ -63,5 +82,9 @@
   .blog-post-header {
     flex-direction: column;
     justify-content: center;
+    gap: 10px;
+  }
+  .block-post-topic-badge {
+    margin-right: 0;
   }
 }

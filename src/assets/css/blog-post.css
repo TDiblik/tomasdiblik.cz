@@ -1,0 +1,37 @@
+.blog-post-container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .blog-post-container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .blog-post-container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .blog-post-container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .blog-post-container {
+    max-width: 1140px;
+  }
+}
+
+.blog-post-container * {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.17rem;
+  line-height: 27px;
+}
