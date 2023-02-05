@@ -26,18 +26,18 @@ const technologies = {
       name: "C#",
       usage: nerly_every_day_usage,
       title:
-        "C#'s my favourite programming language nad I use it for most of projects at my job.",
+        "C#'s my favourite programming language and I use it for most of projects at my job.",
       children: [
         {
           name: "ASP.NET Core (API/MVC)",
           title:
-            "Whenever I need to write an API, I pickup ASP.NET Core 99% of the time.",
+            "Whenever I need to write an API, I pick up ASP.NET Core 99% of the time.",
           usage: nerly_every_day_usage,
           children: [
             {
               name: "Dapper",
               title:
-                "I like to write my own sql queries, so whenever I have the chance, I use Dapper instead of EF.",
+                "I like to write my own SQL queries, so whenever I have the chance, I use Dapper instead of EF.",
               usage: nerly_every_day_usage,
             },
             {
@@ -49,7 +49,7 @@ const technologies = {
             {
               name: "Entity Framework",
               title:
-                "Sometimes projects already use EF. It would be dumb to all of the sudden start using Dapper, so I use EF sometimes.",
+                "Sometimes projects already use EF. It would be dumb to all of a sudden start using Dapper, so I use EF sometimes.",
               usage: once_per_week_usage,
             },
           ],
@@ -63,7 +63,7 @@ const technologies = {
         {
           name: "ASP.NET 4.8 (legacy support)",
           title:
-            "At my job, there are some pieces of sofware that still run on ASP.NET 4.8. I have to keep these pieces of software up-to-date and bug-free.",
+            "At my job, there are some pieces of software that still run on ASP.NET 4.8. I have to keep these pieces of software up-to-date and bug-free.",
           usage: once_per_month_usage,
         },
       ],
@@ -124,7 +124,7 @@ const technologies = {
               name: "svelte native",
               usage: once_per_month_usage,
               title:
-                "Currentlly my go-to for developing production-ready mobile applications.",
+                "Currently my go-to for developing production-ready mobile applications.",
             },
           ],
         },
@@ -144,7 +144,7 @@ const technologies = {
         {
           name: "anyhow",
           usage: once_per_month_usage,
-          title: "Life saver for simple errors!",
+          title: "Life saver for simple error handling!",
         },
         {
           name: "tui-rs",
@@ -161,12 +161,12 @@ const technologies = {
           name: "SASS",
           usage: once_per_month_usage,
           title:
-            "Whenever available I try to utilize SCSS, however if it's not available by default, or takes more than couple commands to setup I don't really bother installing it.",
+            "Whenever available I try to utilize SCSS, however if it's not available by default, or takes more than a couple of commands to set up I don't really bother installing it.",
         },
         {
           name: "Bootstrap",
           title:
-            "I have projects with bootstrap versions ranging from v3 to v5. I prefer v5, but I'm able to work with earlier versions.",
+            "I have projects with bootstrap versions ranging from v4 to v5. I prefer v5, but I'm able to work with earlier versions.",
           usage: nerly_every_day_usage,
         },
       ],
@@ -179,13 +179,13 @@ const technologies = {
           name: "MSSQL",
           usage: nerly_every_day_usage,
           title:
-            "At my job we mainly use MSSQL, that's why I use it every day, but personally I prefer PostgreSQL.",
+            "At my job we mainly use MSSQL, that's why I use it every day, but personally, I prefer PostgreSQL.",
         },
         {
           name: "PostgreSQL",
           usage: once_per_week_usage,
           title:
-            "For hobby projects that require sql server, I usually use Postgres.",
+            "For hobby projects that require SQL server, I usually use Postgres.",
         },
         {
           name: "SQLite",
@@ -196,7 +196,7 @@ const technologies = {
           name: "Redis",
           usage: once_per_month_usage,
           title:
-            "When in-memory caching is not enought, or project deployment is larger than one server.",
+            "When in-memory caching is not enough, or project deployment is larger than one server.",
         },
       ],
     },
@@ -214,7 +214,7 @@ const technologies = {
           name: "Visual Studio",
           usage: once_per_week_usage,
           title:
-            "I use Visual Studio for all C# development, because the developer experience is really good. Also, unfortunatelly, for some projects (like Winforms), it's basically a requirement to use Visual Studio.",
+            "I use Visual Studio for all C# development, because the developer experience is really good. Also, unfortunately, for some projects (C# desktop apps, ASP.NET Framework, MAUI,...), it's basically a requirement to use Visual Studio.",
         },
         {
           name: "git",
@@ -243,7 +243,7 @@ const technologies = {
           name: "Postman",
           usage: once_per_month_usage,
           title:
-            "Whenever I need to hand-craft a specific request, postman comes in handy.",
+            "Whenever I need to hand-craft a specific request, Postman comes in handy.",
         },
         {
           name: "Fusion 360",
