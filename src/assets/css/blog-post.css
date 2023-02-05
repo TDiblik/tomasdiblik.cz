@@ -28,10 +28,28 @@
   }
 }
 
-.blog-post-container * {
+.blog-post-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.blog-post-info * {
+  text-align: center;
+  margin: 0;
+}
+
+.blog-post-category:hover {
+  cursor: help;
+}
+
+.blog-post-content-container p {
   font-family: var(--font-family);
   font-style: normal;
   font-weight: 400;
-  font-size: 1.17rem;
+  font-size: 1.1rem;
   line-height: 27px;
+  text-align: justify;
 }
