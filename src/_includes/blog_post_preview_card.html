@@ -1,6 +1,7 @@
-{% assign blog_post_root = '/pages/blog/' | append: include.release_date | append: "/" %}
+{% assign type_downcase = include.type | downcase %}
+{% assign blog_post_root = '/pages/blog/' | append: type_downcase | append: "/" | append: include.release_date | append: "/" %}
 
-<a href="{{ blog_post_root | append: include.href }}">
+<a href="{{ blog_post_root | append: include.href }}" class="blog-post-preview-wrapper-{{type_downcase}}">
   <div class="blog-post see-through-container">
     <div class="blog-post-thumbnail-wrapper">
       <img
@@ -11,6 +12,7 @@
     <div class="blog-post-info">
       <div class="blog-post-header">
         <h1 class="blog-post-title">{{ include.title }}</h1>
+        <span class="topic-badge paragraph-text block-post-topic-badge {{type_downcase}}"> {{include.type}}</span>
         <span class="blog-post-release-date" title="(dd-mm-yyyy)">{{ include.release_date }}</span>
       </div>
       <p class="blog-post-description paragraph-text">

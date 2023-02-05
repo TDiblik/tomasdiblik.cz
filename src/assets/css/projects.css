@@ -73,23 +73,17 @@
   gap: 10px;
 }
 
-.project-topic-badge {
-  padding: 3px 13px;
-  border: 0.5px solid var(--gray);
-  border-radius: 20px;
-}
-
-.project-topic-badge.job {
+.topic-badge.job {
   background-color: rgba(75, 108, 189, 0.6);
 }
-.project-topic-badge.hobby {
+.topic-badge.hobby {
   /* background-color: rgba(75, 108, 189, 0.6); */
   background-color: var(--secondary-color-muted);
 }
-.project-topic-badge.open-sourced {
+.topic-badge.open-sourced {
   background-color: rgba(164, 190, 92, 0.8);
 }
-.project-topic-badge.close-sourced {
+.topic-badge.close-sourced {
   background-color: rgba(249, 96, 96, 0.6);
 }
 

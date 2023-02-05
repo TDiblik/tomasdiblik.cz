@@ -5,26 +5,49 @@ title: Projects
 highlited_navbar_option: Blog
 additional_headers: <link rel="stylesheet" href="/assets/css/blog.css" />
     <link rel="stylesheet" href="/assets/css/see-through-container.css" />
+    <link rel="stylesheet" href="/assets/css/topic-badge.css" />
 ---
-
-<!-- Add ability to distinguish between Personal/PR/Technical/Tutorial posts  -->
 
 {% include blog_post_preview_card.html 
  title = "Example blog post"
+ type = "Personal"
  href = "example-blog-post"
- thumbnail_alt = "Alternative text to the thumbnail"
  release_date = "02-02-2023"
+ thumbnail_alt = "Alternative text to the thumbnail"
+ description = "
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  Ac tortor dignissim convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
+ " %}
+
+{% include blog_post_preview_card.html 
+ title = "Example blog post 2"
+ type = "PR"
+ href = "example-blog-post-2"
+ thumbnail_alt = "Alternative text to the second thumbnail"
+ release_date = "01-02-2023"
  description = "
  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
  Ac tortor dignissim convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
  " %}
 
 {% include blog_post_preview_card.html 
- title = "Example blog post 2"
- href = "example-blog-post-2"
- thumbnail_alt = "Alternative text to the second thumbnail"
- release_date = "03-02-2023"
+ title = "Example blog post"
+ type = "Technical"
+ href = "example-blog-post"
+ release_date = "02-02-2023"
+ thumbnail_alt = "Alternative text to the thumbnail"
  description = "
- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
- Ac tortor dignissim convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  Ac tortor dignissim convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
+ " %}
+
+{% include blog_post_preview_card.html 
+ title = "Example blog post"
+ type = "Tutorial"
+ href = "example-blog-post"
+ release_date = "02-02-2023"
+ thumbnail_alt = "Alternative text to the thumbnail"
+ description = "
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  Ac tortor dignissim convallis aenean. Faucibus vitae aliquet nec ullamcorper sit amet risus sed elementum tempus egestas. Ultrices in iaculis nunc sed. Sit amet
  " %}
