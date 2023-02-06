@@ -2,9 +2,8 @@
 layout: blog_post_layout
 
 title: Example blog post
+is_blog_post: true
 highlited_navbar_option: Blog
-additional_headers: <link rel="stylesheet" href="/assets/css/blog-post.css" />
-  <script src="/assets/js/blog-post.js"></script>
 
 post_release_date: 02-02-2023
 post_category: Personal
@@ -44,6 +43,121 @@ post_co_authors:
   Etiam quis quam.
 </p>
 
-{% comment %}
-    TODO: Create centrified include for images
-{% endcomment %}
+{% include blog_post_image.html 
+  src = "/assets/img/linkedin-logo.png"
+  width = "100px"
+  alt = "Some really interesting alt"
+  caption = "Some really interesting caption"
+  
+  img_source = "Some interesting company"
+  img_source_href = "alkdfjklasjdflkj"
+%}
+<p>
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In rutrum. Etiam
+  sapien elit, consequat eget, tristique non, venenatis quis, ante. Integer in
+  sapien. Mauris metus. Class aptent taciti sociosqu ad litora torquent per
+  conubia nostra, per inceptos hymenaeos. Curabitur bibendum justo non orci.
+  Etiam quis quam.
+</p>
+
+<h2>Mauris metus.</h2>
+<p>
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In rutrum. Etiam
+  sapien elit, consequat eget, tristique non, venenatis quis, ante. Integer in
+  sapien. Mauris metus. Class aptent taciti sociosqu ad litora torquent per
+  conubia nostra, per inceptos hymenaeos. Curabitur bibendum justo non orci.
+  Etiam quis quam.
+</p>
+
+<pre class="code-wrapper"><code class="language-js">@import url(https://fonts.googleapis.com/css?family=Questrial);
+@import url(https://fonts.googleapis.com/css?family=Arvo);
+
+@font-face {
+	src: url(https://lea.verou.me/logo.otf);
+	font-family: 'LeaVerou';
+}
+
+#toc:hover {
+    color: rgba(0,0,0,1);
+}
+
+	#toc h1 {
+		font-size: 180%;
+		margin-top: .75rem;
+	}
+
+	#toc li {
+		list-style: none;
+		line-height: 1.2;
+		padding: .2em 0;
+	}
+
+	#toc li a {
+		padding: .2em 0;
+	}
+
+#logo:before {
+	content: '☠';
+	float: right;
+	font: 100px/1.6 LeaVerou;
+}
+
+.used-by-logos {
+	overflow: hidden;
+}
+	.used-by-logos > a {
+		float: left;
+		width: 33.33%;
+		height: 100px;
+		text-align: center;
+		background: #F5F2F0;
+		box-sizing: border-box;
+		border: 5px solid white;
+		position: relative;
+	}
+		.used-by-logos > a > img {
+			max-height: 100%;
+			max-width: 100%;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+label a.owner {
+	margin: 0 .5em;
+}
+
+label a.owner:not(:hover) {
+	text-decoration: none;
+	color: #aaa;
+}
+
+#languages-list ul {
+	column-count: 3;
+}
+	#languages-list li {
+		padding: .2em;
+	}
+	#languages-list li[data-id="javascript"] {
+		border-bottom: 1px solid #aaa;
+		padding-bottom: 1em;
+		margin-bottom: 1em;
+		margin-right: 1em;
+	}
+
+ul.plugin-list {
+	column-count: 2;
+}
+	ul.plugin-list > li {
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+	ul.plugin-list > li > a {
+		font-size: 110%;
+	}
+	ul.plugin-list > li > div {
+		margin-bottom: .5em;
+	}
+  </code>
+</pre>
