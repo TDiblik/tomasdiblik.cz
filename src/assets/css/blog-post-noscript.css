@@ -1,0 +1,27 @@
+.code-wrapper {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  background: #2d2d2d;
+}
+
+.code-wrapper > code {
+  color: var(--white);
+  font-family: Consolas, "Courier New", monospace, Monaco, "Andale Mono",
+    "Ubuntu Mono" !important;
+
+  font-size: 14px !important;
+  line-height: 23px !important;
+
+  background: 0 0;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  hyphens: none;
+}

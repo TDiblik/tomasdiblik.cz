@@ -7,14 +7,23 @@
     <link rel="stylesheet" href="/assets/css/globals.css" />
     <link rel="stylesheet" href="/assets/css/layout.css" />
 
-    <link
-      rel="icon"
-      type="image/svg"
-      href="/assets/img/logo.svg" />
+    <link rel="icon" type="image/svg" href="/assets/img/logo.svg" />
 
     <script src="/assets/js/layout.js"></script>
 
     {{ page.additional_headers }}
+    
+    {% if page.is_blog_post %}
+      <link rel="stylesheet" href="/assets/libraries/prism-js-1-29-0/prism.css" />
+      <script src="/assets/libraries/prism-js-1-29-0/prism.js"></script>
+
+      <link rel="stylesheet" href="/assets/css/blog-post.css" />
+      <script src="/assets/js/blog-post.js"></script>
+      
+      <noscript>
+        <link rel="stylesheet" href="/assets/css/blog-post-noscript.css" />
+      </noscript>
+    {% endif %}
 
     <title>{{ page.title }}</title>
   </head>

@@ -1,0 +1,14 @@
+<figure class="image-container">
+  <img src="{{ include.src }}" 
+    style="max-width: {{ include.width }};" 
+    alt="{{ include.alt }}" 
+    decoding="async" 
+  />
+  <figcaption class="small-text">
+    {{ include.caption }} 
+    {%if include.img_source %}
+        | 
+        <a href="{{ include.img_source_href }}" class="small-text strong-text underline" {% include external_link.html %}>{{ include.img_source }}</a> 
+    {%endif%}
+  </figcaption>
+</figure>

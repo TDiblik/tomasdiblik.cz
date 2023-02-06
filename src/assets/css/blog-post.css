@@ -53,3 +53,38 @@
   line-height: 27px;
   text-align: justify;
 }
+
+.image-container {
+  margin: 20px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container > img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  margin-bottom: 10px;
+}
+
+.code-wrapper {
+  border-radius: var(--border-radius);
+  max-height: 30rem;
+}
+.code-wrapper.small {
+  max-height: 20rem;
+}
+.code-wrapper.medium {
+  max-height: 60rem;
+}
+.code-wrapper.large {
+  max-height: 90rem;
+}
+.code-wrapper > code * {
+  font-family: Consolas, "Courier New", monospace, Monaco, "Andale Mono",
+    "Ubuntu Mono" !important;
+  font-size: 14px !important;
+  line-height: 23px !important;
+}
