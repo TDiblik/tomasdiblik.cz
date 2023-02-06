@@ -53,9 +53,14 @@
   line-height: 27px;
   text-align: justify;
 }
+.blog-post-content-container h2 {
+  margin-top: 2rem !important;
+}
+.blog-post-content-container > * {
+  margin: 10px 0px !important;
+}
 
 .image-container {
-  margin: 20px 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
