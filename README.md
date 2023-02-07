@@ -5,7 +5,6 @@ development buidl: `bundle exec jekyll serve --livereload` <br/>
 TODO:
 
 - Add content to blog page
-- Create special blog post layout
 - Add a "reader mode" to blog post layout? - The idea is that current background is not best for reading, add some kind of button that strips most of the css away and makes it really comfortable to read the text.
 - Take different pictures of myself, as those used are 2-3 years old.
 - Go through all images and make them smaller in size

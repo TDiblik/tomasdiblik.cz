@@ -1,7 +1,7 @@
 {% assign type_downcase = include.type | downcase %}
 {% assign blog_post_root = '/pages/blog/' | append: type_downcase | append: "/" | append: include.release_date | append: "/" %}
 
-<a href="{{ blog_post_root | append: include.href }}" class="blog-post-preview-wrapper-{{type_downcase}}">
+<a href="{{ blog_post_root | append: (include.title | downcase | replace: ' ', '-' ) }}" class="blog-post-preview-wrapper-{{type_downcase}}">
   <div class="blog-post see-through-container">
     <div class="blog-post-thumbnail-wrapper">
       <img

@@ -62,7 +62,8 @@ html {
 .blog-post-content-container p,
 .blog-post-content-container span,
 .blog-post-content-container li,
-.blog-post-content-container label {
+.blog-post-content-container label,
+.blog-post-content-container a {
   font-family: var(--font-family);
   font-style: normal;
   font-weight: 400;
@@ -73,12 +74,19 @@ html {
 .blog-post-content-container h2 {
   margin-top: 2rem !important;
 }
+.blog-post-content-container h3 {
+  font-size: 1.3rem;
+  line-height: 30px;
+  margin-top: 1.5rem !important;
+}
 
 .meta-note {
   background-color: rgba(255, 148, 112, 0.6);
   border-radius: var(--border-radius);
   padding: 10px;
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
 }
 
 .image-container {
@@ -86,6 +94,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 1rem 0;
 }
 .image-container > img {
   width: 100%;
@@ -107,9 +116,31 @@ html {
 .code-wrapper.large {
   max-height: 90rem;
 }
+
+code.inline {
+  padding: 3px 5px !important;
+}
+code.inline,
+code.inline * {
+  font-family: Consolas, "Courier New", monospace, Monaco, "Andale Mono",
+    "Ubuntu Mono" !important;
+  font-size: 1.05rem !important;
+}
+
+.code-wrapper > code,
 .code-wrapper > code * {
   font-family: Consolas, "Courier New", monospace, Monaco, "Andale Mono",
     "Ubuntu Mono" !important;
   font-size: 14px !important;
   line-height: 23px !important;
+}
+
+ol,
+ul {
+  margin: 10px 0;
+}
+
+li {
+  margin-bottom: 5px;
+  padding-left: 5px;
 }
