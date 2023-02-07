@@ -1,7 +1,14 @@
+{{ include.caption[0] | jsonify }}
 <figure class="image-container">
   <img src="{{ include.src }}" 
     style="max-width: {{ include.width }};" 
-    alt="{{ include.alt }}" 
+    alt="
+      {% if include.alt %}
+        {{ include.alt }}
+      {% else %}
+        {{ 'Picture of the ' | append: include.caption | downcase }}
+      {% endif %}
+    " 
     decoding="async" 
   />
   <figcaption class="small-text">
