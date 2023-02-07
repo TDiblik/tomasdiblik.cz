@@ -7,6 +7,7 @@ highlited_navbar_option: Blog
 
 post_release_date: 02-02-2023
 post_category: Personal
+
 post_co_authors:
   [
     {
@@ -18,12 +19,28 @@ post_co_authors:
       "href": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     },
   ]
+  
+post_references: 
+  [
+    {
+      "number": "1",
+      "value": "lakj",
+    },
+    {
+      "number": "2",
+      "value": "kajl",
+    },
+  ]
 ---
+
+<p class="meta-note">
+	<span class="strong-text">Editor's note:</span> Hey, just a heads-up, this article is bad :)
+</p>
 
 <p>
   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In rutrum. Etiam
   sapien elit, consequat eget, tristique non, venenatis quis, ante. Integer in
-  sapien. Mauris metus. Class aptent taciti sociosqu ad litora torquent per
+  sapien. Mauris metus. Class aptent taciti {% include blog_post_reference.html number = 1 %} sociosqu ad litora torquent per
   conubia nostra, per inceptos hymenaeos. Curabitur bibendum justo non orci.
   Etiam quis quam.
 </p>
@@ -161,3 +178,5 @@ ul.plugin-list {
 	}
   </code>
 </pre>
+
+{% include blog_post_references.html references = page.post_references %}

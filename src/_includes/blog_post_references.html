@@ -1,0 +1,8 @@
+<div class="references">
+	<h2>References</h2>
+	<ol>
+        {% for reference in include.references %}
+            <li id="references-reference-{{ reference.number }}" value="{{ reference.number }}">{{ reference.value }}</li>
+        {% endfor %}
+	</ol>
+</div>
