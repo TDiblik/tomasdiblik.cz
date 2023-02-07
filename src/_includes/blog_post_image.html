@@ -1,13 +1,16 @@
+{% capture image_alt %}
+  {% if include.alt %}
+    {{ include.alt }}
+  {% else %}
+    {{ 'Picture of ' | append: include.caption | downcase }}
+  {% endif %}
+{% endcapture %}
+
 <figure class="image-container">
   <img src="{{ include.src }}" 
     style="max-width: {{ include.width }};" 
-    alt="
-      {% if include.alt %}
-        {{ include.alt }}
-      {% else %}
-        {{ 'Picture of the ' | append: include.caption | downcase }}
-      {% endif %}
-    " 
+    alt="{{ image_alt }}" 
+    title="{{ image_alt }}"
     decoding="async" 
   />
   <figcaption class="small-text">
