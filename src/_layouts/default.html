@@ -46,7 +46,7 @@
           <a class="{%if page.highlited_navbar_option == 'Projects' %} underline {%endif%} subheading-text underline-on-hover" href="/pages/projects">
             Projects
           </a>
-          <a class="{%if page.highlited_navbar_option == 'Blog' %} underline {%endif%} subheading-text underline-on-hover" href="/pages/blog">
+          <a class="{%if page.highlited_navbar_option == 'Blog' or page.is_blog_post %} underline {%endif%} subheading-text underline-on-hover" href="/pages/blog">
             Blog
           </a>
           <a class="{%if page.highlited_navbar_option == 'TechStack' %} underline {%endif%} subheading-text underline-on-hover" href="/pages/tech-stack">

@@ -1,0 +1,128 @@
+---
+layout: blog_post_layout
+
+title: How to explore Azure Web App files 
+is_blog_post: true
+
+post_release_date: 10-05-2021
+post_category: Tutorial
+---
+
+<p class="strong-text">
+    Have you ever published a new version of your website to Azure Web Apps, but then no changes appear on the site?
+    It might help to take a look into the server's files. But how do you get to them? Read more to find out.
+</p>
+
+<h2> First way - Easiest (Windows server only) </h2>
+<p>
+    If your Azure Web App runs on Windows, I have good news for you!
+    You simply have to go into your Web App settings, scroll for a bit and under the Development Tools
+    section, you should find Console list item.
+</p>
+{% include blog_post_image.html 
+  src = "./azure-web-app-runs-on-windows-show-console.jpg"
+  width = "1000px"
+  caption = "Console setting tab location"
+%}
+<p>
+    As far as I know, this setting tab should be available for all windows-server-hosted web apps, no
+    matter the hosting tier. If you decide to click that setting, you'll be greeted with a simple console
+    already connected to your Web App, right there in Azure.
+</p>
+{% include blog_post_image.html 
+  src = "azure-web-app-runs-on-windows-example-console-commands.jpg"
+  width = "1000px"
+  caption = "Example of executing some commands inside Azure's console"
+%}
+
+<h2>Prerequisites for the other two methods:</h2>
+<ul>
+  <li>Have an Azure Web App with some files</li>
+  <li>Download your Azure Web App's publish profile
+    {% include blog_post_image.html 
+      src = "./azure-web-app-download-publish-profile.jpg"
+      width = "1000px"
+      caption = "Location of the 'Download publish profile' button"
+    %}
+  </li>
+</ul>
+
+
+<h2> Second method - secure (FTPS) </h2>
+
+<p>Prerequisites:</p>
+<ul>
+  <li>Check you have <code class="language-bash inline">lftp</code> CLI available.</li>
+</ul>
+
+<p> 
+    Since you're already reading this, friendly reminder to make sure that your Azure Web App is setup
+    correctly to only accept FTPS connections:
+</p>
+{% include blog_post_image.html 
+  src = "./how-to-force-ftps.png"
+  width = "750px"
+  caption = "Force ftps only connection for Azure Web App"
+  
+  img_source = "learn.microsoft.com"
+  img_source_href = "https://learn.microsoft.com/cs-cz/azure/app-service/deploy-ftp?tabs=portal#deploy-files-to-azure"
+%}
+<p> 
+    Everything ready? Great! First of all, retrieve information from your Publish profile.
+    You should look for for the following tag:
+</p>
+<pre class="code-wrapper"><code class="language-xml">&lt;publishProfile profileName="{your_resource_name} - FTP"&gt;</code></pre>
+<p>
+    Once you've found this tag, save somewhere it's following properties: 
+    <code class="language-bash inline">publishUrl</code>, 
+    <code class="language-bash inline">userName</code>, 
+    <code class="language-bash inline">userPWD</code>.
+    And that's it. We're now, ready to jump into terminal and use following commands:
+</p>
+<pre class="code-wrapper"><code class="language-bash">> lftp
+lftp :~> set ftp:ssl-force true;
+lftp :~> set ftp:ssl-protect-data true;
+lftp :~> set ssl:verify-certificate true;
+lftp :~> set ftp:ssl-protect-data true;
+lftp :~> open {enter publishUrl without the ftp:// part at the beginning and /site/wwwroot at the end}
+lftp :~> user {enter userName} {enter userPWD}
+lftp :~> ls
+lftp :~> cd /site/wwwroot
+lftp :~> ls
+</code></pre>
+<p>After you've followed the steps above, you should be able to navigate through and explore the directories of your Azure Web App.</p>
+
+
+<h2> Third method - insecure (FTP) </h2>
+<p>Prerequisites:</p>
+<ul>
+  <li>Check you have <code class="language-bash inline">ftp</code> CLI available.</li>
+</ul>
+<p> 
+    I recommend using this method as a last possible option, because the communication protocol
+    used is unencrypted (FTP). Make sure to only use this on networks you fully trust. After you're done
+    with this method, you should probably go into Azure and disable this kind of access (as shown in the second method above).
+</p>
+<p> 
+    First of all, retrieve information from your Publish profile.
+    You should look for for the following tag:
+</p>
+<pre class="code-wrapper"><code class="language-xml">&lt;publishProfile profileName="{your_resource_name} - FTP"&gt;</code></pre>
+<p>
+    Once you've found this tag, save somewhere it's following properties: 
+    <code class="language-bash inline">publishUrl</code>, 
+    <code class="language-bash inline">userName</code>, 
+    <code class="language-bash inline">userPWD</code>.
+    And that's it. We're now, ready to jump into terminal and use following commands:
+</p>
+<pre class="code-wrapper"><code class="language-bash">> ftp
+ftp> open
+(to) {enter publishUrl without the ftp:// part at the beginning and /site/wwwroot at the end}
+Name: {enter userName}
+Password: {enter userPWD}
+ftp> passive
+ftp> ls
+ftp> cd /site/wwwroot
+ftp> ls
+</code></pre>
+<p>After you've followed the steps above, you should be able to navigate through and explore the directories of your Azure Web App.</p>
