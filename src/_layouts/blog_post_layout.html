@@ -5,11 +5,13 @@ layout: default
 <article class="blog-post-container">
     <div class="blog-post-info">
         <h1 class="blog-post-title">{{ page.title }}</h1>
-        <span class="small-text">Co-authored by: 
-            {% for author in page.post_co_authors %}
-                <a href="{{ author.href }}" class="small-text underline-on-hover" {% include external_link.html %}>{{ author.name | replace: " ", "&nbsp;" }}</a>{% if forloop.last != true %},{% endif %}
-            {% endfor %}
-        </span>
+        {% if page.post_co_authors %}
+            <span class="small-text">Co-authored by: 
+                {% for author in page.post_co_authors %}
+                    <a href="{{ author.href }}" class="small-text underline-on-hover" {% include external_link.html %}>{{ author.name | replace: " ", "&nbsp;" }}</a>{% if forloop.last != true %},{% endif %}
+                {% endfor %}
+            </span>
+        {% endif %}
         <span class="small-text">{{ page.post_release_date }}</span>
         <span class="small-text blog-post-category" title="TODO: Change title based on category, describing the category">
             {{ page.post_category }}
@@ -17,5 +19,6 @@ layout: default
     </div>
     <div class="blog-post-content-container">
         {{ content }}
+        {% include blog_post_end_paragraph.html %}
     </div>
 </article>

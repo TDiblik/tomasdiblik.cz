@@ -3,7 +3,6 @@ layout: blog_post_layout
 
 title: Learn Azure Functions with 3 easy projects
 is_blog_post: true
-highlited_navbar_option: Blog
 
 post_release_date: 15-02-2022
 post_category: Tutorial
@@ -13,30 +12,12 @@ post_co_authors:
 ---
 
 <p class="meta-note">
-  <span class="strong-text">Note from future me:</span> Hey, just a heads-up,
-  this tutorial is like 4/10 
-  (readable, 
-  get's the point across, 
-  you're able to follow it, 
-  BUT
-  unnecessarily long, technically too surface level for my taste,
-  covers topics that could have been simple references,
-  some sentences are unclear or questionable). Nevertheless, It's one of the first articles I ever wrote (still thankful that <a 
-    href="https://twitter.com/kahy_dot_sh" 
-    class="underline" 
-    {% include external_link.html %}>Josef Kahoun</a> 
-  helped me with correction &lt;3) and I
-  think it's still a good idea to include it here.
-  Feel free to continue reading, but some of my later blog posts are probably better than this (content wise) :D. Nonetheless, if
-  you still decide to continue reading, it's not that bad, enjoy! 
-</p>
-<p class="meta-note">
-  If you're here for the source code of those 3 projects, you can 
+  If you get stuck anywhere along the way, you can download the source code of those 3 projects by 
   <a 
     href="./learn-azure-functions-with-3-easy-projects-article-tutorial-source-code.zip" 
     class="underline" 
     {% include external_link.html %}>
-      <span class="strong-text">download it by clicking here</span></a> 
+      <span class="strong-text">clicking here</span></a>.
 </p>
 
 <p class="strong-text">
@@ -643,9 +624,9 @@ with open("ASCII_art.txt", "w") as text_file:
 <h3> Setup </h3>
 <p>
   To create the project we need to run the command <code class="language-bash inline">func init</code>, 
-  select node, and then select javascript. Once we have a project created, we need to add a timer trigger to it. 
+  select <code class="language-bash inline">node</code>, and then select <code class="language-bash inline">javascript</code>. Once we have a project created, we need to add a timer trigger to it. 
   So run the <code class="language-bash inline">func new</code>. If it takes a while, don't worry. This is normal for new projects
-  Once your menu loads select Timer Trigger (at the bottom).
+  Once your menu loads select <code class="language-bash inline">Timer Trigger</code> (at the bottom).
   Next, you need to run the following command:
 </p>
 <pre class="code-wrapper"><code class="language-bash">func settings add AzureWebJobsStorage UseDevelopmentStorage=true
@@ -809,13 +790,3 @@ module.exports = async function (context, myTimer) {
   ]
 }
 </code></pre>
-
-
-<h2>End statement</h2>
-<p>
-  I hope you enjoyed the series, if you have any questions or problems,
-  don't hesitate and write me 
-  <a class="paragraph-text underline" href="mailto:dibla.tomas@post.cz?subject=Problem%20while%20following%20Azure%20Functions%20tutorial%20article&body=Hi!%20I%20was%20reading%20your%20tutorial%20about%20Azure%20Functions%2C%20and%20I%20got%20stuck%20%7Bhere%7D.%20How%20can%20I%20resolve%20this%3F%20I%20have%20tried%20%7Bthis%7D%20and%20%7Bthat%7D.%0D%0A%0D%0AHave%20a%20good%20day!" rel="nofollow noreferrer noopener">
-  an email</a>
-  !
-</p>
