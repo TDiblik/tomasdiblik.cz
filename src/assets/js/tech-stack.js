@@ -354,7 +354,7 @@ function update_graph_size() {
 
   graph_container
     .attr("width", max_width)
-    .attr("height", max_height - max_height * 0.09) // * 0.09 because of top-bottom padding
+    .attr("height", max_height - max_height * 0.1) // * 0.1 because of top-bottom padding
     .attr("viewBox", [min_width, min_height, max_width, max_height]);
 
   const previous_instances = document.querySelectorAll(".graph-helper-group");
