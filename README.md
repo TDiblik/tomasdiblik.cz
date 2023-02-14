@@ -4,7 +4,6 @@ development buidl: `bundle exec jekyll serve --livereload` <br/>
 
 TODO:
 
-- Remove Strava.cz bruteforce default login from projects, only write blog post about it
 - Add tomasdiblik.cz to projects
 - Ability to click on blog post image and have it "pop-up" - bigger, z-index max, background blured, ability to close
 - Add content to blog page
