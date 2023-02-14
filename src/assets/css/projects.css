@@ -35,12 +35,16 @@
   );
 }
 
+.projects-container-title {
+  text-align: center;
+  padding-top: 2%;
+}
+
 .projects-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 50px;
-  padding-top: 2%;
 }
 
 .project-wrapper {
@@ -49,7 +53,7 @@
   width: 350px;
   margin: 1rem;
 }
-.project-wrapper.hidden {
+.project-hidden {
   display: none;
 }
 
