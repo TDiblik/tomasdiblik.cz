@@ -18,6 +18,7 @@ TODO:
 
 Blog posts to write:
 
+- How to install WSL on Windows
 - Robot-Assisted Laser Plate Processing
 - Multi-Device Monitor and Control System
 - Luch Ordering and Management System
