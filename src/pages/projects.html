@@ -145,6 +145,26 @@ additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
   <h1 class="projects-container-title">Development time: 1 month - 6 months</h1>
   <div class="projects-container">
     {% include project_card.html 
+     name = "Personal website tomasdiblik.cz"
+
+     is_hobby_project = true
+     is_open_sourced = true
+     is_publicly_available = true
+
+     live_version_link = "https://tomasdiblik.cz/"
+     source_code_link = "https://github.com/TDiblik/tomasdiblik.cz"
+
+     description = "
+      It might not look like it, but this website took me some time to develop!
+      Code-wise it took me about 2 weeks to make the UI, and code in all the functionality.
+      However, you also have to consider all of the work around as development time, such as:
+      Figma designs, writing content (took probably 75% of the time in total), minifying images, editing photos, creating a logo, etc...
+      I didn't want to use any kind of new fancy/shiny JS framework just to show off, as it would be a total overkill.
+      SSG HTML & CSS & a little bit of JS, is more than enought for this.
+      All things considered, I'm very happy with the final result. 
+    "%}
+
+    {% include project_card.html 
      name = "Main Gate ALPR"
 
      is_hobby_project = false
