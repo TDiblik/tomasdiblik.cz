@@ -24,8 +24,10 @@
 .blog-post-thumbnail {
   width: 200px;
   height: auto;
+  max-height: 150px;
   margin: auto 0;
   border-radius: var(--border-radius);
+  object-fit: scale-down;
 }
 
 .blog-post-header {
