@@ -1,0 +1,94 @@
+---
+layout: blog_post_layout
+
+title: How to install WSL (Windows Subsystem for Linux)
+is_blog_post: true
+
+post_release_date: 30-12-2021
+post_category: Tutorial
+
+post_co_authors:
+  [{ "name": "Rostislav Brož", "href": "https://www.linkedin.com/in/rostislavbroz/" }]
+---
+
+<p class="strong-text">
+  There are a lot of advantages of having linux system ready to use, whenever you need to.
+  Personally, I rely heavily on WSL in my day-to-day life. Whenever I need to run something linux-specific,
+  it's as easy as opening a new terminal session. I also use docker for virtualizing some services, such as databases, which 
+  can use WSL to function faster.
+</p>
+
+
+<h2>Prerequisites:</h2>
+<ul>
+  <li>Windows 11 OR Windows 10 build 10.0.1903 or later</li>
+</ul>
+
+
+<h2>Enabling Windows virtualization and WSL features</h2>
+<p>
+  As of today, WSL 1 and 2 require Windows virtualization features. It's also a good idea to have these features 
+  enabled by default (VMs or docker can use them). We can do that by going into Powershell (admin mode) and running the following commands:
+</p>
+<pre class="code-wrapper"><code class="language-bash">PS C:\WINDOWS\system32> dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+Deployment Image Servicing and Management tool
+Version: 10.0.22621.1
+
+Image Version: 10.0.22621.1105
+
+Enabling feature(s)
+[==========================100.0%==========================]
+The operation completed successfully.
+</code></pre>
+
+<pre class="code-wrapper"><code class="language-bash">PS C:\WINDOWS\system32> dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+Deployment Image Servicing and Management tool
+Version: 10.0.22621.1
+
+Image Version: 10.0.22621.1105
+
+Enabling feature(s)
+[==========================100.0%==========================]
+The operation completed successfully.
+</code></pre>
+
+<p>
+  Now, <span class="strong-text">restart your PC</span> and come back here. I'll be waiting here for you :D.
+</p>
+
+<h2>Installing WSL</h2>
+<p>
+  Already, back? Good! You've now enabled required functionality for WSL. 
+  Now, go into console and run (after the command finishes, Windows will probably require another restart): 
+</p>
+<pre class="code-wrapper"><code class="language-bash">wsl --install</code></pre>
+<p>
+  If installation begins, continue by reading next paragraph. If not, and command is not found, or not available, 
+  it's probable that you need to download and install WSL2 Linux kernel update package for x64 machines from official 
+  <a 
+    href="https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package" 
+    class="underline" 
+    {% include external_link.html %}>
+      Microsoft's official documentation</a>
+  or by clicking 
+  <a 
+    href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi" 
+    class="underline" 
+    {% include external_link.html %}>
+      here</a>
+  (I wouldn't trust random blog post either, but the download link is hard to see in the docs, and link ref is official microsoft domain :D).
+  After you're done installing it, you should try running the previous command. At this point, everything should work fine.
+</p>
+
+<p>
+  The only thing we need to do now, is run the following command and we're done.
+</p>
+<pre class="code-wrapper"><code class="language-bash">wsl --set-default-version 2</code></pre>
+
+<p>
+  Right now, you either already have latest Ubuntu wsl installed (behaviour on newer versions of wsl),
+  or have to install it from Microsoft Store, just search Ubuntu and click on download. 
+  It was pretty easy wasn't it?
+</p>
