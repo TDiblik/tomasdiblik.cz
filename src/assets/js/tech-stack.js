@@ -70,13 +70,14 @@ const technologies = {
     },
     {
       name: "Typescript",
+      usage: nerly_every_day_usage,
       title:
         "Typescript's my SECOND favourite programming language. I usually use it exclusively on frontend.",
-      usage: nerly_every_day_usage,
       children: [
         {
           name: "React",
           usage: nerly_every_day_usage,
+          title: "TODO",
           children: [
             {
               name: "@testing-library/react",
@@ -101,6 +102,7 @@ const technologies = {
         {
           name: "Svelte",
           usage: once_per_week_usage,
+          title: "TODO",
           children: [
             {
               name: "@testing-library/svelte",
@@ -156,6 +158,7 @@ const technologies = {
     {
       name: "HTML & CSS",
       usage: nerly_every_day_usage,
+      title: "TODO",
       children: [
         {
           name: "SASS",
@@ -174,6 +177,7 @@ const technologies = {
     {
       name: "SQL & NoSQL",
       usage: nerly_every_day_usage,
+      title: "TODO",
       children: [
         {
           name: "MSSQL",
@@ -203,6 +207,7 @@ const technologies = {
     {
       name: "Dev tools",
       usage: nerly_every_day_usage,
+      title: "TODO",
       children: [
         {
           name: "Visual Studio Code",
