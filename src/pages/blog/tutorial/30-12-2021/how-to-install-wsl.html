@@ -30,7 +30,7 @@ post_co_authors:
   As of today, WSL 1 and 2 require Windows virtualization features. It's also a good idea to have these features 
   enabled by default (VMs or docker can use them). We can do that by going into Powershell (admin mode) and running the following commands:
 </p>
-<pre class="code-wrapper"><code class="language-bash">PS C:\WINDOWS\system32> dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+<pre class="code-wrapper"><code class="language-powershell">PS C:\WINDOWS\system32> dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 
 Deployment Image Servicing and Management tool
 Version: 10.0.22621.1
@@ -42,7 +42,7 @@ Enabling feature(s)
 The operation completed successfully.
 </code></pre>
 
-<pre class="code-wrapper"><code class="language-bash">PS C:\WINDOWS\system32> dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+<pre class="code-wrapper"><code class="language-powershell">PS C:\WINDOWS\system32> dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 
 Deployment Image Servicing and Management tool
 Version: 10.0.22621.1
