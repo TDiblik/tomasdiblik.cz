@@ -15,7 +15,7 @@ server {
         location ~* \.(html)$ {
             expires 3h;
         }
-        location ~* \.(css|gif|jpg|js|png|ico|otf|sng|xls|doc|exe|jpeg|tgx|tex)$ {
+        location ~* \.(css|gif|jpg|js|png|ico|otf|svg|sng|xls|doc|exe|jpeg|tgx|tex)$ {
             expires 30d;
         }
 
