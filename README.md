@@ -31,7 +31,6 @@ TODO:
 - Ability to click on blog post image and have it "pop-up" - bigger, z-index max, background blured, ability to close
 - Add content to blog page
 - Take different pictures of myself, as those used are 2-3 years old.
-- Go through all images and make them smaller in size (everything to a webp format?)
 - Generate SEO metadata
 - Customize 404 page with some kind of game/animation or anything interesting
   - Idea: Some kind of fun fact list about this website, for example: Publish date, Number of lines of code,...
