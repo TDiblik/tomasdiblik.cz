@@ -1,6 +1,13 @@
 prerequisites: `bundle install` <br/>
 development buidl: `bundle exec jekyll serve --livereload` <br/>
-production build: `./publish.sh` (requires linux or WSL)
+production build (requires linux or WSL):
+
+```
+sudo apt install dos2unix
+dos2unix publish.sh
+chmod +x publish.sh
+sudo publish.sh
+```
 
 manual image compression (requires linux or WSL):
 
