@@ -30,7 +30,6 @@ TODO:
 - Blog post layout categories miss title (description)
 - Add content to blog page
 - Take different pictures of myself, as those used are 2-3 years old.
-- Generate SEO metadata
 - Customize 404 page with some kind of game/animation or anything interesting
   - Idea: Some kind of fun fact list about this website, for example: Publish date, Number of lines of code,...
 - Add some kind of table of contents to every blog post
