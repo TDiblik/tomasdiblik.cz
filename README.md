@@ -8,9 +8,9 @@ sudo apt upgrade -y
 sudo apt install dos2unix
 
 dos2unix publish.sh
-chmod +x publish.sh
+sudo chmod +x publish.sh
 
-sudo publish.sh
+sudo ./publish.sh
 ```
 
 manual image compression (requires linux or WSL):
