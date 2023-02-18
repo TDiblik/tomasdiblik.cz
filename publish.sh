@@ -17,7 +17,7 @@ rm -rf ./src/.jekyll-cache/
 
 # Build site
 cd src/
-bundle clean
+bundle clean --force
 bundle install
 JEKYLL_ENV=production bundle exec jekyll build
 cd ..
