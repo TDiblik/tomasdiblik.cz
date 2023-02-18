@@ -94,9 +94,9 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 1rem 0;
+  margin: 1rem 0 !important;
 }
-.image-container > img {
+.image-container img {
   width: 100%;
   height: auto;
   border-radius: var(--border-radius);

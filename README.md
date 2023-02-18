@@ -28,7 +28,6 @@ IMG_NAME="example.png" && exiftool -all= $IMG_NAME && cwebp -q 80 -lossless -alp
 TODO:
 
 - Blog post layout categories miss title (description)
-- Ability to click on blog post image and have it "pop-up" - bigger, z-index max, background blured, ability to close
 - Add content to blog page
 - Take different pictures of myself, as those used are 2-3 years old.
 - Generate SEO metadata

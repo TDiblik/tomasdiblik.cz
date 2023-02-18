@@ -7,11 +7,13 @@
 {% endcapture %}
 
 <figure class="image-container">
-  <img src="{{ include.src }}" 
-    style="max-width: {{ include.width }};" 
-    alt="{{ image_alt }}" 
-    decoding="async" 
-  />
+  <a href="{{ include.src }}" target="_blank">
+    <img src="{{ include.src }}" 
+      style="max-width: {{ include.width }};" 
+      alt="{{ image_alt }}" 
+      decoding="async" 
+    />
+  </a>
   <figcaption class="small-text">
     {{ include.caption }} 
     {%if include.img_source %}
