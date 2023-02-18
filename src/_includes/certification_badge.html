@@ -1,5 +1,5 @@
 <div class="certification-wrapper">
-  <a href="{{ include.href }}" {% include external_link.html %}>
+  <a href="{{ include.href }}" {% if include.internal_href != true %} {% include external_link.html %} {% else %} target="_blank" {% endif %}>
     <img
       class="certification"
       src="{{ include.src }}"
