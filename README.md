@@ -3,9 +3,13 @@ development buidl: `bundle exec jekyll serve --livereload` <br/>
 production build (requires linux or WSL):
 
 ```
+sudo apt update -y
+sudo apt upgrade -y
 sudo apt install dos2unix
+
 dos2unix publish.sh
 chmod +x publish.sh
+
 sudo publish.sh
 ```
 
