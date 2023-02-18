@@ -3,10 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    {% comment %}
+      Generated SEO https://www.seoptimer.com/meta-tag-generator
+    {% endcomment %}
+    {% if page.is_blog_post %}
+      <meta name="title" content="{{ page.post_category }} - {{ page.title }} (Blog post)">
+      <meta name="description" content="{{ page.post_introduction | split: '' | slice: 0, 140 | join: '' | append: '...'  }}">
+    {% else %}
+      <meta name="title" content="Tomáš Diblík's personal website - {{ page.title }} (Hi ^_^)">
+      <meta name="description" content="{{ page.seo_description }}">
+    {% endif %}
+    <meta name="keywords" content="Tomáš Diblík, Tomas Diblik, TDiblik, TDiblik005, tdiblik, tdiblik005, Tomh-hash Dibh-leek, {{page.title}}{%if page.is_blog_post%}, blog post, article, {{ page.post_category }}, {{ page.post_release_date }}{%endif%}{%if page.seo_keywords %}{{ ', ' | append: page.seo_keywords }}{%endif%}">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="author" content="Tomáš Diblík">
 
     <link rel="stylesheet" href="/assets/css/globals.css" />
     <link rel="stylesheet" href="/assets/css/layout.css" />
 
+    {% comment %}
+      Generated favicons https://realfavicongenerator.net/
+    {% endcomment %}
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
     <link rel="icon" type="image/svg" sizes="32x32" href="/favicon.svg">
     <link rel="icon" type="image/svg" sizes="16x16" href="/favicon.svg">
@@ -104,7 +122,9 @@
               class="youtube-logo" />
           </a>
 
-          <!-- Awesome website for creating mailto(s): https://mailtolink.me/ -->
+          {% comment %}
+            Awesome website for creating mailto(s): https://mailtolink.me/
+          {% endcomment %}
           <a href="mailto:dibla.tomas@post.cz?subject=Hello%20there!&body=I%20hope%20you're%20having%20a%20good%20day%20%5E_%5E%20-%20feel%20free%20to%20email%20me%20about%20anything!" rel="nofollow noreferrer noopener">
             <img
               src="/assets/img/email-icon.svg"
