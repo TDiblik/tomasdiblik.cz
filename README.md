@@ -32,7 +32,6 @@ TODO:
 - Customize 404 page with some kind of game/animation or anything interesting
   - Idea: Some kind of fun fact list about this website, for example: Publish date, Number of lines of code,...
 - Add some kind of table of contents to every blog post
-- Add a "reader mode" to blog post layout? - The idea is that current background is not best for reading, add some kind of button that strips most of the css away and makes it really comfortable to read the text.
 
 Blog posts to write:
 
