@@ -9,7 +9,7 @@
     {% endcomment %}
     {% if page.is_blog_post %}
       <meta name="title" content="{{ page.post_category }} - {{ page.title }} (Blog post)">
-      <meta name="description" content="{{ page.post_introduction | split: '' | slice: 0, 140 | join: '' | append: '...'  }}">
+      <meta name="description" content="{{ page.post_introduction | truncate: 145  }}">
     {% else %}
       <meta name="title" content="Tomáš Diblík's personal website - {{ page.title }} (Hi ^_^)">
       <meta name="description" content="{{ page.seo_description }}">
