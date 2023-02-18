@@ -1,41 +1,13 @@
 prerequisites: `bundle install` <br/>
 development buidl: `bundle exec jekyll serve --livereload` <br/>
-production build:
+production build: `./publish.sh` (requires linux or WSL)
 
-```bash
-  # Run everything from linux / wsl and from src dir
-
-  sudo apt-get update -y
-  sudo apt-get upgrade -y
-  sudo apt-get install -y build-essential
-  sudo apt-get install -y ruby ruby-dev
-  sudo gem install bundler
-
-  sudo gem install image_optim
-  sudo gem install image_optim_pack
-
-  sudo apt-get install -y advancecomp gifsicle jhead jpegoptim libjpeg-progs optipng pngcrush pngquant
-
-  rm _compress_images_cache.yml
-  rm Gemfile.lock
-  rm -rf _site/
-  rm -rf .jekyll-cache/
-
-  echo "First build, to build the site"
-  bundle exec jekyll build --trace
-
-  echo "Second build, to optimize the images (workaround)"
-  mv _config.yml _config.dev.yml
-  mv _config.production.yml _config.yml
-  JEKYLL_ENV=production bundle exec jekyll build
-  mv _config.yml _config.production.yml
-  mv _config.dev.yml _config.yml
-```
-
-manual image compression:
+manual image compression (requires linux or WSL):
 
 ```
-sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt install -y libimage-exiftool-perl webp
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install -y libimage-exiftool-perl webp
 
 IMG_NAME="example.png" && exiftool -all= $IMG_NAME && cwebp -q 80 -lossless -alpha_q 80 $IMG_NAME -o $IMG_NAME.webp`
 ```
