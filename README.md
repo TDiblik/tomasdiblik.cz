@@ -1,6 +1,37 @@
 prerequisites: `bundle install` <br/>
-production build: `JEKYLL_ENV=production bundle exec jekyll build` <br/>
 development buidl: `bundle exec jekyll serve --livereload` <br/>
+production build:
+
+```bash
+  # Run everything from linux / wsl and from src dir
+
+  sudo apt-get update -y
+  sudo apt-get install -y build-essential
+  sudo apt-get install -y ruby ruby-dev
+  sudo gem install bundler
+
+  sudo gem install image_optim
+  sudo gem install image_optim_pack
+
+  sudo apt-get install -y advancecomp gifsicle jhead jpegoptim libjpeg-progs optipng pngcrush pngquant
+
+  rm _compress_images_cache.yml
+  rm Gemfile.lock
+  rm -rf _site/
+  rm -rf .jekyll-cache/
+
+  echo "First build, to build the site"
+  bundle exec jekyll build --trace
+
+  echo "Second build, to optimize the images (workaround)"
+  mv _config.yml _config.dev.yml
+  mv _config.production.yml _config.yml
+  JEKYLL_ENV=production bundle exec jekyll build
+  mv _config.yml _config.production.yml
+  mv _config.dev.yml _config.yml
+```
+
+<br/>
 
 TODO:
 
