@@ -2,6 +2,7 @@
 layout: default
 ---
 
+{% assign post_category_downcase = page.post_category | downcase | strip  %}
 <article class="blog-post-container">
     <div class="blog-post-info">
         <h1 class="blog-post-title">{{ page.title }}</h1>
@@ -13,7 +14,18 @@ layout: default
             </span>
         {% endif %}
         <span class="small-text" title="(dd-mm-yyyy)">{{ page.post_release_date }}</span>
-        <span class="small-text blog-post-category" title="TODO: Change title based on category, describing the category">
+        <span class="small-text blog-post-category" title="
+            {% if post_category_downcase == 'tutorial' %}
+            Usually beginner friendly articles teaching a technology, or how-to-do-something.
+            {% elsif post_category_downcase == 'technical' %}
+            The purpose of these articles is not to teach, but to concentrate on a specific topic 
+            and provide references to sources where one can learn the necessary information.
+            {% elsif post_category_downcase == 'pr' %}
+            Writing about events I've been to and such. 
+            {% elsif post_category_downcase == 'personal' %}
+            Everything more personal, that I feel like sharing online :D -- basically what I'm up to, interested in, etc,.. outside of technology.
+            {% endif %}
+        ">
             {{ page.post_category }}
         </span>
     </div>

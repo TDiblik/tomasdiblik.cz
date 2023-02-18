@@ -27,7 +27,6 @@ IMG_NAME="example.png" && exiftool -all= $IMG_NAME && cwebp -q 80 -lossless -alp
 
 TODO:
 
-- Blog post layout categories miss title (description)
 - Add content to blog page
 - Take different pictures of myself, as those used are 2-3 years old.
 - Customize 404 page with some kind of game/animation or anything interesting
