@@ -77,7 +77,7 @@ const technologies = {
         {
           name: "React",
           usage: nerly_every_day_usage,
-          title: "TODO",
+          title: "I use React on day-to-day basis at work.",
           children: [
             {
               name: "@testing-library/react",
@@ -102,7 +102,8 @@ const technologies = {
         {
           name: "Svelte",
           usage: once_per_week_usage,
-          title: "TODO",
+          title:
+            "I use Svelte for personal projects, whenever HTML & CSS & JS just isn't enought anymore.",
           children: [
             {
               name: "@testing-library/svelte",
@@ -136,7 +137,7 @@ const technologies = {
       name: "Rust",
       usage: once_per_month_usage,
       title:
-        "I usually use rust for developing [TUI's / Performance heavy / Embedded] projects.",
+        "I usually use Rust for developing [TUI's / Performance heavy] projects.",
       children: [
         {
           name: "clap",
@@ -158,7 +159,8 @@ const technologies = {
     {
       name: "HTML & CSS",
       usage: nerly_every_day_usage,
-      title: "TODO",
+      title:
+        "Nowdays people seem to forget that you don't really need a full-blown JS framework for simple stuff.",
       children: [
         {
           name: "SASS",
@@ -177,7 +179,8 @@ const technologies = {
     {
       name: "SQL & NoSQL",
       usage: nerly_every_day_usage,
-      title: "TODO",
+      title:
+        "I really enjoy writing SQL queries. I believe that when you design your DB schema correctly, a lot of development is made a whole lot easier.",
       children: [
         {
           name: "MSSQL",
@@ -207,7 +210,7 @@ const technologies = {
     {
       name: "Dev tools",
       usage: nerly_every_day_usage,
-      title: "TODO",
+      title: "My trusty toolbox :D",
       children: [
         {
           name: "Visual Studio Code",

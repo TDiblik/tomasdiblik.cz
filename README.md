@@ -36,7 +36,6 @@ production build:
 TODO:
 
 - Blog post layout categories miss title (description)
-- Add missing titles to tech-stack.js
 - Ability to click on blog post image and have it "pop-up" - bigger, z-index max, background blured, ability to close
 - Add content to blog page
 - Take different pictures of myself, as those used are 2-3 years old.
