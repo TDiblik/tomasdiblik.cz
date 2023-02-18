@@ -6,6 +6,7 @@ production build:
   # Run everything from linux / wsl and from src dir
 
   sudo apt-get update -y
+  sudo apt-get upgrade -y
   sudo apt-get install -y build-essential
   sudo apt-get install -y ruby ruby-dev
   sudo gem install bundler
@@ -29,6 +30,14 @@ production build:
   JEKYLL_ENV=production bundle exec jekyll build
   mv _config.yml _config.production.yml
   mv _config.dev.yml _config.yml
+```
+
+manual image compression:
+
+```
+sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt install -y libimage-exiftool-perl webp
+
+IMG_NAME="example.png" && exiftool -all= $IMG_NAME && cwebp -q 80 -lossless -alpha_q 80 $IMG_NAME -o $IMG_NAME.webp`
 ```
 
 <br/>
