@@ -1,0 +1,20 @@
+* {
+  text-align: center;
+}
+
+html,
+body:hover {
+  --current-cursor: url("/assets/cursors/backup_pointer_for_no_js_people.png");
+
+  cursor: var(--current-cursor), auto;
+}
+
+a:hover {
+  cursor: url("/assets/cursors/not_found_links_pointer.png"), auto;
+}
+
+ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
