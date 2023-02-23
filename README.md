@@ -29,7 +29,6 @@ TODO:
 
 - Add content to blog page
 - Take different pictures of myself, as those used are 2-3 years old.
-- Add some kind of table of contents to every blog post
 - On the 404 page, make my face spin, instead of Butercup's (placeholder). Also, replace Mickey Mouse's face and replace it with mine as well. + strip and compress those images heavily, fast download speed is crusial for this effect to work correctlly.
 
 Blog posts to write:
