@@ -113,6 +113,36 @@ html {
   border-radius: var(--border-radius);
 }
 
+.table-of-contents li a:hover {
+  text-decoration: underline;
+}
+
+h1 a::before,
+h2 a::before,
+h3 a::before {
+  display: inline-flex;
+  content: "";
+  background-image: url("/assets/img/link.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-right: 5px;
+}
+
+h1 a::before {
+  height: 24px;
+  width: 24px;
+}
+
+h2 a::before {
+  height: 18px;
+  width: 18px;
+}
+
+h3 a::before {
+  height: 16px;
+  width: 16px;
+}
+
 .table-of-contents ol {
   padding-left: 2rem;
 }
