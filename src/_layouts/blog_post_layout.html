@@ -31,12 +31,19 @@ layout: default
     </div>
     <div class="blog-post-content-container">
         <p class="strong-text">{{ page.post_introduction }}</p>
-        <div class="table-of-contents-wrapper">
-            <div class="table-of-contents">
-                <span class="table-of-contents-header strong-text subheading-text">Table of contents</span>
+        {% if page.show_toc %}
+            <div class="table-of-contents-wrapper">
+                <div class="table-of-contents">
+                    <span class="table-of-contents-header strong-text subheading-text">Table of contents</span>
+                    {{ content | toc_only }}
+                </div>
+            </div>
+        {% else %}
+            {% comment %} Force inject_anchors to execute {% endcomment %}
+            <div style="display: none">
                 {{ content | toc_only }}
             </div>
-        </div>
+        {% endif %}
         {{ content | inject_anchors }}
         {% include blog_post_end_paragraph.html %}
         <div class="meta-note paragraph small-text">
