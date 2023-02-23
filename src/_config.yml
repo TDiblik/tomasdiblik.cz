@@ -1,3 +1,7 @@
 url: "https://tomasdiblik.cz"
 plugins:
   - jekyll-sitemap
+  - jekyll-toc
+
+toc:
+  ordered_list: true

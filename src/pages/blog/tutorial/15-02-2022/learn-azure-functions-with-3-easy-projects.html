@@ -3,6 +3,7 @@ layout: blog_post_layout
 
 title: Learn Azure Functions with 3 easy projects
 is_blog_post: true
+toc: true
 seo_keywords: Azure Functions, serverless, beginner, learn
 
 post_release_date: 15-02-2022
@@ -24,10 +25,7 @@ post_introduction: Have you ever needed to create a simple REST API with a few e
     target="_blank">
       <span class="strong-text">clicking here</span></a>.
 
-<p class="strong-text">{{ page.post_introduction }}</p>
-
-
-<h2>What are Azure Functions?</h2>
+{% include heading.html level="2" text="What are Azure Functions?" %}
 <p>
   Azure functions is one of the many cloud services on Azure. This service was created
   to run code without the need to deal with setup or any other server
@@ -47,7 +45,7 @@ post_introduction: Have you ever needed to create a simple REST API with a few e
       many more</a>.
 </p>
 
-<h3>What is serverless?</h3>
+{% include heading.html level="3" text="What is serverless?" %}
 <p>
   Serverless is a cloud computing model in the Platform as a Service (PaaS) domain, 
   that enables you to build and run applications without having to manage the underlying infrastructure. 
@@ -61,7 +59,7 @@ post_introduction: Have you ever needed to create a simple REST API with a few e
   Serverless solutions are know for generous free tiers.
 </p>
 
-<h3>Pros and cons of serverless</h3>
+{% include heading.html level="3" text="Pros and cons of serverless" %}
 <p>
   As you probably learned in the previous paragraph, the probably the biggest advantages are: 
 </p>
@@ -93,7 +91,7 @@ post_introduction: Have you ever needed to create a simple REST API with a few e
   With each technology, it's important to keep in mind all of these factors, before locking yourself into using it.
 </p>
 
-<h3> When would I (personaly) use Azure functions? </h3>
+{% include heading.html level="3" text="When would I (personaly) use Azure functions?" %}
 <p>
   Personally, I would use Azure Functions for simple endpoints (APIs) and repeating scripts (CRON), 
   if I didn't have Linux machine available, for the following reasons:
@@ -110,7 +108,7 @@ post_introduction: Have you ever needed to create a simple REST API with a few e
 </p>
 
 
-<h2>Steps to setup</h2>
+{% include heading.html level="2" text="Steps to setup" %}
 <ol>
   <li>
     Open your
@@ -192,7 +190,7 @@ post_introduction: Have you ever needed to create a simple REST API with a few e
 </ol>
 
 
-<h2> Setting up development environment </h2>
+{% include heading.html level="2" text="Setting up development environment" %}
 <p>
   As you can notice in the picture above, we have selected Linux as the operating system. 
   Since most backends run on Linux, we will also use Linux in this article. The problem with this is 
@@ -233,13 +231,13 @@ post_introduction: Have you ever needed to create a simple REST API with a few e
 </p>
 
 
-<h2> First project - Simple HTTP API endpoint </h2>
+{% include heading.html level="2" text="First project - Simple HTTP API endpoint" %}
 <p>Prerequisites:</p>
 <ul>
   <li>Created Azure Functions resource</li>
   <li>Ready to use development environment</li>
 </ul>
-<h3> Project creation </h3>
+{% include heading.html level="3" text="Project creation" %}
 <p>
   Once we have the environment set up, we can start creating a new project. 
   Since this is a first project, we're going to go step by step through the creation process.
@@ -301,7 +299,7 @@ post_introduction: Have you ever needed to create a simple REST API with a few e
 };
 </code></pre>
 
-<h3> Running and debugging the project </h3>
+{% include heading.html level="3" text="Running and debugging the project" %}
 <p>
   If you're following along, now comes the most important part, we can finally start our project. You can do this by running the following command:
 </p>
@@ -313,7 +311,7 @@ post_introduction: Have you ever needed to create a simple REST API with a few e
   you can also enter this command via the command palette, or just click F5. 
 </p>
 
-<h3> Publishing to Azure </h3>
+{% include heading.html level="3" text="Publishing to Azure" %}
 <p> Once we have tested our project locally, we can easily publish it by running the following command: </p>
 <pre class="code-wrapper small"><code class="language-bash">func azure functionapp publish {name of the azure resource}</code></pre>
 <p> Chances are, that this command threw you an error. Most likely the error looked like this: </p>
@@ -340,7 +338,7 @@ post_introduction: Have you ever needed to create a simple REST API with a few e
 </p>
 
 
-<h2>Second project - More complex HTTP API endpoint</h2>
+{% include heading.html level="2" text="Second project - More complex HTTP API endpoint" %}
 <p>
   You might be wondering, "What am I going to build in this project?" We will be developing a simple Azure Functions HTTP Trigger endpoint 
   that converts an image into ASCII art. 
@@ -409,7 +407,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         )
 </code></pre>
 
-<h3> Creating the main functionality </h3>
+{% include heading.html level="3" text="Creating the main functionality" additional_unique_identifier="second-project" %}
 <p>
   As a first step, we need to clean up the <code class="language-bash inline">__init__.py</code> file a bit to remove the "Hello World" bloat :D.
 </p>
@@ -571,7 +569,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     )
 </code></pre>
 
-<h3> Test out our endpoint </h3>
+{% include heading.html level="3" text="Test out our endpoint" %}
 <p>
   Since our function only accepts POST requests, and we're programmers, we should write our own code to test it out. 
   Since this project is using Python, we'll write the code to test our endpoint in Python.
@@ -611,7 +609,7 @@ with open("ASCII_art.txt", "w") as text_file:
 </p>
 
 
-<h2> Third project - Timer Trigger </h2>
+{% include heading.html level="2" text="Third project - Timer Trigger" %}
 <p>
   Timer Trigger is a piece of code that runs at a given time based on CRON settings. Use case examples could include, sending an email every day at 8:00 (which is what we're going to build) 
   This is basically a serverless crontab
@@ -621,7 +619,7 @@ with open("ASCII_art.txt", "w") as text_file:
   <li>Ready to use development environment</li>
 </ul>
 
-<h3> Setup </h3>
+{% include heading.html level="3" text="Setup" %}
 <p>
   To create the project we need to run the command <code class="language-bash inline">func init</code>, 
   select <code class="language-bash inline">node</code>, and then select <code class="language-bash inline">javascript</code>. Once we have a project created, we need to add a timer trigger to it. 
@@ -680,7 +678,7 @@ with open("ASCII_art.txt", "w") as text_file:
 };
 </code></pre>
 
-<h3> Creating the main functionality </h3>
+{% include heading.html level="3" text="Creating the main functionality" additional_unique_identifier="third-project" %}
 <p>For development purposes, let's just make this function run every 5 seconds for now. We can achieve this by editing <code class="language-bash inline">function.json</code></p>
 <pre class="code-wrapper"><code class="language-json">{
   "bindings": [
@@ -760,7 +758,7 @@ module.exports = async function (context, myTimer) {
 };
 </code></pre>
 
-<h3>How to CRON</h3>
+{% include heading.html level="3" text="How to CRON" %}
 <p>
   Simply put, the timer schedule for timer trigger execution is set using 
   <a 

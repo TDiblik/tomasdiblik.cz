@@ -3,6 +3,7 @@ layout: blog_post_layout
 
 title: How to explore Azure Web App files 
 is_blog_post: true
+toc: true
 seo_keywords: Azure Web App files, Azure FTP, Azure FTPS
 
 post_release_date: 10-05-2021
@@ -12,10 +13,8 @@ post_introduction: Have you ever published a new version of your website to Azur
   It might help to take a look into the server's files. But how do you get to them? Read more to find out.
 ---
 
-<p class="strong-text">{{ page.post_introduction }}</p>
 
-
-<h2> First way - Easiest (Windows server only) </h2>
+{% include heading.html level="2" text="First method - Easiest (Windows server only)" %}
 <p>
     If your Azure Web App runs on Windows, I have good news for you!
     You simply have to go into your Web App settings, scroll for a bit and under the Development Tools
@@ -37,7 +36,8 @@ post_introduction: Have you ever published a new version of your website to Azur
   caption = "Example of executing some commands inside Azure's console"
 %}
 
-<h2>Prerequisites for the other two methods:</h2>
+
+{% include heading.html level="2" text="Prerequisites for the other two methods:" %}
 <ul>
   <li>Have an Azure Web App with some files</li>
   <li>Download your Azure Web App's publish profile
@@ -50,7 +50,7 @@ post_introduction: Have you ever published a new version of your website to Azur
 </ul>
 
 
-<h2> Second method - secure (FTPS) </h2>
+{% include heading.html level="2" text="Second method - secure (FTPS)" %}
 
 <p>Prerequisites:</p>
 <ul>
@@ -95,7 +95,7 @@ lftp :~> ls
 <p>After you've followed the steps above, you should be able to navigate through and explore the directories of your Azure Web App.</p>
 
 
-<h2> Third method - insecure (FTP) </h2>
+{% include heading.html level="2" text="Third method - insecure (FTP)" %}
 <p>Prerequisites:</p>
 <ul>
   <li>Check you have <code class="language-bash inline">ftp</code> CLI available.</li>

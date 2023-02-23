@@ -3,6 +3,7 @@ layout: blog_post_layout
 
 title: How to install WSL (Windows Subsystem for Linux)
 is_blog_post: true
+toc: true
 seo_keywords: wsl, Windows Subsystem for Linux, how to install wsl
 
 post_release_date: 30-12-2021
@@ -16,16 +17,13 @@ post_introduction: There are a lot of advantages of having a Linux system ready 
   can use WSL to function faster.
 ---
 
-<p class="strong-text">{{ page.post_introduction }}</p>
-
-
-<h2>Prerequisites:</h2>
+{% include heading.html level="2" text="Prerequisites:" %}
 <ul>
   <li>Windows 11 OR Windows 10 build 10.0.1903 or later</li>
 </ul>
 
 
-<h2>Enabling Windows virtualization and WSL features</h2>
+{% include heading.html level="2" text="Enabling Windows virtualization and WSL features" %}
 <p>
   As of today, WSL 1 and 2 require Windows virtualization features. It's also a good idea to have these features 
   enabled by default (VMs or docker can use them). We can do that by going into Powershell (admin mode) and running the following commands:
@@ -58,7 +56,7 @@ The operation completed successfully.
   Now, <span class="strong-text">restart your PC</span> and come back here. I'll wait for you :D.
 </p>
 
-<h2>Installing WSL</h2>
+{% include heading.html level="2" text="Installing WSL" %}
 <p>
   Already, back? Good! You've now enabled the required functionality for WSL. 
   Now, go into the console and run (after the command finishes, Windows will probably require another restart): 

@@ -30,7 +30,14 @@ layout: default
         </span>
     </div>
     <div class="blog-post-content-container">
-        {{ content }}
+        <p class="strong-text">{{ page.post_introduction }}</p>
+        <div class="table-of-contents-wrapper">
+            <div class="table-of-contents">
+                <span class="table-of-contents-header strong-text subheading-text">Table of contents</span>
+                {{ content | toc_only }}
+            </div>
+        </div>
+        {{ content | inject_anchors }}
         {% include blog_post_end_paragraph.html %}
         <div class="meta-note paragraph small-text">
             <span class="strong-text small-text">Disclaimer: </span> The opinions, views and values expressed in this post are solely my own and 
