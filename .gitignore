@@ -9,3 +9,5 @@ vendor/
 
 Gemfile.lock
 _compress_images_cache.yml
+
+**/_includes/LICENSE

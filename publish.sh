@@ -15,6 +15,9 @@ rm ./src/Gemfile.lock
 rm -rf ./src/_site/
 rm -rf ./src/.jekyll-cache/
 
+# Add license file
+cp ./LICENSE ./src/_includes/LICENSE
+
 # Build site
 cd src/
 bundle clean --force
