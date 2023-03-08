@@ -1,3 +1,8 @@
+My personal website. <br/>
+Some people told me this looks like a template, please be assured that I've designed and programmed this from scratch :D (you can check git history). That being said, you're free to fork and use this, as long as you respect the project's license.
+
+## Dev
+
 prerequisites: `bundle install` <br/>
 development buidl: `bundle exec jekyll serve --livereload` <br/>
 production build (requires linux or WSL):
