@@ -634,13 +634,12 @@ window.addEventListener("load", () => {
   // Default zooom
   graph_container
     .transition()
-    .call(zoom.scaleBy, is_mobile_or_tablet() ? 1 : 1.25);
+    .call(zoom.scaleBy, is_mobile_or_tablet() ? 1 : 1.15);
 
-  // TODO: Do I want to have children hidden by default???
-  // Default children hidden
-  for (let i = 0; i < graph_root.data.children.length; i++) {
-    hide_children_recursively(graph_root.data.children[i]);
-  }
+  // Default children hidden, commented out, because people didn't know they can click the nodes...
+  // for (let i = 0; i < graph_root.data.children.length; i++) {
+  //   hide_children_recursively(graph_root.data.children[i]);
+  // }
 });
 
 window.addEventListener("resize", () => update_graph_size(), true);
