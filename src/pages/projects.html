@@ -30,41 +30,6 @@ additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
 
   <h1 class="projects-container-title">Development time: 6 months - 2 years</h1>
   <div class="projects-container">
-
-    {% comment %}
-
-    {% include project_card.html 
-     name = "RFID Lock"
-
-     is_hobby_project = true
-     is_open_sourced = true
-     is_publicly_available = false
-
-     blog_post_link = "/pages/blog/TODO"
-     source_code_link = "https://github.com/TDiblik/TODO"
-     youtube_video_link = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-
-     description = "
-      
-    "%}
-
-    {% include project_card.html 
-     name = "IR Signal Cloner"
-
-     is_hobby_project = true
-     is_open_sourced = true
-     is_publicly_available = false
-
-     blog_post_link = "/pages/blog/TODO"
-     source_code_link = "https://github.com/TDiblik/TODO"
-     youtube_video_link = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-
-     description = "
-      
-    "%}
-
-    {% endcomment %}
-
     {% include project_card.html 
      name = "EngiSafe"
 
@@ -226,6 +191,60 @@ additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
 
   <h1 class="projects-container-title">Development time: 1 day - 1 month</h1>
   <div class="projects-container">
+
+    {% comment %}
+
+    {% include project_card.html 
+     name = "RFID Lock"
+
+     is_hobby_project = true
+     is_open_sourced = true
+     is_publicly_available = false
+
+     blog_post_link = "/pages/blog/TODO"
+     source_code_link = "https://github.com/TDiblik/TODO"
+     youtube_video_link = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+
+     description = "
+      
+    "%}
+
+    {% include project_card.html 
+     name = "IR Signal Cloner"
+
+     is_hobby_project = true
+     is_open_sourced = true
+     is_publicly_available = false
+
+     blog_post_link = "/pages/blog/TODO"
+     source_code_link = "https://github.com/TDiblik/TODO"
+     youtube_video_link = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+
+     description = "
+      
+    "%}
+
+    {% endcomment %}
+
+    {% include project_card.html 
+     name = "ActivePCsWatchdog"
+
+     is_hobby_project = false
+     is_open_sourced = true
+     is_publicly_available = false
+     
+     source_code_link = "https://github.com/TDiblik/ActivePCsWatchdog"
+
+     description = "
+      Program for checking active PCs on network periodically using DNS names or IP addresses.
+      Picture yourself in the role of an IT administrator. You want/need to know which computers are turned on during the night. 
+      Then, this program is the solution for you! You just set it up on some server, add IP(s) or domain names of PCs, 
+      SMTP server and you're done. Every night, PCs will get periodically pinged and you'll receive report about their status 
+      throughout the night to your mailbox in the morning.
+      This program has been developted privatelly for private usage in VPSR, however it has been decided to release the source code (which I'm really thankful for).
+      All relevant info is inside the project's README.
+    "%}
+
     {% include project_card.html 
      name = "Strava.cz bruteforce default login"
 
