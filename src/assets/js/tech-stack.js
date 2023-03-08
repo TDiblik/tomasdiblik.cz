@@ -636,6 +636,7 @@ window.addEventListener("load", () => {
     .transition()
     .call(zoom.scaleBy, is_mobile_or_tablet() ? 1 : 1.25);
 
+  // TODO: Do I want to have children hidden by default???
   // Default children hidden
   for (let i = 0; i < graph_root.data.children.length; i++) {
     hide_children_recursively(graph_root.data.children[i]);
