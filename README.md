@@ -38,16 +38,16 @@ TODO:
 
 Blog posts to write:
 
-- Robot-Assisted Laser Plate Processing
-- Multi-Device Monitor and Control System
-- Luch Ordering and Management System
-- Tank parameterization
-- Main Gate alpr
-- Medifinder - about the hackathonu and app - PR
-- RouteMapper - about the hackathonu and app - PR
-- Revision books
-- Strava bruteforce default login
-- Tutorial how to make rick-roll using github pages
+- Robot-Assisted Laser Plate Processing -- PR - showcase program working
+- Multi-Device Monitor and Control System -- PR - showcase program working
+- Luch Ordering and Management System -- PR - showcase program working
+- Tank parameterization -- PR - showcase program working
+- Main Gate alpr -- PR - showcase program working
+- Medifinder -- PR - about the hackathonu and app
+- RouteMapper -- PR - about the hackathonu and app
+- Revision books -- PR - showcase program working
 - Blog post about STC - about my contributions, what I got from it,... - PR
-- My 3d printing journey
-- My experience teaching middle schoolers programming
+- Strava bruteforce default login -- Technical
+- Tutorial how to make rick-roll using github pages -- Tutorial
+- My 3d printing journey -- Personal
+- My experience teaching middle schoolers programming -- Personal
