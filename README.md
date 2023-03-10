@@ -38,7 +38,6 @@ TODO:
 
 Blog posts to write:
 
-- Robot-Assisted Laser Plate Processing -- PR - showcase program working
 - Multi-Device Monitor and Control System -- PR - showcase program working
 - Luch Ordering and Management System -- PR - showcase program working
 - Tank parameterization -- PR - showcase program working
