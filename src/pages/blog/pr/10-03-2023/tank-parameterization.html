@@ -1,0 +1,46 @@
+---
+layout: blog_post_layout
+
+title: Tank parameterization
+is_blog_post: true
+toc: true
+seo_keywords: TODO
+
+post_release_date: 10-03-2023
+post_category: PR
+
+post_introduction: This web app is designed to help technicians test out different variables while preparing tanks 
+    without the need to manually calculate multiple hard calculations, ensuring that they know everything important about each tank.
+    Because this software simplifies a lot of calculations, and shows it clearlly in it's UI,
+    it significantlly reduces the chance of human error, saves technicians time, and ensures accurate tank preparation.
+---
+
+{% include heading.html level="2" text="Showcase" %}
+{% include blog_post_showcase_video.html src="./tank-parameterization-showcase.webm" %}
+
+{% include heading.html level="2" text="How does it work?" %}
+<p>
+    This project is just one of many inside the company's intranet (that I've made). 
+    It's pure HTML & JS & CSS. The hardest part was figuring out the calculations 
+    (which I got a lot of help with, see Kudos section).
+</p>
+<p>
+    Two things that might have caught your eye are 
+    1) the lines that move with height 
+    percent, 
+    2) infill fluid level. 
+    Those fancy moving lines are made using absolute div which's height, width, 
+    and rotation gets calculated on every "re-render" 
+    (every time variable or window size changes). 
+    Some of you may be asking, if this results in program not working on mobile devices, the answer is NO. 
+    The program is fully responsive, which includes the animations.
+    The fluid infill level is made using css' 
+    <code class="language-css inline">:before</code> 
+    and variables (percentage), which get updated from JS.
+</p>
+
+{% include heading.html level="2" text="Kudos" %}
+<p>
+    I would never be able to finish this program without the help from Mgr. Hana Sádovská. 
+    She helped me, and straight up came up with some of the calculations used! I'll be forever thankful!
+</p>

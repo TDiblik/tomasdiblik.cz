@@ -40,7 +40,6 @@ Blog posts to write:
 
 - Multi-Device Monitor and Control System -- PR - showcase program working
 - Luch Ordering and Management System -- PR - showcase program working
-- Tank parameterization -- PR - showcase program working
 - Main Gate alpr -- PR - showcase program working
 - Medifinder -- PR - about the hackathonu and app
 - RouteMapper -- PR - about the hackathonu and app
