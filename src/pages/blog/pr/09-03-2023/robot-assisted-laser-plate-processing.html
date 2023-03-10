@@ -1,0 +1,92 @@
+---
+layout: blog_post_layout
+
+title: Robot-Assisted Laser Plate Processing
+is_blog_post: true
+toc: true
+seo_keywords: wsl, Windows Subsystem for Linux, how to install wsl
+
+post_release_date: 09-03-2023
+post_category: PR
+
+post_introduction: VPSR faced an issue where their employees had to 
+    monitor the completion of lasered plates and manually replace them. 
+    This task took up nearly half of one employee's shift, causing inefficiency 
+    in their operations. To address this problem, they decided to purchase a 
+    Uarm Swift Pro robotic arm, which I programmed using Python.
+---
+
+{% include heading.html level="2" text="Showcase" %}
+
+{% include blog_post_showcase_video.html src="./robot-in-action.webm" %}
+
+{% include heading.html level="2" text="How does it work?" %}
+<p>
+    As I mentioned before, the whole program was programmed in python, because UArm 
+    provides 
+    <a href="https://github.com/uArm-Developer/uArm-Python-SDK" class="underline" 
+    {% include external_link.html %}>
+    Python SDK</a>, 
+    which provides an easy-to-use API for the uArm Swift Pro robotic arm.
+    On top of that, basically, every program that users use needs a UI. I've chosen 
+    <a href="https://docs.python.org/3/library/tkinter.html" class="underline" 
+    {% include external_link.html %}>
+    tkinter</a> for that.
+    Lastly, the program is compiled using 
+    <a href="https://pyinstaller.org/en/stable/" class="underline" 
+    {% include external_link.html %}>
+    pyinstaller</a>
+    and deployed as exe file.
+</p>
+
+{% include heading.html level="3" text="Functional part and other gotchas" %}
+<p>
+    As you may have noticed from the video, this was not really that easy.
+    I've encountered numerous small problems, which were sometimes caught 
+    after running for 2+ hours.
+    The main functinoality can be described as a sequence, therefore 
+    if you want to understand how the program works, we shoulg go over it.
+</p>
+<ol>
+    <li>User inputs the number of plates</li>
+    <li>User clicks the "Start" button</li>
+    <li>Program checks whether the device is connected</li>
+    <li>Program runs calibration on the UArm, to make sure all coordinates are correct</li>
+    <li>Program checks whether the input amount of plates is correct by checking the height of the "plates tower"</li>
+    <li>The robotic arm then grabs the (N)th plate from the top and places it under a laser</li>
+    <li>Since the plate could move slightly, the arm corrects its position </li>
+    <li>Program turns on the laser and waits for it to finish</li>
+    <li>After the laser is finished, program grabs the finished plate and places it on the "finished tower"</li>
+    <li>Program then repeats everything from step 6 until the number of plates left is 0</li>
+    <li>Program performs calibration every 10th round/plate. This was found to be the most time/correction efficient after testing</li>
+</ol>
+<p>
+    It might seem simple at first, but all of these steps are required for this process to be done correctly. 
+    Throw in some gotchas, for example, that one plate is not equal to one height (Y) coordinate,
+    so I have to calculate the height of one plate, and you've got long-term project that took me 2 months.
+    (Although it was my first real-world project).
+</p>
+
+{% include heading.html level="3" text="GUI" %}
+
+{% include blog_post_image.html 
+  src = "./main-screen.png"
+  width = "450px"
+  caption = "Program main screen"
+%}
+<p>
+    The UI's not top-tier quality, but you gotta remember, I've never created UIs before this project.
+    Also, I've used python to create the UI, which I've also never done before.
+    You can see the main screen above. The UI's pretty straightforward to use.
+    All you need to do is input number of plates to do, and click on start.
+    You may wonder why there's a lot of space under the buttons, that's because 
+    program logs info there.
+</p>
+<p>
+    Another thing you may notice is the "help" section in the navbar.
+    This help section provides windows with help texts and tutorials on how to act in certain
+    situations that could occur.
+</p>
+<p>
+    This program was made in early 2020 and runs to this day (or at least till the day of writing this).
+</p>

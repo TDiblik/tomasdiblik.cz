@@ -165,6 +165,10 @@ h3 a::before {
   margin-bottom: 10px;
 }
 
+.blog-post-video {
+  border-radius: var(--border-radius);
+}
+
 .code-wrapper {
   border-radius: var(--border-radius);
   max-height: 30rem;
