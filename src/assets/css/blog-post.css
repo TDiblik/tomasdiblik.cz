@@ -1,5 +1,6 @@
+*,
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important;
 }
 
 .blog-post-container {
