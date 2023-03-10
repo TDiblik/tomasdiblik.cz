@@ -21,7 +21,7 @@ window.addEventListener("load", () => {
     (interval_element) => {
       let start_date = new Date(interval_element.dataset.startDate);
       let end_date = interval_element.dataset.endDate;
-      if (end_date === "not_yet") {
+      if (end_date == "not_yet") {
         end_date = new Date();
       } else {
         end_date = new Date(end_date);
@@ -29,7 +29,10 @@ window.addEventListener("load", () => {
 
       let time_interval_text = format_month_and_year(start_date);
       time_interval_text += " - ";
-      if (end_date.getTime() === new Date().getTime()) {
+      if (
+        end_date.getMonth() == new Date().getMonth() &&
+        end_date.getFullYear() == new Date().getFullYear()
+      ) {
         time_interval_text += "present";
       } else {
         time_interval_text += format_month_and_year(end_date);
