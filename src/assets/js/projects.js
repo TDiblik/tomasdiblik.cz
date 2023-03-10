@@ -37,7 +37,6 @@ window.addEventListener("load", () => {
       }
     });
 
-  // TODO: VanillaTilt is making content blury - fix or add some kind of checkbox which disables vanillatilt behavior (permanently, store value to localstorage).
   if (!is_mobile_or_tablet()) {
     VanillaTilt.init(document.querySelectorAll(".project-wrapper"), {
       max: 4,
