@@ -1,0 +1,163 @@
+---
+layout: blog_post_layout
+
+title: Lunch Ordering and Management System
+is_blog_post: true
+toc: true
+show_toc: true
+seo_keywords: lunch ordering, pay deductions management, Powerapps, winforms, C#, project, user management, lunch management
+
+post_release_date: 11-03-2023
+post_category: PR
+
+post_introduction: This program consists of 5 parts. 
+   A desktop application, that allows you to order lunches locally.
+   Another desktop application that makes it easy to receive your food by using RFID chip associated with your name.
+   A mobile app that allows you to order lunches from the comfort of your home.
+   A web management system that allows HR people to manage lunches, export payroll deductions (subsidies included) and block some people from ordering lunches.
+   Lastly, an automated task that runs twice per day and sends emails with orders for next day/week to company that's supplying the food.
+---
+
+{% include heading.html level="2" text="Local ordering program" %}
+{% include heading.html level="3" text="Showcase" additional_unique_identifier="local-ordering-program" %}
+{% include blog_post_showcase_video.html src="./local-ordering-showcase.webm" %}
+{% include heading.html level="3" text="How does it work?" additional_unique_identifier="local-ordering-program" %}
+<p>
+    Initially, I wanted to develop my own terminal, or at least buy one with Android preinstalled, however, the project development time would grow massively.
+    Instead, the local ordering program is running on one of these "display only" devices with Windows and touch screen. This allowed me to develop the whole program in less than 3 days (including initial bug fixes).
+    It uses Winforms under-the-hood. The program works by waiting for user to press their RFID chip to the USB RFID reader. After the reader notices input, it sends the input to the program and the program tries to find the user in database,
+    if they have ordering allowed, and agree with payroll deductions, they can order lunches. Lunches can be ordered at max 4 weeks beforehand. After they're done ordering, they can save their lunches and go in with their day.
+</p>
+<p>
+    Ordering can be disabled globally using Web interface (more on that later), this program respects that and informs users of days they will not be able to order beforehand.
+    At the day of "blockage", program will not allow users to order AND cancel ordered lunches.
+</p>
+
+{% include heading.html level="2" text="Dispensing program" %}
+{% include heading.html level="3" text="Showcase" additional_unique_identifier="dispensing-program" %}
+{% include blog_post_showcase_video.html src="./dispencing-program-showcase.webm" %}
+{% include heading.html level="3" text="How does it work?" additional_unique_identifier="dispensing-program" %}
+<p>
+    Dispensing program is really simple, the technology stack is exactly the same as of Local ordering programs'. An employee just comes to RFID reader,
+    presses their's RFID chip to the reader and canteen employees can easily see what to give out to the employee.
+    The program keeps its state locally, because it should run even if the internet is not working, or there is a short power outage in the middle of giving out lunches.
+</p>
+
+{% include heading.html level="2" text="Mobile ordering program" %}
+{% include heading.html level="3" text="Showcase" additional_unique_identifier="mobile-ordering-program" %}
+{% include blog_post_showcase_video.html src="./mobile-ordering-showcase.webm" is_vertical=true %}
+{% include heading.html level="3" text="How does it work?" additional_unique_identifier="mobile-ordering-program" %}
+<p>
+    This program is made in Powerapps. It was quick and easy to implement, however maintaining this app is HELL.
+    I usually prefer to avoid low-code no-code solutions (probably gonna write a blog post about it in the future), however employees already know how to use powerapps.
+    Another reason why we chose powerapps over other existing solutins is that I didn't own developer certificate from Apple and getting it would be long and tedious process at the time.
+    Also, gotta mention, I did not make this from scratch, I took already working solution from my colleague programmer (yes, it's total of two of us for the whole factory, creating software), 
+    and changed it a bit. Employees can sign in using their Microsoft account, and in the end it works like a charm.
+</p>
+
+{% include heading.html level="2" text="Web management system" %}
+<p>
+  There are a lot of parts to this management system because managing lunches/lunch orders is an inherently complex thing to do.
+</p>
+<p>
+  First of all, here's a dashboard of all functionality included. 
+  Because this dashboard includes some sub-pages that may include personal or sensitive info, I'm not gonna go into detail on how some pages work.
+</p>
+{% include blog_post_image.html 
+  src = "./admin-menu-dashboard.png"
+  width = "700px"
+  caption = "Admin dashboard"
+%}
+<p>
+  If we were to go from left to right and from top to bottom, we would start with "Lístek".
+</p>
+<p>
+  This is used for adding and editing lunches. It has a lot of functionality, however 
+  I would like to point out the best one: The ability to import Excel file downloaded from the lunch provider.
+  This functionality alone has saved countless hours for our HR department.
+</p>
+{% include blog_post_image.html 
+  src = "./admin-menu-add-and-edit-lunches.png"
+  width = "700px"
+  caption = "Menu to add and edit separate lunches"
+%}
+{% include blog_post_image.html 
+  src = "./admin-menu-add-lunches-bulk.png"
+  width = "700px"
+  caption = "Menu used for bulk import of lunches"
+%}
+<p>
+  As I mentioned before, I won't go over all options, for example, "Lidi" is one of the sub-pages, that I won't even show. 
+  Not only does it contain personal information, but also private tools and business logic.
+</p>
+<p>
+  With that out of the way, we can follow by looking at "Zakázat objednávání", it's just a simple pop-up and if you understand Czech,
+  you already know what it does. It forbids ordering for some period of time.
+</p>
+{% include blog_post_image.html 
+  src = "./admin-menu-cancel-ordering.png"
+  width = "700px"
+  caption = "Menu used for forbiding ordering"
+%}
+<p>
+  The next thing you can see is "Objednávky VPS" and "Objednávky HTKovo". These buttons serve the same pdf file with orders, 
+  filtered based on the company selected. You can see an example output below.
+</p>
+{% include blog_post_image.html 
+  src = "./admin-menu-print-orders-vps.png"
+  width = "700px"
+  caption = "Example output of print buttons"
+%}
+
+<p>
+  Another tool you can see is "Objednávky za měsíc", it's just a basic thing table that HR uses to compare the number of 
+  orders to pay with the number of orders purchased. You cannot see it in the picture, but there are some statistics at the bottom
+  of the page.
+</p>
+
+{% include blog_post_image.html 
+  src = "./orders-per-month.png"
+  width = "700px"
+  caption = "Example summary of orders per month"
+%}
+
+<p>
+  I would love to show you what "Export do QI" is, but again, it contains A LOT of business logic, private tools, and 
+  employee/confidential data. If I were to summarize, it's a cool tool for managing pay deductions, which works with
+  QI system.
+</p>
+
+<p>
+  Last but not least, you can see "Ruční odeslání objednávky" and "Ruční odeslání salátů".
+  Those two buttons trigger the Automated ordering task manually.
+</p>
+
+{% include heading.html level="2" text="Automated ordering task" %}
+<p>
+  Since this program (obviously) has an API, the automated task is run by the same server. It runs twice per day and sends emails with orders for today and the next day. 
+  If it's Friday then it sends salad orders for next week.
+  The task sends emails using Microsoft GraphAPI, accessed with app privileges from predefined blank Microsoft account.
+</p>
+<p>
+  Here are examples of emails sent automatically by this automated task with descriptions under them.
+</p>
+{% include blog_post_image.html 
+  src = "./friday-emails.png"
+  width = "300px"
+  caption = "Example of friday emails."
+%}
+{% include blog_post_image.html 
+  src = "./morning-order.png"
+  width = "400px"
+  caption = "Email that goes out every morning."
+%}
+{% include blog_post_image.html 
+  src = "./evening-order.png"
+  width = "400px"
+  caption = "Email that goes out every evening."
+%}
+{% include blog_post_image.html 
+  src = "./salad-orders.png"
+  width = "400px"
+  caption = "Email that goes out every friday evening with salad orders."
+%}
