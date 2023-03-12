@@ -1,0 +1,81 @@
+---
+layout: blog_post_layout
+
+title: Main Gate ALPR
+is_blog_post: true
+toc: true
+seo_keywords: alpr, license plate recognition, recognize license plates, ai glued together, help guards watch main gate
+
+post_release_date: 14-03-2023
+post_category: PR
+
+post_introduction: I really like incorporating existing AI's into my projects. To be honest, 
+  I tried developing AI's multiple time, and it's just not for me. This project is an example 
+  of me playing around with multiple AI's, mashing them together and creating something that helps gatekeepers at VPSR.
+  This program repeatedly checks Main Gate camera, tries to find a car, and if it finds a car in a selected zone, 
+  it detects its licence plate and sends it right to the gatekeepers' app (picture + text). I have used two AIs as a base to achieve this,
+  yolov7 and alpr-unconstrained.
+  It was a really interesting project, and needless to say, it was a fun 2022 summer break!
+---
+
+{% include heading.html level="2" text="Showcase" %}
+<p>
+    It is important to note that the recording was made before the optimizations described below, so it takes a little longer to recognize than the final program.
+    Also, the program is taking data over internet over VPN, which affects it's speed as well (in this demo, production transfers data locally over Cat 6 cabels).
+    Right now, the program is good enough, however it sometimes has problems when there are more than 3 cars at the same time. In the future, I plan on moving the camera,
+    because a lot of times, the angle is just horrible and causes trouble.
+</p>
+<p>
+    Oh, and btw, sorry for a lot of blurred-out content in the video, however this is dealing with sensitive data, so I need to redact it properly.
+    When it comes to correctness, you just have to trust me, because I won't publish the un-censored video ¯\_(ツ)_/¯
+</p>
+{% include blog_post_showcase_video.html src="./TODO.webm" %}
+
+{% include heading.html level="2" text="How does it work?" %}
+<p>
+    The program works by downloading images (one at a time) from a camera, scanning for cars, scanning for license plates, running analysis on 3 separate pictures of each car in the picture, 
+    and then returning the car(s) cropped with license plate recognized to security guards. The program can recognize more than 1 car at a time. The whole thing runs on a dedicated 
+    on-premises server as a websocket server started by systemd service. All technical details are listed below. The program can recognize cars in under 3 seconds of arrival on
+    <a href='https://www.intel.com/content/www/us/en/products/sku/65719/intel-core-i73770-processor-8m-cache-up-to-3-90-ghz/specifications.html' target='_blank' class='underline' rel='nofollow noreferrer noopener'>Intel i7-3770 (8) @ 3.900GHz</a>.
+</p>
+
+{% include heading.html level="2" text="How did it evolve?" %}
+<p>
+    Every project evolves during the initial development phase. I usually don't include the project development timeline, but this one was 
+    in my opinion crazy and I low-key wanna share it. Ok, let's start, where to begin...
+</p>
+<p>
+    First of all, I scouted all possible candidates for my solution. I came across some paid services, however, I don't like relying on 
+    third-party solutions, especially for something that will receive sensitive information. After some time, I came across 
+    <a href='https://github.com/sergiomsilva/alpr-unconstrained' target='_blank' class='underline' rel='nofollow noreferrer noopener'>alpr-unconstrained</a>
+    and it ticked all boxes. I downloaded it, played around with it, and noticed a couple of problems.
+    First of all, GPU support is not implemented. While playing around, I noticed that some parts of the AI were slow. I have manually gone in and added GPU support
+    to darknet and everything improved ... and then I found out that the PC the program was supposed to run on didn't have a supported graphics card.
+    Ok, no biggie, all I have to do is extensive debugging to find out what are the bottlenecks. I would break down alpr-constrained into 3 important parts,
+    the first part is object recognition which finds the car, it then hands this data to license plate recognition and which hands pure license plate data to the model which can read 
+    characters and numbers. Without GPU support, object recognition was the biggest bottleneck. Soooo, I found an object recognition library called 
+    <a href='https://github.com/WongKinYiu/yolov7' target='_blank' class='underline' rel='nofollow noreferrer noopener'>yolov7</a>!
+    BUT, there was a problem, yolov7 is written in python 3. Alpr-unconstrained is stuck on python 2. After many sleepless nights, I decided that it was not worth it to rewrite alpr-unconstrained
+    into python 3, so I decided to glue them together using 
+    <a href='https://execnet.readthedocs.io/en/latest/' target='_blank' class='underline' rel='nofollow noreferrer noopener'>execnet</a>
+    and communication between threads. Ok, let's recap, we have 2 threads running, one captures images from the camera, checks whether there are images of the car(s) on them,
+    after checking, it sends data to another thread, where these now cropped and compressed images get analyzed and I get the license plate written into the console.
+    In theory, this sounds fine, however, there are several problems. The server runs on very old hardware, so the performance of our program must be very good.
+    I tried initially, before adding yolov-7, running some benchmarks and got around 6 seconds per image, which is kinda trash. After adding yolov-7 
+    the benchmarks showed around 1.5 seconds per image, which is still kinda bad. Mainly, because before sending the result to the guards, I want to scan 
+    3 times to confirm that the data sent are correct. This means that the time before the image appears on the guard's monitor is equal to BENCHMARK_TIME * 3.
+    This would mean that time per car is around 4.5 seconds. I want to go faster! I got into debugging once again. The first optimization that made matching
+    more precise, was checking whether the car found in the picture was close enough. If the car's too far away from the camera, it's likely that AI (and humans)
+    won't be able to recognize its license plate, however, if it's too close, the program just wasted valuable seconds it could spend calculating.
+    After some trial and error, I found the perfect distance between the camera and car position, where to start matching. Whenever I match a car that's
+    not close enough, I treat this data as trash and throw them in the bin. Ok, that was the first optimization, now onto the second one.
+    After some more debugging, I found that between processing the image, I save it onto disk 3 separate times. I mean, I knew that already,
+    but I was at the point where this constant data transformation from/to image and reading it once again started becoming slow. So, I decided to code that away and it sped things up!
+    After I was done optimizing, I benchmarked the result and got around 1 second per image. Which means 3 seconds to match one car. But that's not the best part...
+    It takes 3 seconds on 
+    <a href='https://www.intel.com/content/www/us/en/products/sku/65719/intel-core-i73770-processor-8m-cache-up-to-3-90-ghz/specifications.html' target='_blank' class='underline' rel='nofollow noreferrer noopener'>Intel i7-3770 (8) @ 3.900GHz</a>!
+    Uffff, after benchmarking and making the program perform according to my expectations, I just programmed a simple web socket server wrapper around the functionality, which runs on another separate thread and C# client.
+    Fun fact about the C# client, I had a set timeline for this project and I was making the GUI client at the last minute. I had a lot of trouble decoding data sent from python server (numpy array) in C#, 
+    so the first version of the program included python runtime embedded, installed numpy whl on first load and called python function to decode data received from server into image. This was since replaced for proper C# decoding,
+    however, I found (and still find) it funny.
+</p>
