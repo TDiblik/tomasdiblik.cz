@@ -53,7 +53,10 @@ post_introduction: I really like incorporating existing AI's into my projects. T
     to darknet and everything improved ... and then I found out that the PC the program was supposed to run on didn't have a supported graphics card.
     Ok, no biggie, all I have to do is extensive debugging to find out what are the bottlenecks. I would break down alpr-constrained into 3 important parts,
     the first part is object recognition which finds the car, it then hands this data to license plate recognition and which hands pure license plate data to the model which can read 
-    characters and numbers. Without GPU support, object recognition was the biggest bottleneck. Soooo, I found an object recognition library called 
+    characters and numbers. Without GPU support, object recognition was the biggest bottleneck. 
+</p>    
+<p>
+    Soooo, I found an object recognition library called 
     <a href='https://github.com/WongKinYiu/yolov7' target='_blank' class='underline' rel='nofollow noreferrer noopener'>yolov7</a>!
     BUT, there was a problem, yolov7 is written in python 3. Alpr-unconstrained is stuck on python 2. After many sleepless nights, I decided that it was not worth it to rewrite alpr-unconstrained
     into python 3, so I decided to glue them together using 
@@ -64,7 +67,10 @@ post_introduction: I really like incorporating existing AI's into my projects. T
     I tried initially, before adding yolov-7, running some benchmarks and got around 6 seconds per image, which is kinda trash. After adding yolov-7 
     the benchmarks showed around 1.5 seconds per image, which is still kinda bad. Mainly, because before sending the result to the guards, I want to scan 
     3 times to confirm that the data sent are correct. This means that the time before the image appears on the guard's monitor is equal to BENCHMARK_TIME * 3.
-    This would mean that time per car is around 4.5 seconds. I want to go faster! I got into debugging once again. The first optimization that made matching
+    This would mean that time per car was around 4.5 seconds. 
+</p>
+<p>
+    However, I wanted to go faster! I got into debugging once again. The first optimization that made matching
     more precise, was checking whether the car found in the picture was close enough. If the car's too far away from the camera, it's likely that AI (and humans)
     won't be able to recognize its license plate, however, if it's too close, the program just wasted valuable seconds it could spend calculating.
     After some trial and error, I found the perfect distance between the camera and car position, where to start matching. Whenever I match a car that's
