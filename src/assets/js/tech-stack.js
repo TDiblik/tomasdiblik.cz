@@ -150,9 +150,10 @@ const technologies = {
           title: "Life saver for simple error handling!",
         },
         {
-          name: "tui-rs",
+          name: "tui-rs / ratatui",
           usage: once_per_month_usage,
-          title: "Awesome library for UI's in terminal.",
+          title:
+            "Awesome library for UI's in terminal (TUI). Ratatui is an actively maintained fork of tui-rs, which I'm currently using for new projects.",
         },
       ],
     },
