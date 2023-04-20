@@ -1,0 +1,101 @@
+---
+layout: blog_post_layout
+
+title: Attending Funovation Hackathon 22
+is_blog_post: true
+toc: true
+seo_keywords: 
+
+post_release_date: 20-04-2023
+post_category: PR
+
+post_introduction: 
+  As you may know, I'm attending DELTA Hight School and when they announced that they were hosting a hackathon, I was all in!
+---
+
+{% include heading.html level = "2" text = "Hackathon" %}
+<p>
+  The hackathon took place from 30.09.2022 to 01.10.2022, where we had around 24 hours to make a prototype 
+  from scratch based on ANY open data source that somehow relates to Pardubice. However, we received close data 
+  from parking sensors. This will become important later.
+  This was the first hackathon I ever attended, so naturally, I was hyped.
+  After assembling the dream-team called team.devs (how original :D) consisting of Me,
+  <a 
+    href="https://www.linkedin.com/in/vojtechvolf/" 
+    class="underline" 
+    {% include external_link.html %}>
+    Vojtěch Volf</a>, 
+  <a 
+    href="https://www.linkedin.com/in/michal-vanis/" 
+    class="underline" 
+    {% include external_link.html %}>
+    Michal Vaniš</a> and
+  <a 
+    href="https://www.linkedin.com/in/daniel-bene%C5%A1-6abb7b205/" 
+    class="underline" 
+    {% include external_link.html %}>
+    Daniel Beneš</a> we got into work.
+</p>
+<p>
+  We started by brainstorming for like 3-4 hours. Personally, I believe that this is the single
+  most important thing you can do on hackathons, because hackathons are more about the idea aspect.
+  Nobody expects you to have full blown error-prone application after 24 hours. The maximum that's expected
+  of you is some demo showing that your idea CAN be accomplished.
+</p>
+<p>
+  After agreeing on the idea, we split into two groups. Me and Michal Vaniš were the "programmers teasm" and 
+  Vojtěch Volf with Daniel Beneš were the "UI Design team". Me and Michal started by deciding on the 
+  tech stack and setting up projects basics. He got to work on frontend setup and I got to work 
+  on backend setup. Meanwhile the "UI Design team" started developing the Figma designs.
+</p>
+<p>
+  After that we basically itterated in real time. Figma boards were always one or two screens ahead of the 
+  programming team, which was basically doing different parts of the projects at the same time.
+  Me and Michal always agreed on which page we wanted to work on and created it from scratch 
+  (one programmer was developing one page at a time). This meant that we were able to quickly
+  create parts of the app independently (frontend and backend) and then glue them together.
+  This strategy worked really well for our need to itereate quickly.
+</p>
+<p>
+  Once the "UI Design team" were done with Figma designs, one of them, Vojtěch Volf, went and created other UI/Marketing
+  and the other one, Daniel Beneš, went ahead and helped the programmers with part of backend.
+</p>
+<p>
+  We originally chose 
+  <a 
+    href="https://expo.dev/" 
+    class="underline" 
+    {% include external_link.html %}>
+    Expo</a> 
+  as a frontend framework of choice for our prototype, because we were both familiar with React and wanted to give the 
+  referees link for trying the app out during the presentation, this would have been, in my opinion, a really
+  cool way of showing the prototype, however, 2 hours before the showcase we found out that we were unable to run the 
+  app. There were 2 main problems. First one was that school wifi was/is configured to block incoming comunication
+  and the other one was, that we only developed/tested the app in browser, where we used units like "px".
+  As it turns out, you cannot do that in Expo (or at least if you want your application to work on mobile devices).
+  At the end, we decided to give the remaining two hours to further development, instead of ad-hoc fixing for mobile usage.
+  What we also needed was an API. We decided to write the API in 
+  <a 
+    href="https://expressjs.com/" 
+    class="underline" 
+    {% include external_link.html %}>
+    Express</a> 
+  as it allowed quick iteration. Would I choose this stack again? Probably not. Expo has incresingly become more and more
+  dependendent on the Expo build service, and to be quite honest, if I'm unable to build it locally, I'm gonna stay away from it.
+  I could eject and build it as react native project, however this is very clunky way of doing things and after testing it a couple of times
+  I've encoutered A LOT of errors with vanilly projects! I cannot even begin to imagine the number of errors that 
+  could happen when compiling larger projects. As for Express, yeah, it has a lot of "JS" problems. <!-- TODO: Link when after I decide to finally write it --> 
+</p>
+<p>
+</p>
+
+{% include heading.html level = "3" text = "The good" %}
+
+{% include heading.html level = "3" text = "The bad" %}
+
+{% include heading.html level = "2" text = "What did we create?" %}
+<p>
+  Medifinder is an app that helps you find a doctor in your area, based on symptoms you describe.
+</p>
+
+
