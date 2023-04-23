@@ -40,7 +40,6 @@ TODO:
 
 Blog posts to write:
 
-- Medifinder -- PR - about the hackathonu and app --- WIP
 - RouteMapper -- PR - about the hackathonu and app
 - Revision books -- PR - showcase program working
 - Blog post about STC - about my contributions, what I got from it,... - PR
