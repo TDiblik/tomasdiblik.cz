@@ -64,7 +64,8 @@ html {
 .blog-post-content-container span,
 .blog-post-content-container li,
 .blog-post-content-container label,
-.blog-post-content-container a {
+.blog-post-content-container a,
+.blog-post-content-container b {
   font-family: var(--font-family);
   font-style: normal;
   font-weight: 400;
