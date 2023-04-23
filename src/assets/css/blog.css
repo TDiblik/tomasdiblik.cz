@@ -29,6 +29,9 @@
   object-fit: scale-down;
 }
 
+.blog-post-info {
+  width: 100%;
+}
 .blog-post-header {
   display: flex;
   flex-direction: row;
