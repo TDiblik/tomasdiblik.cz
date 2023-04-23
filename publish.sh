@@ -15,9 +15,6 @@ rm ./src/Gemfile.lock
 rm -rf ./src/_site/
 rm -rf ./src/.jekyll-cache/
 
-# Add license file
-cp ./LICENSE ./src/_includes/LICENSE
-
 # Build site
 cd src/
 bundle clean --force
@@ -36,3 +33,6 @@ rm -rf ./src/_site/pages/blog/**/**/*.png_original
 rm -rf ./src/_site/pages/blog/**/**/*.webp_original
 rm -rf ./src/_site/pages/blog/**/**/*.jpeg_original
 rm -rf ./src/_site/pages/blog/**/**/*.ico_original
+
+# Add license file
+cp ./LICENSE ./src/_site/LICENSE
