@@ -40,7 +40,6 @@ TODO:
 
 Blog posts to write:
 
-- RouteMapper -- PR - about the hackathonu and app
 - Revision books -- PR - showcase program working
 - Blog post about STC - about my contributions, what I got from it,... - PR
 - Strava bruteforce default login -- Technical
