@@ -91,6 +91,10 @@ html {
   margin-bottom: 2rem !important;
 }
 
+.meta-note * {
+  font-size: 1em !important;
+}
+
 .table-of-contents-wrapper {
   display: flex;
   justify-content: center;
