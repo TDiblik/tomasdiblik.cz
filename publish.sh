@@ -22,6 +22,8 @@ bundle install
 JEKYLL_ENV=production bundle exec jekyll build
 cd ..
 
+# TODO: Apply higher compression for files called thumbnail.png (see README)
+
 # Compress blog images and cleanup generated files after
 for d in $(find ./src/_site/pages/blog/ -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.webp" -o -name "*.jpeg" -o -name "*.ico" \)) ; do
     echo "$d"
