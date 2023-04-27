@@ -17,3 +17,21 @@ post_introduction:
   You have around a year to migrate the data to MSSQL, create the new app and add new features. Welcome to my situation!
   I really enjoyed this rewrite, as it was unique and highly rewarding (even tho I'm usually against rewrites).
 ---
+
+
+{% include heading.html level="2" text="Showcase" %}
+{% include blog_post_showcase_video.html src="./TODO.webm" %}
+
+{% include heading.html level="2" text="How does it work?" %}
+<p>
+  Althought it does not look so complicated, there are a lot of little quirks that took me some time.
+  First of all, this software is, as many others, used by many, people, so I had to implement login and 
+  login management system. Initially, I wanted to use some plug-and-play solution like Microsoft's Azure Active Directory,
+  however this software has to run even without internet, so that's not an option. So, instead, I implemented one myself.
+</p>
+<p>
+  Remember the part where it has to run locally? Yeah, I had to implement everything locally. That means that 
+  the API and Database are running locally as well :D. Files are stored locally as well. That's not good, because 
+  when something fails (hardrive dies, or whatever, also, let's ignore the fact that they're in a RAID),
+  you don't have backups, however Azure provides a service called Azure Backup, which solves that issue.
+</p>
