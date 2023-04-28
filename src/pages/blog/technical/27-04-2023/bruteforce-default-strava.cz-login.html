@@ -4,6 +4,7 @@ layout: blog_post_layout
 title: Bruteforce default strava.cz login
 is_blog_post: true
 toc: true
+show_toc: true
 seo_keywords: strava.cz, bruteforce, education
 
 post_release_date: 27-04-2023
@@ -20,7 +21,7 @@ post_introduction:
 ---
 
 {% include heading.html level="2" text="Showcase" %}
-<!-- TODO -->
+{% include blog_post_showcase_video.html src = "./showcase-bruteforcing-in-action.webm" %}
 
 {% include heading.html level="2" text="What's the problem?" %}
 <p>
@@ -38,7 +39,7 @@ post_introduction:
   script that goes through a rainbow table.
   However, I believe that the chunk of users that it affects could have a bad time :D. After some digging,
   I found some interesting functionalities, that the potential attacker could use to cause some damage to the company's reputation,
-  presuming that the attacker has obtained a list of all vulnerable accounts using this "vulnerability", after running the code provided for like a month.
+  presuming that the attacker has obtained a list of all vulnerable accounts using this "vulnerability", after running the <a href="https://github.com/TDiblik/strava_cz_bruteforce_default_login" class="underline" {% include external_link.html %}>code provided</a> for like a month.
 </p>
 <ol>
   <li>
@@ -60,8 +61,12 @@ post_introduction:
   Severity of all of these potential attacks depends on the number of vulnerable accounts, which I don't have,
   legally cannot findout and won't take a guess.
 </p>
+<p>
+  Also, bonus fun fact I came across while playing around with the website: You don't need valid email adress for registering new accounts (or confirming the ownership of said email addres), also you can have multiple accounts
+  linked to one email address. How much of an issue is this, I don't know, because I decided to NOT dig deeper as it's outside the focus of this blog post.
+</p>
 
-{% include heading.html level="2" text="How hard is this to \"exploit\"?" %}
+{% include heading.html level="2" text="How hard is this to 'exploit'?" %}
 <p>
   First of all, I have only basic level understanding when it comes to black box penetration testing (atm).
   This whole program could have been a simple bash for loop. 
