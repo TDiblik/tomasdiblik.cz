@@ -27,7 +27,7 @@ post_introduction:
 <p>
   New/Existing strava.cz accounts from a specific canteen (I don't have data on other canteens) have 
   default and predictable username + password. Change is not enforced upon users, so some users
-  may leave it like that. We can then send login request using these predictable credentials and optain
+  may leave it like that. We can then send login requests using these predictable credentials and obtain
   access to these accounts.
 </p>
 
@@ -36,7 +36,7 @@ post_introduction:
   It's hard to tell without having internal data/statistics, but I believe that 
   this specific "vulnerability" (arguable if it even is a vulnerability) is not affecting a large chunk of 
   users. I don't even know whether to call this a vulnerability, because it's no different than running
-  script that goes through a rainbow table.
+  a script that goes through a rainbow table.
   However, I believe that the chunk of users that it affects could have a bad time :D. After some digging,
   I found some interesting functionalities, that the potential attacker could use to cause some damage to the company's reputation,
   presuming that the attacker has obtained a list of all vulnerable accounts using this "vulnerability", after running the <a href="https://github.com/TDiblik/strava_cz_bruteforce_default_login" class="underline" {% include external_link.html %}>code provided</a> for like a month.
@@ -49,35 +49,43 @@ post_introduction:
     and then massively reset everybody's email and password (causing irl Denial of Service).
   </li>
   <li>
-    If this potentional attacker has a list of all vulnerable accounts, they could theoretically
-    cancel everybody's lunches at the same time, causing suply chain problems (if the number of vulnerable accounts is big enough).
+    If this potential attacker has a list of all vulnerable accounts, they could theoretically
+    cancel everybody's lunches at the same time, causing supply chain problems (if the number of vulnerable accounts is big enough).
   </li>
   <li>
     As an attacker you could also use this "vulnerability" on a smaller scale, attacking individuals by changing
-    their lunches or seeing part of their schedule without "stalking them" in real world (on the spot).
+    their lunches or seeing part of their schedule without "stalking them" in real-world (on the spot).
   </li>
 </ol>
 <p>
-  Severity of all of these potential attacks depends on the number of vulnerable accounts, which I don't have,
-  legally cannot findout and won't take a guess.
+  The severity of all of these potential attacks depends on the number of vulnerable accounts, which I don't have,
+  legally cannot find out and won't take a guess.
 </p>
 <p>
-  Also, bonus fun fact I came across while playing around with the website: You don't need valid email adress for registering new accounts (or confirming the ownership of said email addres), also you can have multiple accounts
-  linked to one email address. How much of an issue is this, I don't know, because I decided to NOT dig deeper as it's outside the focus of this blog post.
+  Also, a bonus fun fact I came across while playing around with the website: You don't need a valid email address for registering new accounts (or confirming the ownership of said email address). You can even have multiple accounts
+  linked to one email address. How much of an issue is this? I don't know ¯\_(ツ)_/¯, because I didn't decide to dig deeper as it's outside of the scope of this blog post.
 </p>
 
 {% include heading.html level="2" text="How hard is this to 'exploit'?" %}
 <p>
-  First of all, I have only basic level understanding when it comes to black box penetration testing (atm).
-  This whole program could have been a simple bash for loop. 
-  Somebody could theoretically make this run as multiple tasks on multiple cores and scale really well - at real time of <code class="language-unknown inline">([r * k] / [t * c]) - r => number_of_requests ; k => request response time ; t => tasks spawned ; c => cores used</code>,
+  First of all, I have only a basic level of understanding when it comes to black box penetration testing (atm).
+  This whole program could have been a simple bash for-loop. As a matter of fact, this is something that can be done by every average script-kiddie :/ (meaning, no fancy/cool hacking techniques were used :D).
+  Somebody could theoretically make this run as multiple tasks on multiple cores and scale somewhat well, at a real-time of 
+</p>
+<pre class="code-wrapper small"><code class="language-zsh">([r * k] / [t * c])
+  r => number_of_requests 
+  k => request response time 
+  t => tasks spawned 
+  c => cores used
+</code></pre>
+<p>
   however since this project is for educational purposes only, I am NOT going to implement that.
-  Nevertheless that approach should be currentlly possible to implement, because AFAIK strava does not rate limit requests.
+  Nevertheless, that approach should be currently possible to implement, because AFAIK strava does not rate limit requests.
 </p>
 
 {% include heading.html level="2" text="Possible fixes" %}
 <ol>
-  <li>The obvious one is to not allow same username and password (After first login show users page to change their password or something...)</li> 
+  <li>The obvious one is to not allow the same username and password (After first login show users page prompting them to change their password or something...)</li> 
   <li>Implement two factor authentication</li>
   <li>Instruct administrators of canteens to use randomly generated usernames and passwords</li>
   <li>Place already existing bot/spam prevention solution in front of the website (eg. Cloudflare's WAF)</li>
