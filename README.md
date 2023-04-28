@@ -36,13 +36,11 @@ TODO:
 - Take different pictures of myself, as those used are 2-3 years old.
 - On the 404 page, make my face spin, instead of Butercup's (placeholder). Also, replace Mickey Mouse's face and replace it with mine as well. + strip and compress those images heavily, fast download speed is crusial for this effect to work correctlly.
 - Somehow somewhere add section where you can see my 3d models (https://modelviewer.dev/ ??)
-- Format everything with Liquid formatter
 
 Blog posts to write:
 
 - Revision books -- PR - showcase program working
 - Blog post about STC - about my contributions, what I got from it,... - PR
-- Strava bruteforce default login -- Technical
 - Tutorial how to make rick-roll using github pages -- Tutorial
 - My 3d printing journey -- Personal
 - My experience teaching middle schoolers programming -- Personal
