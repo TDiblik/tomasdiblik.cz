@@ -20,18 +20,287 @@ post_introduction:
 
 
 {% include heading.html level="2" text="Showcase" %}
-{% include blog_post_showcase_video.html src="./TODO.webm" %}
+{% include blog_post_showcase_video.html src="./revision-books-happy-path-showcase.webm" %}
 
-{% include heading.html level="2" text="How does it work?" %}
+{% include heading.html level="3" text="Data migration" %}
 <p>
-  Althought it does not look so complicated, there are a lot of little quirks that took me some time.
-  First of all, this software is, as many others, used by many, people, so I had to implement login and 
-  login management system. Initially, I wanted to use some plug-and-play solution like Microsoft's Azure Active Directory,
-  however this software has to run even without internet, so that's not an option. So, instead, I implemented one myself.
+  I started by looking at the data and migrating them to new database. This step alone took a long time, because
+  I was unable to find any ready-to-use solution that could migrate .dbf (dBASE) files into MSSQL (at least not at the scale I needed), so I had to come up
+  with my custom quick-and-dirty solution using 
+  <a 
+    href="https://www.nuget.org/packages/Dapper" 
+    class="underline" 
+    {% include external_link.html %}>
+  Dapper</a>
+  and 
+  <a 
+    href="https://www.nuget.org/packages/DbfDataReader" 
+    class="underline" 
+    {% include external_link.html %}>
+  DbfDataReader</a>
+  packages (feel free to steal it next time you need to migrate dBASE files to MSSQL or any other database :D).
+</p>
+
+<pre class="code-wrapper medium"><code class="language-csharp">using Dapper;
+using DbfDataReader;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+
+// Before somebody feels the need to point it out, yes this code contains a lot of potential sql injections/security vulnerabilities, however since 
+// it's only utility tool and was run by ADMIN, only ONCE/TWICE, I don't care :D
+namespace YourNamespace.YourProjectName
+{
+    class Program
+    {
+        private static protected string ConnectionString => "your connection string, you shouldn't hardcode connection strings, but this is utility tool and was used like once or twice. Just make sure to not push credentials ;)";
+        private const string prefix = "rk_"; // To easily recognize migrated tables
+
+        static void Main()
+        {
+            while (true) {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("Migrate tables [dbf] (1), data [dbf] (2), or update tables to usable state (3): ");
+                char answ = Console.ReadKey().KeyChar;
+                switch (answ) {
+                    case '1':
+                        CreateTablesDBF();
+                        break;
+                    case '2':
+                        FillInTablesDBF();
+                        break;
+                    case '3':
+                        FormatTableToMakeItUseable();
+                        break;
+                    default:
+                        return;
+                }
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Finished.");
+            }
+        }
+
+        private static string getTableName(string fileName) => fileName[fileName.LastIndexOf("\\")..].Replace(".dbf", "").Remove(0, 1);
+
+        // Specific to my case, because columns had logical flaw
+        private static string formatColumnName(string columnName) => (columnName == "AS" || columnName == "as") ? "AS_0" : columnName;
+
+        // Should be right according to the dBASE standard
+        private static string getColumnType(DbfColumnType type, int charLen) =>
+        type switch {
+            DbfColumnType.Character => $"nvarchar({charLen})",
+            DbfColumnType n when (n == DbfColumnType.Number && charLen > 0) => "float",
+            DbfColumnType.Number => "int",
+            DbfColumnType.Date => "date",
+            DbfColumnType.Float => "float",
+            DbfColumnType.Currency => "decimal(18, 18)",
+            DbfColumnType.DateTime => "datetime",
+            DbfColumnType.Boolean => "bit",
+            DbfColumnType.Memo => "ntext",
+            DbfColumnType.Double => "float",
+            DbfColumnType.General => "nvarchar(365)",
+            _ => throw new NotImplementedException("This datatype is not implemented!"),
+        };
+
+        private static void CreateTablesDBF()
+        {
+            Console.Write("\nInput folder location with .dbf files: ");
+            string path = Console.ReadLine();
+
+            string[] files = Directory.GetFiles(path);
+
+            foreach (string file in files.Where(s => s.EndsWith(".dbf"))) {
+                string tableName = getTableName(file);
+                StringBuilder builder = new StringBuilder(
+                    $"IF OBJECT_ID(N'dbo.{prefix}{tableName}', N'U') IS NOT NULL DROP TABLE dbo.{prefix}{tableName};" +
+                    $"CREATE TABLE {prefix}{tableName} (" +
+                    "ID_GENERATED INT NOT NULL IDENTITY PRIMARY KEY,"
+                );
+
+                using (DbfTable dbfTable = new DbfTable(file)) {
+                    foreach (var field in dbfTable.Columns) {
+                        string name = formatColumnName(field.ColumnName);
+                        string type = getColumnType(field.ColumnType, field.Length);
+                        builder.Append($"{name} {type} NULL,");
+                    }
+                }
+
+                string command = builder.ToString().TrimEnd(',') + ");";
+                using (IDbConnection connection = new SqlConnection(ConnectionString)) {
+                    if (connection.State == ConnectionState.Closed) {
+                        connection.Open();
+                    }
+                    connection.Execute(command);
+                }
+            }
+        }
+
+        private static void FillInTablesDBF()
+        {
+            int sucess = 0;
+            int noSucess = 0;
+
+            Console.Write("\nInput folder location with .dbf files: ");
+            string path = Console.ReadLine();
+            string[] files = Directory.GetFiles(path);
+
+
+            foreach (string file in files.Where(s => s.EndsWith(".dbf"))) {
+                string tableName = getTableName(file);
+                List<string> commands = new List<string> {
+                    $"DELETE FROM dbo.{prefix}{tableName};"
+                };
+
+                using (DbfTable dbfTable = new DbfTable(file)) {
+                    StringBuilder columnNames = new StringBuilder();
+                    foreach (var field in dbfTable.Columns) {
+                        columnNames.Append($"{formatColumnName(field.ColumnName)}, ");
+                    }
+                    string commandColumns = columnNames.ToString().TrimEnd().TrimEnd(',');
+
+
+                    DbfRecord dbfRecord = new DbfRecord(dbfTable);
+                    while (dbfTable.Read(dbfRecord)) {
+                        if (dbfRecord.IsDeleted) {
+                            continue;
+                        }
+
+                        StringBuilder commandValues = new StringBuilder();
+                        for (int i = 0; i < dbfRecord.Values.Count; i++) {
+                            string value = dbfRecord.Values[i].ToString().Replace('\'', '\"');
+                            string columnType = getColumnType(dbfTable.Columns[i].ColumnType, dbfTable.Columns[i].Length);
+                            // My case specific
+                            if (value == "-   -") {
+                                value = " ";
+                            }
+                            // Depends on your data's date localization. Mine were in czech, so I had to parse it
+                            else if (columnType == "date" && DateTime.TryParseExact(value, "dd.MM.yyyy", null, DateTimeStyles.None, out DateTime d)) {
+                                value = d.ToString("yyyy-MM-dd");
+                            }
+                            // Depends on your data's floating localization. Mine were in czech, so I had to parse it
+                            else if (columnType == "float" && double.TryParse(value, out double dou)) {
+                                value = dou.ToString().Replace(",", ".");
+                            }
+                            // dBASE specific
+                            else if (columnType == "int" && int.TryParse(value, out int v)) {
+                                value = v.ToString();
+                            }
+                            commandValues.Append($"{(string.IsNullOrWhiteSpace(value) ? "NULL" : $"'{value}'")}, ");
+                        }
+                        commands.Add($"INSERT INTO dbo.{prefix}{tableName} ({commandColumns}) VALUES ({commandValues.ToString().TrimEnd().TrimEnd(',')});");
+                    }
+                }
+
+                Console.WriteLine($"------ Finished generating command for {tableName} ------");
+                insertIntoDb(commands, out int sucessNew, out int noSucessNew);
+                sucess += sucessNew;
+                noSucess += noSucessNew;
+            }
+            Console.WriteLine($"Executed: {sucess + noSucess}\nSuccesses / Failures: {sucess} / {noSucess}");
+        }
+
+        private static void FormatTableToMakeItUseable()
+        {
+            List<string> commands = new List<string>() {
+              // Insert commands to setup database after data migration (renaming columns, adding columns, altering data types,...)
+            };
+            using (IDbConnection connection = new SqlConnection(ConnectionString)) {
+                if (connection.State == ConnectionState.Closed) {
+                    connection.Open();
+                }
+                foreach (string command in commands) {
+                    connection.Execute(command);
+                }
+            }
+            Console.WriteLine(""); // To make output look better :D
+        }
+
+        // Since we're migrating milions of rows, we need to separate the commands to chunks 
+        // (default limits)
+        // +
+        // (generally a good idea when pushing large amounts of data, if you don't want to [D]DOS your DB)
+        private static void insertIntoDb(List<string> commands, out int sucess, out int noSucess)
+        {
+            sucess = 0;
+            noSucess = 0;
+            using (IDbConnection connection = new SqlConnection(ConnectionString)) {
+                if (connection.State == ConnectionState.Closed) {
+                    connection.Open();
+                }
+
+                // Pre-process command for sql, split into chunks of 500 commands
+                // commands.Reverse();
+                List<List<string>> commandChunks = commands.Select((x, i) => new { Index = i, Value = x })
+                                                .GroupBy(x => x.Index / 500)
+                                                .Select(x => x.Select(v => v.Value).ToList())
+                                                .ToList();
+
+                // For each chunk, make string from chunk and then send it as command
+                for (int i = 0; i < commandChunks.Count; i++) {
+                    List<string> chunk = commandChunks[i];
+                    string command = string.Join("", chunk.ToArray());
+                    bool saved = connection.Execute(command, commandTimeout: 60) > 0;
+                    sucess += saved ? 1 : 0;
+                    noSucess += saved ? 0 : 1;
+                    Console.ForegroundColor = saved ? ConsoleColor.Green : ConsoleColor.Red;
+                    Console.WriteLine($"------ [{i + 1}/{commandChunks.Count}] {(saved ? "Data successfully saved" : "ERROR")} ------");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<p>
+  I would also like to "shout-out", a tool called 
+  <a 
+    href="http://www.alexnolan.net/software/dbf.htm" 
+    class="underline" 
+    {% include external_link.html %}>
+    DBFPlus</a>
+  that has been really helpfull for working with .dbf files, while developing my utility.
 </p>
 <p>
-  Remember the part where it has to run locally? Yeah, I had to implement everything locally. That means that 
-  the API and Database are running locally as well :D. Files are stored locally as well. That's not good, because 
-  when something fails (hardrive dies, or whatever, also, let's ignore the fact that they're in a RAID),
-  you don't have backups, however Azure provides a service called Azure Backup, which solves that issue.
+  The code may look simple, but the path that led me there was long and hard. There were a lot of problems, mainly because I initially received the data
+  in excel format (yes, .xlsx), and after week a of: banging my head agains the wall, performance + compability issues, and much more, I decided to just use the raw .dbf files.
+</p>
+
+{% include heading.html level="3" text="Developing the application" %}
+<p>
+  Althought it does not look so complicated, there are a lot of little quirks that took me some time.
+  With that out of the way, I was ready to start developing! I started by listing all of the neccessary + new functionalities and
+  created a pool of tasks. There were some core things that needed to be done before everything else, like basic 
+  <a 
+    href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete" 
+    class="underline" 
+    {% include external_link.html %}>
+    CRUD</a>
+  operations, which I assigned higher priority. Also, since the software does not have to be particularly
+  visually pleasing, I just quickly drew the "design" of the app on a paper and called it "design prototype".
+  Users had some reminders, we went back and forth for a bit on the design and after a some time agreed on the final look.
+  After that, I went and incrementally implemented functinoality by functionality. It wasn't that hard, it's just that 
+  the legacy app contained A LOT of features, that accumulated over the years, which I now had to re-implmement. The functinoality shown in
+  the showcase video is like 40% of everything that the program can do, and I could go on and on about
+  everything it can do for hours, however I would rather focus on interesting parts of the development process.
+  For example, I had access to the original source code, and Word/Excel API has not introduced breaking changes since the 90s (at least for functions I used)! The
+  code originally written in VBA is still compatible with the current version of Microsoft Office suite!
+  I found that really refreshing, because I was originally woried about calling Word API from C#, however
+  I just had to re-write the original code from VBA to C# and everything worked right away.
+  Another "challenge" was the need for this program to run 100% locally. This meant that I had to setup
+  internal DB, API and file storage servers locally. However, since we're storing important data, we should have it backed up
+  somewhere in case something fails (building burns down, hardrive dies, or whatever, also, let's ignore the fact that the hard drives are in a RAID).
+  Luckylli, Azure provides a service called Azure Backup, which solves that issue for me.
+  Also, this software is, as many others, used by many, people, so I had to implement login and 
+  login management system. Initially, I wanted to use some plug-and-play solution like Microsoft's Azure Active Directory,
+  however that wouldn't be viable because of the 100% locall rule. Instead, I implemented one myself :D (it ain't much, but it's honest work).
+</p>
+
+{% include heading.html level="3" text="Summary" %}
+<p>
+  Overall, I enjoyed this project, because it
 </p>
