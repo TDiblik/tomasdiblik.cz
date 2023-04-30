@@ -24,7 +24,7 @@ post_introduction:
 
 {% include heading.html level="3" text="Data migration" %}
 <p>
-  I started by looking at the data and migrating them to new database. This step alone took a long time, because
+  I started by looking at the data and migrating them to a new database. This step alone took a long time, because
   I was unable to find any ready-to-use solution that could migrate .dbf (dBASE) files into MSSQL (at least not at the scale I needed), so I had to come up
   with my custom quick-and-dirty solution using 
   <a 
@@ -52,12 +52,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-// Before somebody feels the need to point it out, yes this code contains a lot of potential sql injections/security vulnerabilities, however since 
-// it's only utility tool and was run by ADMIN, only ONCE/TWICE, I don't care :D
+// Hey, just to clarify before anyone brings it up, I do realize that this code has some SQL injection, security vulnerabilities and bad security practices,
+// however, since it's just a small utility tool that was/will be used by the ADMIN only once or twice, I'm not too worried about it. :)
 namespace YourNamespace.YourProjectName
 {
     class Program
     {
+        // Could be constant, but in the private version of the code, there is more stuff going on behind the scenes to obtain connection string
         private static protected string ConnectionString => "your connection string, you shouldn't hardcode connection strings, but this is utility tool and was used like once or twice. Just make sure to not push credentials ;)";
         private const string prefix = "rk_"; // To easily recognize migrated tables
 
@@ -263,44 +264,55 @@ namespace YourNamespace.YourProjectName
     class="underline" 
     {% include external_link.html %}>
     DBFPlus</a>
-  that has been really helpfull for working with .dbf files, while developing my utility.
+  that has been really helpful for working with .dbf files while developing my utility.
 </p>
 <p>
   The code may look simple, but the path that led me there was long and hard. There were a lot of problems, mainly because I initially received the data
-  in excel format (yes, .xlsx), and after week a of: banging my head agains the wall, performance + compability issues, and much more, I decided to just use the raw .dbf files.
+  in Excel format (yes, .xlsx), and after a week of: banging my head against the wall, performance + compatibility issues, and much more, I decided to just use the raw .dbf files.
 </p>
 
 {% include heading.html level="3" text="Developing the application" %}
 <p>
-  Althought it does not look so complicated, there are a lot of little quirks that took me some time.
-  With that out of the way, I was ready to start developing! I started by listing all of the neccessary + new functionalities and
-  created a pool of tasks. There were some core things that needed to be done before everything else, like basic 
+  Although it may not look so complicated, there are a lot of little quirks that took me some time.
+  With data migration out of the way, I was ready to start developing! I started by listing all of the necessary + new functionalities and
+  created a pool of tasks. Some core features needed to be done before everything else, like basic 
   <a 
     href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete" 
     class="underline" 
     {% include external_link.html %}>
     CRUD</a>
-  operations, which I assigned higher priority. Also, since the software does not have to be particularly
+  operations, which I assigned a higher priority. Also, since the software does not have to be particularly
   visually pleasing, I just quickly drew the "design" of the app on a paper and called it "design prototype".
-  Users had some reminders, we went back and forth for a bit on the design and after a some time agreed on the final look.
-  After that, I went and incrementally implemented functinoality by functionality. It wasn't that hard, it's just that 
-  the legacy app contained A LOT of features, that accumulated over the years, which I now had to re-implmement. The functinoality shown in
+  Users had some reminders, we went back and forth for a bit on the design and after some time agreed on the final look.
+  After that, I went and incrementally implemented functionality by functionality. It wasn't that hard, it's just that 
+  the legacy app contained A LOT of features, which accumulated over the years, and now I had to re-implement them. The functionality shown in
   the showcase video is like 40% of everything that the program can do, and I could go on and on about
-  everything it can do for hours, however I would rather focus on interesting parts of the development process.
+  everything it can do for hours, however, I would rather focus on interesting parts of the development process.
+</p>
+<p>
   For example, I had access to the original source code, and Word/Excel API has not introduced breaking changes since the 90s (at least for functions I used)! The
-  code originally written in VBA is still compatible with the current version of Microsoft Office suite!
-  I found that really refreshing, because I was originally woried about calling Word API from C#, however
+  code originally written in VBA is still compatible with the current version of the Microsoft Office suite!
+  I found that really refreshing because I was originally worried about calling Word API from C#, however
   I just had to re-write the original code from VBA to C# and everything worked right away.
-  Another "challenge" was the need for this program to run 100% locally. This meant that I had to setup
-  internal DB, API and file storage servers locally. However, since we're storing important data, we should have it backed up
-  somewhere in case something fails (building burns down, hardrive dies, or whatever, also, let's ignore the fact that the hard drives are in a RAID).
-  Luckylli, Azure provides a service called Azure Backup, which solves that issue for me.
-  Also, this software is, as many others, used by many, people, so I had to implement login and 
+</p>
+<p>
+  Another "challenge" was the need for this program to run 100% locally. This meant that I had to set up
+  internal DB, API, and file storage servers locally. However, since we're storing important data, we should have it backed up
+  somewhere in case something fails (building burns down, hard drive dies, or whatever, also, let's ignore the fact that the hard drives are in a RAID).
+  Luckily, Azure provides a service called 
+  <a 
+    href="https://learn.microsoft.com/en-us/azure/backup/backup-overview" 
+    class="underline" 
+    {% include external_link.html %}>
+    Azure Backup (service)</a>,
+  which solves that issue for me.
+  Also, this software is, like many others, used by multiple people, so I had to implement a login and 
   login management system. Initially, I wanted to use some plug-and-play solution like Microsoft's Azure Active Directory,
-  however that wouldn't be viable because of the 100% locall rule. Instead, I implemented one myself :D (it ain't much, but it's honest work).
+  however, that wouldn't be viable because of the 100% local rule. Instead, I implemented one myself :D (it ain't much, but it's honest work).
 </p>
 
-{% include heading.html level="3" text="Summary" %}
+{% include heading.html level="3" text="What did I learn?" %}
 <p>
-  Overall, I enjoyed this project, because it
+  Overall, I enjoyed this project, because I got familiar with a lot of old tools and ways of writing software. This gave me a new perspective
+  on software development.
 </p>
