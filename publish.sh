@@ -7,6 +7,7 @@ sudo apt install -y build-essential
 sudo apt install -y ruby ruby-dev
 sudo apt install -y libimage-exiftool-perl webp imagemagick
 sudo apt install -y imagemagick
+sudo apt install -y tidy
 
 sudo gem install bundler
 
@@ -22,8 +23,6 @@ bundle install
 JEKYLL_ENV=production bundle exec jekyll build
 cd ..
 
-# TODO: Apply higher compression for files called thumbnail.png (see README)
-
 # Compress blog images and cleanup generated files after
 for d in $(find ./src/_site/pages/blog/ -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.webp" -o -name "*.jpeg" -o -name "*.ico" \)) ; do
     echo "$d"
@@ -35,6 +34,7 @@ rm -rf ./src/_site/pages/blog/**/**/*.png_original
 rm -rf ./src/_site/pages/blog/**/**/*.webp_original
 rm -rf ./src/_site/pages/blog/**/**/*.jpeg_original
 rm -rf ./src/_site/pages/blog/**/**/*.ico_original
+find ./src/_site/ -type f -name "*.html" -exec tidy -i -m -ashtml -utf8 -w 160 {} \;
 
 # Add license file
 cp ./LICENSE ./src/_site/LICENSE
