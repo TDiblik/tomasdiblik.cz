@@ -749,7 +749,7 @@ module.exports = async function (context, myTimer) {
   });
  
   let messageInfo = await transporter.sendMail({
-    from: '"Examle" <foo@example.com>',
+    from: '"Examle" < foo@example.com >',
     to: "bar@example.com, baz@example.com",
     subject: "Example email",
     text: "Hello world?",
