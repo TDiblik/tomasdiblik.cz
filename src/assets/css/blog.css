@@ -91,4 +91,8 @@
   .block-post-topic-badge {
     margin-right: 0;
   }
+
+  .blog-post-title {
+    text-align: center;
+  }
 }
