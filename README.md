@@ -32,7 +32,6 @@ IMG_NAME="example.png" && exiftool -all= $IMG_NAME && cwebp -q 80 -lossless -alp
 
 TODO:
 
-- Add content to blog page
 - Take different pictures of myself, as those used are 2-3 years old.
 - On the 404 page, make my face spin, instead of Butercup's (placeholder). Also, replace Mickey Mouse's face and replace it with mine as well. + strip and compress those images heavily, fast download speed is crusial for this effect to work correctlly.
 - On the 404 page, browser tries to load the background every time the image spins, causing performance issues. Fix it.
@@ -40,7 +39,7 @@ TODO:
 
 Blog posts to write:
 
-- Blog post about STC - about my contributions, what I got from it,... - PR
 - Tutorial how to make rick-roll using github pages -- Tutorial
+- Clearing common misconceptions about Cloud / What is cloud from technical point of view? (Thanks to the marketing deparment, even a lot of IT people are confused about what cloud is, this article will explain cloud from the ground up from technical point of view)
 - My 3d printing journey -- Personal
 - My experience teaching middle schoolers programming -- Personal
