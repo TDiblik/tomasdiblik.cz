@@ -33,8 +33,6 @@ IMG_NAME="example.png" && exiftool -all= $IMG_NAME && cwebp -q 80 -lossless -alp
 TODO:
 
 - Take different pictures of myself, as those used are 2-3 years old.
-- On the 404 page, make my face spin, instead of Butercup's (placeholder). Also, replace Mickey Mouse's face and replace it with mine as well. + strip and compress those images heavily, fast download speed is crusial for this effect to work correctlly.
-- On the 404 page, browser tries to load the background every time the image spins, causing performance issues. Fix it.
 - Somehow somewhere add section where you can see my 3d models (https://modelviewer.dev/ ??)
 
 Blog posts to write:
