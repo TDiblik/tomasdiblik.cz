@@ -1,4 +1,4 @@
-const ending_number = 3;
+const ending_number = 17;
 let iteration = 0;
 
 window.addEventListener("load", () => {
