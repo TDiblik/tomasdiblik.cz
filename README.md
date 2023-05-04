@@ -33,13 +33,13 @@ Deployment
 ```
 mv out tomasdiblik.cz
 scp -r tomasdiblik.cz/ SERVER_USER@SERVER_IP:/www
+mv tomasdiblik.cz out
 ```
 
 <br/>
 
 TODO:
 
-- Take different pictures of myself, as those used are 2-3 years old.
 - Somehow somewhere add section where you can see my 3d models (https://modelviewer.dev/ ??)
 - Change 404 page, since it's cringey af with my face.
 
