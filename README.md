@@ -41,7 +41,6 @@ mv tomasdiblik.cz out
 TODO:
 
 - Somehow somewhere add section where you can see my 3d models (https://modelviewer.dev/ ??)
-- Change 404 page, since it's cringey af with my face.
 
 Blog posts to write:
 
