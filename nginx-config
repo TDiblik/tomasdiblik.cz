@@ -25,7 +25,7 @@ server {
         }
 
         location = /blog {
-                return 301 https://$host/pages$request_uri
+                return 301 https://$host/pages$request_uri;
         }
 
         index index.html;
