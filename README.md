@@ -5,7 +5,7 @@ Some people told me this looks like a template, please be assured that I've desi
 
 prerequisites: `bundle install` <br/>
 development buidl: `bundle exec jekyll serve --livereload` <br/>
-production build (requires debian-based linux or WSL):
+Production build (requires debian-based linux or WSL):
 
 ```
 sudo apt update -y
@@ -18,7 +18,7 @@ sudo chmod +x publish.sh
 sudo ./publish.sh
 ```
 
-manual image compression (requires debian-based linux or WSL):
+Manual image compression (requires debian-based linux or WSL):
 
 ```
 sudo apt update -y
@@ -26,6 +26,13 @@ sudo apt upgrade -y
 sudo apt install -y libimage-exiftool-perl webp
 
 IMG_NAME="example.png" && exiftool -all= $IMG_NAME && cwebp -q 80 -lossless -alpha_q 80 $IMG_NAME -o $IMG_NAME.webp
+```
+
+Deployment
+
+```
+mv out tomasdiblik.cz
+scp -r tomasdiblik.cz/ SERVER_USER@SERVER_IP:/www
 ```
 
 <br/>
