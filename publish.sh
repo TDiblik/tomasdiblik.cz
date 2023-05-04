@@ -12,6 +12,7 @@ sudo apt install -y tidy
 sudo gem install bundler
 
 # Remove generated files
+rm -rf ./out
 rm ./src/Gemfile.lock
 rm -rf ./src/_site/
 rm -rf ./src/.jekyll-cache/
@@ -38,3 +39,6 @@ find ./src/_site/ -type f -name "*.html" -exec tidy -i -m -ashtml -utf8 -w 160 {
 
 # Add license file
 cp ./LICENSE ./src/_site/LICENSE
+
+mkdir out
+cp -r ./src/_site/* out/
