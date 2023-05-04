@@ -35,7 +35,7 @@ rm -rf ./src/_site/pages/blog/**/**/*.png_original
 rm -rf ./src/_site/pages/blog/**/**/*.webp_original
 rm -rf ./src/_site/pages/blog/**/**/*.jpeg_original
 rm -rf ./src/_site/pages/blog/**/**/*.ico_original
-find ./src/_site/ -type f -name "*.html" -exec tidy -i -m -ashtml -utf8 -w 160 {} \;
+find ./src/_site/ -type f -name "*.html" -exec tidy -i -m -ashtml -utf8 -w 160 --drop-empty-elements no --drop-empty-paras no --drop-proprietary-attributes no --merge-divs no --merge-spans no {} \;
 
 # Add license file
 cp ./LICENSE ./src/_site/LICENSE
