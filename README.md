@@ -41,6 +41,7 @@ mv tomasdiblik.cz out
 TODO:
 
 - Somehow somewhere add section where you can see my 3d models (https://modelviewer.dev/ ??)
+- Somehow somewhere add section where you can see my photo/video edits
 
 Blog posts to write:
 
