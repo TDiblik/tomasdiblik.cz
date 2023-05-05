@@ -93,7 +93,7 @@ body {
     padding-top: 10%;
   }
   .index-image-me {
-    width: 200px;
+    width: 300px;
   }
 }
 @media (max-width: 1250px) {
@@ -113,19 +113,29 @@ body {
   .index-subheading {
     padding-right: 10%;
   }
-  .index-subheading > h2 {
-    font-size: 2rem !important;
-    line-height: 2.3rem !important;
-  }
-  .index-subheading > h2 > span {
-    font-size: 2rem !important;
-    line-height: 2.3rem !important;
-  }
   .index-text-container {
     width: 100%;
   }
   .index-container {
     padding-top: 5%;
     align-items: flex-start;
+  }
+
+  .routing-buttons {
+    margin-top: 60px;
+    gap: 35px;
+  }
+
+  .routing-button {
+    width: 60%;
+    font-size: 1.8rem;
+    padding: 15px 0px;
+    border-width: 2.5px;
+  }
+}
+
+@media (max-width: 576px) {
+  .routing-button {
+    width: 80%;
   }
 }

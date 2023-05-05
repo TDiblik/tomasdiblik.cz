@@ -206,3 +206,38 @@ h3 {
 .strong-text {
   font-weight: 500 !important;
 }
+
+@media (max-width: 1450px) {
+  .title-text {
+    font-size: 2.5rem !important;
+    line-height: 2.75rem !important;
+  }
+
+  .biggest-possible-text {
+    font-size: 3.5rem !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .title-text {
+    font-size: 2rem !important;
+    line-height: 2.75rem !important;
+  }
+
+  .biggest-possible-text {
+    font-size: 3rem !important;
+    line-height: 40px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .title-text {
+    font-size: 1.8rem !important;
+    line-height: 2.75rem !important;
+  }
+
+  .biggest-possible-text {
+    font-size: 2.75rem !important;
+    line-height: 3rem !important;
+  }
+}

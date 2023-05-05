@@ -100,24 +100,6 @@ footer {
   padding-top: 13px;
 }
 
-@media (max-width: 576px) {
-  footer {
-    flex-direction: column-reverse;
-    justify-content: center;
-    row-gap: 15px;
-  }
-
-  .social-media-icons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
-  }
-  .social-media-icons > a > img {
-    margin-right: 0px;
-  }
-}
-
 .social-media-icons > a > img {
   width: 32px;
   height: 32px;
@@ -140,4 +122,26 @@ footer {
 
 .email-icon {
   width: 42.6px !important;
+}
+
+@media (max-width: 992px) {
+  .navbar-logo > a > img {
+    width: 35px;
+  }
+
+  footer {
+    flex-direction: column-reverse;
+    justify-content: center;
+    row-gap: 15px;
+  }
+
+  .social-media-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  .social-media-icons > a > img {
+    margin-right: 0px;
+  }
 }
