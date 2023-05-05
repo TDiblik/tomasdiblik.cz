@@ -309,9 +309,7 @@ let graph_root;
 function expand_button_mouse_event_constructor(element) {
   element
     .on("click", (e, s) => {
-      for (let i = 0; i < graph_root.data.children.length; i++) {
-        show_children_recursively(graph_root.data.children[i]);
-      }
+      show_children_recursively(graph_root.data);
     })
     .on("mouseover", (e, s) => {
       e.target.style.cursor = "pointer";
@@ -480,7 +478,7 @@ function hide_children_recursively(parent, is_first_itteration) {
 function show_children_recursively(parent) {
   if (parent.children !== undefined) {
     for (let i = 0; i < parent.children.length; i++) {
-      show_children_recursively(parent.children[i], false);
+      show_children_recursively(parent.children[i]);
     }
   }
 
@@ -636,11 +634,6 @@ window.addEventListener("load", () => {
   graph_container
     .transition()
     .call(zoom.scaleBy, is_mobile_or_tablet() ? 1 : 1.15);
-
-  // Default children hidden, commented out, because people didn't know they can click the nodes...
-  // for (let i = 0; i < graph_root.data.children.length; i++) {
-  //   hide_children_recursively(graph_root.data.children[i]);
-  // }
 });
 
 window.addEventListener("resize", () => update_graph_size(), true);
