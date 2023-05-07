@@ -227,6 +227,24 @@ additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
     {% endcomment %}
 
     {% include project_card.html 
+     name = "Tower Of Hanoi TUI"
+
+     is_hobby_project = true
+     is_open_sourced = true
+     is_publicly_available = false
+     
+     source_code_link = "https://github.com/TDiblik/tower_of_hanoi_rust"
+
+     description = "
+      I haven't made TUI for a while at that time, and since I was planning to make a larger TUI project, I wanted to create something simple, just
+      to get back \"into-it\". Also, I got it as a school assignment.
+      At the core of it, it's nothing THAT interesting, just standard implementation of the Tower Of Hanoi Game in TUI using 
+      ratatui (the tui-rs-revival project). I've made TUIs using Rust in the past using tui-rs, however, I wanted to try 
+      out ratatui. Spoiler alert, it's literally tui-rs but actively maintained :D (at least atm). And what exactly is Tower Of Hanoi?
+      The Tower of Hanoi is a math puzzle with 3 sticks and differently-sized disks. Starting with ascendingly stacked disks on one stick, the goal is to move the entire stack to another stick.
+    "%}
+
+    {% include project_card.html 
      name = "ActivePCsWatchdog"
 
      is_hobby_project = false
