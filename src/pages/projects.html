@@ -227,6 +227,25 @@ additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
     {% endcomment %}
 
     {% include project_card.html 
+     name = "Game of Nim TUI"
+
+     is_hobby_project = true
+     is_open_sourced = true
+     is_publicly_available = false
+     
+     source_code_link = "https://github.com/TDiblik/game-of-nim-rust"
+
+     description = "
+      After developing the Tower of Hanoi TUI, I've wanted to try out developing another game using the ratatui library, 
+      since I liked the experience a lot. Another school assignment came around and I knew that that's what I wanted to do.
+      This time, I had an assignment to make 
+      <a href='https://en.wikipedia.org/wiki/Nim' target='_blank' class='small-text underline' rel='nofollow noreferrer noopener'>The game of Nim</a> .
+      The game of Nim is a mathematical strategy game in which two players take turns removing objects (matches in my case) from distinct heaps (rows in my case).
+      Even though I archived it, I'm not the biggest fan of the grid layout. I feel like I could make it 10 times better, if I wanted to invest more time in it, however
+      since it's a small one-day for-fun project, I don't really care that much.
+    "%}
+
+    {% include project_card.html 
      name = "Tower Of Hanoi TUI"
 
      is_hobby_project = true
