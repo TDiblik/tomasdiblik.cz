@@ -8,6 +8,7 @@ sudo apt install -y ruby ruby-dev
 sudo apt install -y libimage-exiftool-perl webp imagemagick
 sudo apt install -y imagemagick
 sudo apt install -y tidy
+sudo apt install -y ffmpeg
 
 sudo gem install bundler
 
@@ -35,6 +36,14 @@ rm -rf ./src/_site/pages/blog/**/**/*.png_original
 rm -rf ./src/_site/pages/blog/**/**/*.webp_original
 rm -rf ./src/_site/pages/blog/**/**/*.jpeg_original
 rm -rf ./src/_site/pages/blog/**/**/*.ico_original
+
+# Generate video previews
+for d in $(find ./src/_site/ -type f -name "*.webm") ; do
+    echo "$d"
+    ffmpeg -i "$d" -vf "select=eq(n\,49)" -vframes 1 "$(dirname $d)/$(basename $d)-video-preview-thumbnail.png"
+done
+
+# Tidy html
 find ./src/_site/ -type f -name "*.html" -exec tidy -i -m -ashtml -utf8 -w 160 --drop-empty-elements no --drop-empty-paras no --drop-proprietary-attributes no --merge-divs no --merge-spans no {} \;
 
 # Add license file
