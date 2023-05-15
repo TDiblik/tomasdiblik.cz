@@ -1,5 +1,5 @@
 <figure style="text-align: center;">
-  <video class="blog-post-video" width="{% if include.is_vertical %}500px{%else%}100%{%endif%}" preload="auto" controls="false" crossorigin="anonymous" muted>
+  <video class="blog-post-video" width="{% if include.is_vertical %}500px{%else%}100%{%endif%}" poster="{{ include.src }}-video-preview-thumbnail.png" preload="auto" controls="false" crossorigin="anonymous" muted>
     <source src="{{ include.src }}" type="{% if include.video_type %}{{ include.video_type }}{%else%}video/webm{%endif%}">
   </video>
 
