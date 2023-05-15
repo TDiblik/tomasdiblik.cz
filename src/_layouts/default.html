@@ -45,12 +45,18 @@
       <meta name="og:description" content="{{ page.seo_description | truncate: 75  }}">
       <meta name="twitter:description" content="{{ page.seo_description | truncate: 75  }}">
 
-      <meta property="og:image" content="TODO" />
-      <meta name="twitter:image" content="TODO">
-      <meta name="twitter:card" content="TODO">
+      {% if page.url == "/" %}
+        <meta property="og:image" content="https://tomasdiblik.cz/assets/img/og-image-index.jpg" />
+        <meta name="twitter:image" content="https://tomasdiblik.cz/assets/img/og-image-index.jpg">
+        <meta name="twitter:card" content="https://tomasdiblik.cz/assets/img/og-image-index.jpg">
+      {% else %}
+        <meta property="og:image" content="https://tomasdiblik.cz/assets/img/og-image-everything-else-except-blog-posts.jpg" />
+        <meta name="twitter:image" content="https://tomasdiblik.cz/assets/img/og-image-everything-else-except-blog-posts.jpg">
+        <meta name="twitter:card" content="https://tomasdiblik.cz/assets/img/og-image-everything-else-except-blog-posts.jpg">
+      {% endif %}
 
-      <meta property="og:image:type" content="TODO" />
-      <meta property="twitter:image:type" content="TODO" />
+      <meta property="og:image:type" content="image/jpeg" />
+      <meta property="twitter:image:type" content="image/jpeg" />
     {% endif %}
 
     <meta property="og:type" content="website" />
