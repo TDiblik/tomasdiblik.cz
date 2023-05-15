@@ -20,6 +20,51 @@
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
     <meta name="author" content="Tomáš Diblík">
+    
+    {% comment %}
+      References: https://ogp.me/
+    {% endcomment %}
+    {% if page.is_blog_post %}
+      <meta name="og:title" content="{{ page.post_category }} - {{ page.title }} (Blog post)">
+      <meta name="twitter:title" content="{{ page.post_category }} - {{ page.title }} (Blog post)">
+
+      <meta name="og:description" content="{{ page.post_introduction | truncate: 75  }}">
+      <meta name="twitter:description" content="{{ page.post_introduction | truncate: 75  }}">
+
+      <meta name="og:image" content="{{ "https://tomasdiblik.cz" | append: page.url | split: "/" | pop | join: "/"| append: "/thumbnail.webp" }}">
+      <meta name="twitter:image" content="{{ "https://tomasdiblik.cz" | append: page.url | split: "/" | pop | join: "/"| append: "/thumbnail.webp" }}">
+      <meta name="twitter:card" content="{{ "https://tomasdiblik.cz" | append: page.url | split: "/" | pop | join: "/"| append: "/thumbnail.webp" }}">
+      <meta name="twitter:image:alt" content="Blog post preview image">
+
+      <meta property="og:image:type" content="image/webp" />
+      <meta property="twitter:image:type" content="image/webp" />
+    {% else %}
+      <meta name="og:title" content="Tomáš Diblík's personal website - {{ page.title }} (Hi ^_^)">
+      <meta name="twitter:title" content="Tomáš Diblík's personal website - {{ page.title }} (Hi ^_^)">
+
+      <meta name="og:description" content="{{ page.seo_description | truncate: 75  }}">
+      <meta name="twitter:description" content="{{ page.seo_description | truncate: 75  }}">
+
+      <meta property="og:image" content="TODO" />
+      <meta name="twitter:image" content="TODO">
+      <meta name="twitter:card" content="TODO">
+
+      <meta property="og:image:type" content="TODO" />
+      <meta property="twitter:image:type" content="TODO" />
+    {% endif %}
+
+    <meta property="og:type" content="website" />
+    <meta property="twitter:type" content="website" />
+
+    <meta property="og:url" content="https://tomasdiblik.cz{{ page.url }}" />
+    <meta property="twitter:url" content="https://tomasdiblik.cz{{ page.url }}" />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="twitter:locale" content="en_US" />
+
+    <meta property="og:site_name" content="Tomáš Diblík's personal website" />
+    <meta property="twitter:site_name" content="Tomáš Diblík's personal website" />
+
 
     <link rel="stylesheet" href="/assets/css/globals.css" />
     <link rel="stylesheet" href="/assets/css/layout.css" />
