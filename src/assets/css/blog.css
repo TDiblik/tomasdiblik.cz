@@ -95,4 +95,8 @@
   .blog-post-title {
     text-align: center;
   }
+
+  .blog-post-description {
+    font-size: 1.1rem !important;
+  }
 }
