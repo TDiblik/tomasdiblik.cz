@@ -82,6 +82,22 @@ html {
   margin-top: 1.5rem !important;
 }
 
+@media (max-width: 992px) {
+  .blog-post-content-container p,
+  .blog-post-content-container span,
+  .blog-post-content-container li,
+  .blog-post-content-container label,
+  .blog-post-content-container a,
+  .blog-post-content-container b {
+    font-size: 1rem;
+    line-height: 24px;
+  }
+
+  .blog-post-content-container h3 {
+    font-size: 1.2rem;
+  }
+}
+
 .meta-note {
   background-color: rgba(255, 148, 112, 0.6);
   border-radius: var(--border-radius);
