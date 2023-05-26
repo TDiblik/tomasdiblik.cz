@@ -1,37 +1,41 @@
 # Serve the actual website
 server {
-        listen 443 ssl;
-        listen [::]:443 ssl;
+    listen 443 ssl;
+    listen [::]:443 ssl;
 
-        server_name tomasdiblik.cz;
+    server_name tomasdiblik.cz;
 
-        ssl_certificate /etc/letsencrypt/live/tomasdiblik.cz/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/tomasdiblik.cz/privkey.pem;
-        include /etc/letsencrypt/options-ssl-nginx.conf;
-        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+    ssl_certificate /etc/letsencrypt/live/tomasdiblik.cz/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/tomasdiblik.cz/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
-        root /www/tomasdiblik.cz;
+    root /www/tomasdiblik.cz;
 
-        location ~* \.(html)$ {
-            expires 3h;
-        }
-        location ~* \.(css|gif|jpg|js|png|ico|otf|svg|sng|xls|doc|exe|jpeg|tgx|tex|webp|webm|zip|tar|gz|woff2)$ {
-            expires 30d;
-        }
+    location ~* \.(html)$ {
+        proxy_hide_header 'Cache-Control';
+        expires 3h;
+        add_header Cache-Control "public, max-age=10800, immutable";
+    }
+    location ~* \.(css|gif|jpg|js|png|ico|otf|svg|sng|xls|doc|exe|jpeg|tgx|tex|webp|webm|zip|tar|gz|woff2)$ {
+        proxy_hide_header 'Cache-Control';
+        expires 30d;
+        add_header Cache-Control "public, max-age=2592000, immutable";
+    }
 
-        error_page 404 /404.html;
-        location = /404.html {
-                internal;
-        }
+    error_page 404 /404.html;
+    location = /404.html {
+        internal;
+    }
 
-        location = /blog {
-                return 301 https://$host/pages$request_uri;
-        }
+    location = /blog {
+        return 301 https://$host/pages$request_uri;
+    }
 
-        index index.html;
-        location / {
-		try_files $uri $uri.html $uri/ =404;
-        }
+    index index.html;
+    location / {
+        try_files $uri $uri.html $uri/ =404;
+    }
 }
 
 # HTTP to HTTPS redirect is already present on production server as a separate config, no need to include it here.
