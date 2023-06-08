@@ -65,6 +65,7 @@ html {
 .blog-post-content-container li,
 .blog-post-content-container label,
 .blog-post-content-container a,
+.blog-post-content-container i,
 .blog-post-content-container b {
   font-family: var(--font-family);
   font-style: normal;
@@ -88,6 +89,7 @@ html {
   .blog-post-content-container li,
   .blog-post-content-container label,
   .blog-post-content-container a,
+  .blog-post-content-container i,
   .blog-post-content-container b {
     font-size: 1rem;
     line-height: 24px;
