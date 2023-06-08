@@ -150,6 +150,10 @@ a:hover {
   text-decoration: underline;
 }
 
+i {
+  font-style: italic !important;
+}
+
 h1 {
   font-size: 2rem;
   line-height: 40px;
