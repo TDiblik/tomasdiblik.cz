@@ -209,6 +209,8 @@ additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
       
     "%}
 
+    {% endcomment %}
+
     {% include project_card.html 
      name = "IR Signal Cloner"
 
@@ -216,15 +218,18 @@ additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
      is_open_sourced = true
      is_publicly_available = false
 
-     blog_post_link = "/pages/blog/TODO"
-     source_code_link = "https://github.com/TDiblik/TODO"
-     youtube_video_link = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+     source_code_link = "https://github.com/TDiblik/infrared-signal-cloner"
+     youtube_video_link = "https://youtu.be/hRusnT3PcRQ"
 
      description = "
-      
+      One day, while playing with Arduino, I found two (to me at that time) unknown diodes in my drawer. 
+      At first, I didn't know what they were for. After some research, 
+      I realized that they were an IR receiver and an IR transmitter. After playing around with them for a while, 
+      an idea struck me: Would it be possible to combine them to create a device that captures and repeats the IR signals?
+      After one sleepless night, I had a functioning device that I tested on countless number of IR based devices 
+      (tv remotes, projector remotes, light remotes, etc) ...and it worked every time! Here's how I did it, and how YOU 
+      can make something similar at home.
     "%}
-
-    {% endcomment %}
 
     {% include project_card.html 
      name = "VSCode number peeker"
