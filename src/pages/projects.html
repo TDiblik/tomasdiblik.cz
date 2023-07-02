@@ -212,6 +212,26 @@ additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
     {% endcomment %}
 
     {% include project_card.html 
+     name = "IP Atlas"
+
+     is_hobby_project = true
+     is_open_sourced = true
+     is_publicly_available = true
+
+     source_code_link = "https://github.com/TDiblik/ip-atlas"
+     live_version_link = "https://ip-atlas.tomasdiblik.cz/"
+
+     description = "
+      While browsing the internet one day, I came across iptoasn.com. This prompted two questions in my mind: 
+      \"Who owns how many IPs?\" and \"How many IPs are not yet routed?\". Curious to find out, I decided to investigate. 
+      The results surprised me because I had assumed that a larger percentage of IPv6 addresses would still be un-routed. 
+      However, I discovered that both IPv4 and IPv6 addresses had a similar percentage of un-routed IPs. 
+      Feel free to check it out and/or use the provided API. Since this was more of a \"research\" projet, 
+      I didn't really care about the UI (and the result shows), so please, don't criticize me for that :D. 
+      Feel free to check it out and/or use the provided API
+    "%}
+
+    {% include project_card.html 
      name = "IR Signal Cloner"
 
      is_hobby_project = true
