@@ -112,6 +112,26 @@ additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
   <h1 class="projects-container-title">Development time: 1 month - 6 months</h1>
   <div class="projects-container">
     {% include project_card.html 
+     name = "KeyXpert"
+
+     is_hobby_project = true
+     is_open_sourced = true
+     is_publicly_available = false
+
+     source_code_link = "https://github.com/TDiblik/KeyXpert"
+
+     description = "
+      KeyXpert is an app for remapping keyboard keys and shortcuts on Windows. 
+      It's just a side project I was working on to learn more about win32 API and try out Tauri before using it 
+      on a larger project. I've decided, to split the project into two executables, for performance reasons.
+      The first one is a mapper service, which starts after boot and only handles the mapping itself. Second one
+      is the UI written in Tauri that manages the settings which the mapper service consumes.
+      Btw, yes, you can do this with Microsoft PowerToys, however, PowerToys is a whole suite of tools. 
+      KeyXpert is optimized to do only one task and that's remapping keys and keyboard shortcuts (less CPU and RAM usage than PowerToys).
+      Feel free to check it out and test it out!
+    "%}
+
+    {% include project_card.html 
      name = "Personal website tomasdiblik.cz"
 
      is_hobby_project = true
