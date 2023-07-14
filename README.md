@@ -41,11 +41,9 @@ mv tomasdiblik.cz out
 TODO:
 
 - Somehow somewhere add section where you can see my 3d models (https://modelviewer.dev/ ??)
-- Somehow somewhere add section where you can see my photo/video edits
 
 Blog posts to write:
 
-- My experience teaching middle schoolers programming -- Personal
 - Use and integrate with Micorosft Dataverse as SQL database -- Technical
 - Clearing common misconceptions about Cloud / What is cloud from technical point of view? (Thanks to the marketing deparment, even a lot of IT people are confused about what cloud is, this article will explain cloud from the ground up from technical point of view)
 - My 3d printing journey -- Personal
