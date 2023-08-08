@@ -232,6 +232,23 @@ additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
     {% endcomment %}
 
     {% include project_card.html 
+     name = "Naive Network Scanner"
+
+     is_hobby_project = true
+     is_open_sourced = true
+     is_publicly_available = false
+
+     source_code_link = "https://github.com/TDiblik/naive-network-scanner"
+
+     description = "
+      I started this project to build a penetration testing tool, even though I lacked experience in the field. 
+      As I developed it (and expanded my pen-testing skills), I realized that what I was building, wasn't going to help while 
+      penetration testing, at all. So, I decided to reshape this into solely a naive network scanning tool and keep it as is :D
+      In the end, I archived it with the following features working: Fetching Hostnames, IP Range Scans (Range / CIDR / Manual input),
+      Port Scans (Range / Common Ports / Manual input), Adding & Removing Devices, Visualizing connectivity, and overall decently looking UI.
+    "%}
+
+    {% include project_card.html 
      name = "IP Atlas"
 
      is_hobby_project = true
