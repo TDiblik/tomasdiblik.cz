@@ -156,22 +156,22 @@ additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
      name = "Main Gate ALPR"
 
      is_hobby_project = false
-     is_open_sourced = false
+     is_open_sourced = true
      is_publicly_available = false
 
-     blog_post_link = "/pages/blog/pr/14-03-2023/main-gate-alpr"
+     blog_post_link = "/pages/blog/technical/05-09-2023/main-gate-alpr"
+     source_code_link = "https://github.com/TDiblik/main-gate-alpr"
 
      description = "
-      I really like incorporating existing AI's into my projects. To be honest, 
-      I tried developing AI's multiple time, and it's just (currently) not for me. This project is an example 
-      of me playing around with multiple AI's, mashing them together and creating something that helps gatekeepers at
+      I really like playing around / fine-tuning existing AI's into my projects. To be honest, 
+      I tried developing AI's multiple times, and it's just (currently) not for me. This project is an example 
+      of me playing around with multiple AI's, mashing (and fine-tuning) them together and creating something that helps gatekeepers at
       <a href='https://vpsr.cz/' target='_blank' class='small-text underline' rel='nofollow noreferrer noopener'>VPSR</a>.
-      This program repeatedly checks Main Gate camera, tries to find a car, and if it finds a car in a selected zone, 
-      it detects its licence plate and sends it right to the gatekeepers (picture + text). I am using two AIs to achieve this,
-      <a href='https://github.com/WongKinYiu/yolov7' target='_blank' class='small-text underline' rel='nofollow noreferrer noopener'>yolov7</a>
-      and
-      <a href='https://github.com/sergiomsilva/alpr-unconstrained' target='_blank' class='small-text underline' rel='nofollow noreferrer noopener'>alpr-unconstrained</a>.
-      It was a really interesting project, and needless to say, it was a fun 2022 summer break!
+      This program repeatedly checks Main Gate camera, tries to find a car, and if it finds a car, 
+      it detects its licence plate and sends it right to the gatekeepers (picture + text). 
+      It achieves this with fine-tuned <a href='https://github.com/ultralytics/ultralytics' target='_blank' class='small-text underline' rel='nofollow noreferrer noopener'>yolov8</a>
+      and <a href='https://github.com/ultralytics/ultralytics' target='_blank' class='small-text underline' rel='nofollow noreferrer noopener'>tesseract</a>.
+      It was a really interesting project, and needless to say, it was a fun 2023 summer break!
     "%}
 
     {% include project_card.html 
