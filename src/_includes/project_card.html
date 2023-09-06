@@ -43,6 +43,13 @@
        is_internal = true %}
     {% endif %}
 
+    {% if include.docs_link %}
+      {% include project_card_link.html 
+       text = "Documentation"
+       href = include.docs_link
+       is_internal = false %}
+    {% endif %}
+
     {% if include.live_version_link %}
       {% include project_card_link.html 
        text = "Live version"
