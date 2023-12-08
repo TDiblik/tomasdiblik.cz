@@ -32,7 +32,7 @@ Deployment
 
 ```
 mv out tomasdiblik.cz
-scp -r tomasdiblik.cz/ SERVER_USER@SERVER_IP:/www
+scp -P PORT -r tomasdiblik.cz/ SERVER_USER@SERVER_IP:/www
 mv tomasdiblik.cz out
 ```
 
