@@ -213,25 +213,23 @@ additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
 
   <h1 class="projects-container-title">Development time: 1 day - 1 month</h1>
   <div class="projects-container">
-
-    {% comment %}
-
     {% include project_card.html 
-     name = "RFID Lock"
+     name = "7941W RFID Card Cloner"
 
      is_hobby_project = true
      is_open_sourced = true
      is_publicly_available = false
 
-     blog_post_link = "/pages/blog/TODO"
-     source_code_link = "https://github.com/TDiblik/TODO"
-     youtube_video_link = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+     source_code_link = "https://github.com/TDiblik/7941W-rfid-card-cloner"
+     youtube_video_link = "https://youtu.be/tPACvUD-hMk"
 
      description = "
-      
+      Access cards, although widely adopted, lack the perceived security. 
+      I've demonstrated this by creating a device that clones these RFID cards. While there are secure protocols available, 
+      they're often overlooked due to cost, with reliance placed on the assumption that cards are inherently secure. 
+      Physical security forms the basis of cybersecurity and company safety, particularly in today's environment. 
+      It's intended solely for educational purposes, and any unauthorized use is strictly prohibited. The author (me lol) cannot be held liable for consequences.
     "%}
-
-    {% endcomment %}
 
     {% include project_card.html 
      name = "Naive Network Scanner"
