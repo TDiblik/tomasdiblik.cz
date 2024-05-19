@@ -25,19 +25,16 @@ const technologies = {
     {
       name: "C#",
       usage: nerly_every_day_usage,
-      title:
-        "C#'s my favourite programming language and I use it for most of projects at my job.",
+      title: "C#'s my favourite programming language and I use it for most of projects at my job.",
       children: [
         {
           name: "ASP.NET Core (API/MVC)",
-          title:
-            "Whenever I need to write an API, I pick up ASP.NET Core 99% of the time.",
+          title: "Whenever I need to write an API, I pick up ASP.NET Core 99% of the time.",
           usage: nerly_every_day_usage,
           children: [
             {
               name: "Dapper",
-              title:
-                "I like to write my own SQL queries, so whenever I have the chance, I use Dapper instead of EF.",
+              title: "I like to write my own SQL queries, so whenever I have the chance, I use Dapper instead of EF.",
               usage: nerly_every_day_usage,
             },
             {
@@ -71,8 +68,7 @@ const technologies = {
     {
       name: "Typescript",
       usage: nerly_every_day_usage,
-      title:
-        "Typescript's my SECOND favourite programming language. I usually use it exclusively on frontend.",
+      title: "Typescript's my SECOND favourite programming language. I usually use it exclusively on frontend.",
       children: [
         {
           name: "React",
@@ -88,22 +84,19 @@ const technologies = {
             {
               name: "react-query",
               usage: nerly_every_day_usage,
-              title:
-                "Easy way of fetching data, maintaining data's state and passing it INTO component hierarchy.",
+              title: "Easy way of fetching data, maintaining data's state and passing it INTO component hierarchy.",
             },
             {
               name: "expo",
               usage: once_per_month_usage,
-              title:
-                "I used to use expo for most of my mobile projects, but svelte native is just more comfortable.",
+              title: "I used to use expo for most of my mobile projects, but svelte native is just more comfortable.",
             },
           ],
         },
         {
           name: "Svelte",
           usage: once_per_week_usage,
-          title:
-            "I use Svelte for personal projects, whenever HTML & CSS & JS just isn't enought anymore.",
+          title: "I use Svelte for personal projects, whenever HTML & CSS & JS just isn't enought anymore.",
           children: [
             {
               name: "@testing-library/svelte",
@@ -114,8 +107,7 @@ const technologies = {
             {
               name: "@sveltestack/svelte-query",
               usage: once_per_week_usage,
-              title:
-                "Easy way of fetching data, maintaining data's state and passing it INTO component hierarchy.",
+              title: "Easy way of fetching data, maintaining data's state and passing it INTO component hierarchy.",
             },
             {
               name: "svelte-spa-router",
@@ -126,8 +118,7 @@ const technologies = {
             {
               name: "svelte native",
               usage: once_per_month_usage,
-              title:
-                "Currently my go-to for developing production-ready mobile applications.",
+              title: "Currently my go-to for developing production-ready mobile applications.",
             },
           ],
         },
@@ -136,8 +127,7 @@ const technologies = {
     {
       name: "Rust",
       usage: once_per_month_usage,
-      title:
-        "I usually use Rust for developing [TUI's / Performance heavy] projects.",
+      title: "I usually use Rust for developing [TUI's / Performance heavy] projects.",
       children: [
         {
           name: "clap",
@@ -160,8 +150,7 @@ const technologies = {
     {
       name: "HTML & CSS",
       usage: nerly_every_day_usage,
-      title:
-        "Nowdays people seem to forget that you don't really need a full-blown JS framework for simple stuff.",
+      title: "Nowdays people seem to forget that you don't really need a full-blown JS framework for simple stuff.",
       children: [
         {
           name: "SASS",
@@ -186,14 +175,12 @@ const technologies = {
         {
           name: "MSSQL",
           usage: nerly_every_day_usage,
-          title:
-            "At my job we mainly use MSSQL, that's why I use it every day, but personally, I prefer PostgreSQL.",
+          title: "At my job we mainly use MSSQL, that's why I use it every day, but personally, I prefer PostgreSQL.",
         },
         {
           name: "PostgreSQL",
           usage: once_per_week_usage,
-          title:
-            "For hobby projects that require SQL server, I usually use Postgres.",
+          title: "For hobby projects that require SQL server, I usually use Postgres.",
         },
         {
           name: "SQLite",
@@ -203,8 +190,7 @@ const technologies = {
         {
           name: "Redis",
           usage: once_per_month_usage,
-          title:
-            "When in-memory caching is not enough, or project deployment is larger than one server.",
+          title: "When in-memory caching is not enough, or project deployment is larger than one server.",
         },
       ],
     },
@@ -251,8 +237,7 @@ const technologies = {
         {
           name: "Postman",
           usage: once_per_month_usage,
-          title:
-            "Whenever I need to hand-craft a specific request, Postman comes in handy.",
+          title: "Whenever I need to hand-craft a specific request, Postman comes in handy.",
         },
         {
           name: "Fusion 360",
@@ -319,15 +304,7 @@ function expand_button_mouse_event_constructor(element) {
     });
 }
 
-function generate_helper_row(
-  color,
-  text,
-  minus_text,
-  max_width,
-  min_width,
-  min_height,
-  i
-) {
+function generate_helper_row(color, text, minus_text, max_width, min_width, min_height, i) {
   const gap_between = 10 * i + 25 * i;
   graph_container
     .append("rect")
@@ -370,35 +347,11 @@ function update_graph_size() {
     previous_instance.parentNode.removeChild(previous_instance);
   }
 
-  generate_helper_row(
-    nerly_every_day_usage,
-    "using nearly every day",
-    190,
-    max_width,
-    min_width,
-    min_height,
-    0
-  );
+  generate_helper_row(nerly_every_day_usage, "using nearly every day", 190, max_width, min_width, min_height, 0);
 
-  generate_helper_row(
-    once_per_week_usage,
-    "using once per week",
-    190,
-    max_width,
-    min_width,
-    min_height,
-    1
-  );
+  generate_helper_row(once_per_week_usage, "using once per week", 190, max_width, min_width, min_height, 1);
 
-  generate_helper_row(
-    once_per_month_usage,
-    "using once per month",
-    190,
-    max_width,
-    min_width,
-    min_height,
-    2
-  );
+  generate_helper_row(once_per_month_usage, "using once per month", 190, max_width, min_width, min_height, 2);
 
   const expand_rect = graph_container
     .append("rect")
@@ -461,13 +414,9 @@ function hide_children_recursively(parent, is_first_itteration) {
     }
   }
 
-  const items_to_show_or_hide = document.getElementsByClassName(
-    `${hideable_classname}${parent.nanoid}`
-  );
+  const items_to_show_or_hide = document.getElementsByClassName(`${hideable_classname}${parent.nanoid}`);
 
-  const should_hide = is_first_itteration
-    ? parent.has_hidden_children !== true
-    : true;
+  const should_hide = is_first_itteration ? parent.has_hidden_children !== true : true;
   for (let i = 0; i < items_to_show_or_hide.length; i++) {
     const item = items_to_show_or_hide[i];
     item.style.display = should_hide ? "none" : "block";
@@ -482,9 +431,7 @@ function show_children_recursively(parent) {
     }
   }
 
-  const items_to_show_or_hide = document.getElementsByClassName(
-    `${hideable_classname}${parent.nanoid}`
-  );
+  const items_to_show_or_hide = document.getElementsByClassName(`${hideable_classname}${parent.nanoid}`);
 
   for (let i = 0; i < items_to_show_or_hide.length; i++) {
     const item = items_to_show_or_hide[i];
@@ -551,10 +498,7 @@ window.addEventListener("load", () => {
     .attr("id", (s) => (s.data.is_root ? "graph-root-node" : ""))
     .attr(
       "class",
-      (s) =>
-        `${clickable_group_classname} ${
-          s.parent ? `${hideable_classname}${s.parent.data.nanoid}` : ""
-        }`
+      (s) => `${clickable_group_classname} ${s.parent ? `${hideable_classname}${s.parent.data.nanoid}` : ""}`
     )
     .on("click", (e, s) => {
       if (s.data.children === undefined) {
@@ -595,9 +539,7 @@ window.addEventListener("load", () => {
     .text((s) => s.data.name)
     .call(construct_drag_events(simulation));
 
-  node_background_shape
-    .append("title")
-    .text((s) => s.data.title ?? s.data.name);
+  node_background_shape.append("title").text((s) => s.data.title ?? s.data.name);
   node_text.append("title").text((s) => s.data.title ?? s.data.name);
 
   simulation.on("tick", () => {
@@ -608,9 +550,7 @@ window.addEventListener("load", () => {
       .attr("y2", (s) => s.target.y);
 
     node_text.attr("x", (s) => s.x).attr("y", (s) => s.y);
-    node_background_shape
-      .attr("x", (s) => s.x - s.data.node_width / 2)
-      .attr("y", (s) => s.y - node_height / 2);
+    node_background_shape.attr("x", (s) => s.x - s.data.node_width / 2).attr("y", (s) => s.y - node_height / 2);
   });
 
   const zoom = d3
@@ -623,17 +563,12 @@ window.addEventListener("load", () => {
       document.querySelector(graph_element_selector).style.cursor = "default";
     })
     .on("zoom", (e) => {
-      d3.selectAll(`.${moveable_group_classname}`).attr(
-        "transform",
-        e.transform
-      );
+      d3.selectAll(`.${moveable_group_classname}`).attr("transform", e.transform);
     });
   graph_container.call(zoom);
 
   // Default zooom
-  graph_container
-    .transition()
-    .call(zoom.scaleBy, is_mobile_or_tablet() ? 1 : 1.15);
+  graph_container.transition().call(zoom.scaleBy, is_mobile_or_tablet() ? 1 : 1.15);
 });
 
 window.addEventListener("resize", () => update_graph_size(), true);

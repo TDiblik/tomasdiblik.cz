@@ -129,8 +129,7 @@ html {
   /* box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132),
     0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108); */
 
-  box-shadow: 0 6.4px 14.4px 0 rgba(167, 187, 236, 0.132),
-    0 1.2px 3.6px 0 rgba(167, 187, 236, 0.108);
+  box-shadow: 0 6.4px 14.4px 0 rgba(167, 187, 236, 0.132), 0 1.2px 3.6px 0 rgba(167, 187, 236, 0.108);
 
   margin-top: 1rem !important;
   margin-bottom: 1rem !important;
@@ -212,15 +211,13 @@ code.inline {
 }
 code.inline,
 code.inline * {
-  font-family: Consolas, "Courier New", monospace, Monaco, "Andale Mono",
-    "Ubuntu Mono" !important;
+  font-family: Consolas, "Courier New", monospace, Monaco, "Andale Mono", "Ubuntu Mono" !important;
   font-size: 1.05rem !important;
 }
 
 .code-wrapper > code,
 .code-wrapper > code * {
-  font-family: Consolas, "Courier New", monospace, Monaco, "Andale Mono",
-    "Ubuntu Mono" !important;
+  font-family: Consolas, "Courier New", monospace, Monaco, "Andale Mono", "Ubuntu Mono" !important;
   font-size: 14px !important;
   line-height: 23px !important;
 }

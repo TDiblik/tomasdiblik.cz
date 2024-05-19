@@ -4,10 +4,7 @@ let iteration = 0;
 window.addEventListener("load", () => {
   setInterval(() => {
     let current = iteration;
-    document.body.style.setProperty(
-      "--current-cursor",
-      'url("/assets/cursors/not_found_' + current + '.png")'
-    );
+    document.body.style.setProperty("--current-cursor", 'url("/assets/cursors/not_found_' + current + '.png")');
 
     iteration++;
     if (iteration > ending_number) {
