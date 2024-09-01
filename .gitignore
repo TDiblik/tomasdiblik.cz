@@ -12,3 +12,5 @@ Gemfile.lock
 _compress_images_cache.yml
 
 **/_includes/LICENSE
+
+.DS_STORE
