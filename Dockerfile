@@ -2,7 +2,7 @@
 FROM ruby:3.4-slim AS builder
 RUN apt-get update -y && \
     apt-get upgrade -y && \
-    apt-get install -y build-essential dos2unix libimage-exiftool-perl webp tidy ffmpeg && \
+    apt-get install -y build-essential dos2unix libimage-exiftool-perl webp tidy ffmpeg imagemagick && \
     rm -rf /var/lib/apt/lists/*
 
 # Set working directory
