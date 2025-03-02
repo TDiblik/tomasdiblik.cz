@@ -1,16 +1,8 @@
 # Serve the actual website
 server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
+    listen 80;
 
-    server_name tomasdiblik.cz;
-
-    ssl_certificate /etc/letsencrypt/live/tomasdiblik.cz/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/tomasdiblik.cz/privkey.pem;
-    include /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-
-    root /www/tomasdiblik.cz;
+    root /app/tomasdiblik.cz;
 
     location ~* \.(html)$ {
         proxy_hide_header 'Cache-Control';
@@ -37,5 +29,3 @@ server {
         try_files $uri $uri.html $uri/ =404;
     }
 }
-
-# HTTP to HTTPS redirect is already present on production server as a separate config, no need to include it here.
