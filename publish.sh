@@ -19,7 +19,7 @@ cd ..
 for d in $(find ./src/_site/pages/blog/ -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.webp" -o -name "*.jpeg" -o -name "*.ico" \)) ; do
     echo "$d"
     exiftool -all= $d 
-    magick convert -strip -interlace Plane -quality 80% $d $d
+    convert -strip -interlace Plane -quality 80% $d $d
 done
 rm -rf ./src/_site/pages/blog/**/**/*.jpg_original
 rm -rf ./src/_site/pages/blog/**/**/*.png_original

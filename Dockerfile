@@ -1,9 +1,15 @@
 ## Build ##
 FROM ruby:3.4-slim AS builder
-RUN apt-get update -y && \
-    apt-get upgrade -y && \
-    apt-get install -y build-essential dos2unix libimage-exiftool-perl webp tidy ffmpeg imagemagick && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt update -y && \
+    apt upgrade -y
+RUN apt install -y build-essential \
+                    dos2unix \
+                    libimage-exiftool-perl \
+                    webp \
+                    tidy \
+                    ffmpeg \
+                    libpng-dev libjpeg-dev libtiff-dev imagemagick
+RUN rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app/src
