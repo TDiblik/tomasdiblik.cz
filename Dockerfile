@@ -20,6 +20,6 @@ FROM nginx:alpine
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx-config /etc/nginx/conf.d/tomasdiblik.conf
 COPY --from=builder /app/out /app/tomasdiblik.cz/
-EXPOSE 80
+EXPOSE 20342
 
 CMD ["nginx", "-g", "daemon off;"]
