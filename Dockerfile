@@ -11,11 +11,11 @@ RUN apt install -y build-essential \
                     libpng-dev libjpeg-dev libtiff-dev imagemagick
 RUN rm -rf /var/lib/apt/lists/*
 
-# Set working directory
 WORKDIR /app/src
 COPY ./src/Gemfile .
 RUN bundle install
 COPY ./src/ .
+
 WORKDIR /app
 COPY ./publish.sh .
 RUN dos2unix publish.sh && chmod +x publish.sh
