@@ -1,6 +1,6 @@
 # Serve the actual website
 server {
-    listen 80;
+    listen 20342;
 
     root /app/tomasdiblik.cz;
 
