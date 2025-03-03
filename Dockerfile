@@ -18,6 +18,7 @@ COPY ./src/ .
 
 WORKDIR /build
 COPY ./publish.sh .
+COPY ./LICENSE .
 RUN dos2unix publish.sh && chmod +x publish.sh
 RUN ./publish.sh
 
