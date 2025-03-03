@@ -23,6 +23,7 @@ RUN ./publish.sh
 
 ## Production image ##
 FROM nginx:alpine
+RUN apk update --no-cache && apk upgrade --no-cache && rm -rf /var/cache/apk/*
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx-config /etc/nginx/conf.d/tomasdiblik.conf
 COPY --from=builder /build/out /app/tomasdiblik.cz/
