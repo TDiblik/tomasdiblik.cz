@@ -3,6 +3,7 @@ Some people told me this looks like a template, please be assured that I've desi
 
 ## Dev
 
+rbenv: `rbenv install 3.4.6 && rbenv global 3.4.6 && gem install bundler`
 prerequisites: `bundle install` <br/>
 development buidl: `bundle exec jekyll serve --livereload` <br/>
 Production build (requires debian-based linux or WSL):
