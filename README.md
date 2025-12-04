@@ -6,36 +6,7 @@ Some people told me this looks like a template, please be assured that I've desi
 rbenv: `rbenv install 3.4.6 && rbenv global 3.4.6 && gem install bundler`
 prerequisites: `bundle install` <br/>
 development buidl: `bundle exec jekyll serve --livereload` <br/>
-Production build (requires debian-based linux or WSL):
-
-```
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install dos2unix
-
-dos2unix publish.sh
-sudo chmod +x publish.sh
-
-sudo ./publish.sh
-```
-
-Manual image compression (requires debian-based linux or WSL):
-
-```
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install -y libimage-exiftool-perl webp
-
-IMG_NAME="example.png" && exiftool -all= $IMG_NAME && cwebp -q 80 -lossless -alpha_q 80 $IMG_NAME -o $IMG_NAME.webp
-```
-
-Deployment
-
-```
-mv out tomasdiblik.cz
-scp -P PORT -r tomasdiblik.cz/ SERVER_USER@SERVER_IP:/www
-mv tomasdiblik.cz out
-```
+prod build: `docker build -t tomasdiblik.cz . && docker run -p 80:20342 tomasdiblik.cz`
 
 <br/>
 
