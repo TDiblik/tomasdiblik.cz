@@ -18,12 +18,17 @@
   justify-content: center;
   min-width: 130px;
   max-width: 130px;
-  padding: 5px 0px;
+  padding: 10px 10px;
   border-radius: var(--border-radius);
   background-color: var(--white);
 }
+
+.job-logo-wrapper > a {
+  line-height: 0px;
+}
+
 .job-logo {
-  height: 80px;
+  height: 90px;
   width: auto;
   max-width: 130px;
 }

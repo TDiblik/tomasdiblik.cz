@@ -7,8 +7,15 @@ rbenv: `rbenv install 3.4.6 && rbenv global 3.4.6 && gem install bundler`
 prerequisites: `bundle install` <br/>
 development buidl: `bundle exec jekyll serve --livereload` <br/>
 prod build: `docker build -t tomasdiblik.cz . && docker run -p 80:20342 tomasdiblik.cz`
+Manual image compression (requires debian-based linux or WSL):
 
-<br/>
+```
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install -y libimage-exiftool-perl webp
+
+IMG_NAME="example.png" && exiftool -all= $IMG_NAME && cwebp -q 80 -lossless -alpha_q 80 $IMG_NAME -o $IMG_NAME.webp
+```
 
 TODO:
 
