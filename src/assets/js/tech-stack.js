@@ -430,25 +430,12 @@ window.addEventListener("load", () => {
   const link = graph_container
     .append("g")
     .attr("stroke", "var(--gray)")
+    .attr("stroke-opacity", 0.6)
+    .attr("stroke-width", 1)
+    .attr("fill", "none")
+    .attr("shape-rendering", "optimizeSpeed")
     .attr("class", moveable_group_classname)
-    .selectAll("line")
-    .data(links)
-    .join("line")
-    .attr("class", (s) => `${hideable_classname}${s.source.data.nanoid}`)
-    .attr("stroke-opacity", (s) => {
-      switch (s.source.data.usage) {
-        case root_point_usage:
-          return 0.75;
-        case nerly_every_day_usage:
-          return 0.6;
-        case once_per_week_usage:
-          return 0.55;
-        case once_per_month_usage:
-          return 0.5;
-        default:
-          return 0.5;
-      }
-    });
+    .append("path");
 
   const node_group = graph_container
     .append("g")
@@ -480,6 +467,8 @@ window.addEventListener("load", () => {
     .append("rect")
     .attr("width", (s) => s.data.node_width)
     .attr("height", node_height)
+    .attr("x", (s) => -s.data.node_width / 2)
+    .attr("y", -node_height / 2)
     .attr("fill", (s) => s.data.usage)
     .attr("stroke", (s) => s.data.overwrite_stroke ?? "var(--white)")
     .attr("stroke-width", 1)
@@ -503,14 +492,16 @@ window.addEventListener("load", () => {
   node_text.append("title").text((s) => s.data.title ?? s.data.name);
 
   simulation.on("tick", () => {
-    link
-      .attr("x1", (s) => s.source.x)
-      .attr("y1", (s) => s.source.y)
-      .attr("x2", (s) => s.target.x)
-      .attr("y2", (s) => s.target.y);
-
-    node_text.attr("x", (s) => s.x).attr("y", (s) => s.y);
-    node_background_shape.attr("x", (s) => s.x - s.data.node_width / 2).attr("y", (s) => s.y - node_height / 2);
+    link.attr("d", (d) => {
+      let path_data = "";
+      links.forEach((l) => {
+        const source_el = document.querySelector(`.${hideable_classname}${l.source.data.nanoid}`);
+        if (source_el && source_el.style.display === "none") return;
+        path_data += `M${l.source.x},${l.source.y}L${l.target.x},${l.target.y}`;
+      });
+      return path_data;
+    });
+    node_group.attr("transform", (s) => `translate(${s.x},${s.y})`);
   });
 
   const zoom = d3
@@ -518,9 +509,11 @@ window.addEventListener("load", () => {
     .scaleExtent([0.75, 3.5])
     .on("start", () => {
       document.querySelector(graph_element_selector).style.cursor = "move";
+      d3.selectAll(`.${moveable_group_classname}`).style("will-change", "transform");
     })
     .on("end", () => {
       document.querySelector(graph_element_selector).style.cursor = "default";
+      d3.selectAll(`.${moveable_group_classname}`).style("will-change", "auto");
     })
     .on("zoom", (e) => {
       d3.selectAll(`.${moveable_group_classname}`).attr("transform", e.transform);
