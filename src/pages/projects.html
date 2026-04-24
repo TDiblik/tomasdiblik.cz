@@ -289,6 +289,66 @@ additional_headers: <link rel="stylesheet" href="/assets/css/projects.css" />
       (tv remotes, projector remotes, light remotes, etc) ...and it worked every time! Here's how I did it, and how YOU 
       can make something similar at home.
     "%}
+    
+    {% include project_card.html 
+     name = "Contribution Graph Sync"
+
+     is_hobby_project = true
+     is_open_sourced = true
+     is_publicly_available = false
+
+     source_code_link = "https://github.com/TDiblik/contribution-graph-sync"
+
+     description = "
+      This is a Go-based project I wrote to keep my GitHub contribution graph in-sync with other platforms (specifically GitLab for now). 
+      You just set up a target repo, grab a GitLab API token, and let the script do its magic. It essentially 
+      duplicates your GL activity into GH so your commit graph stays nice and green!
+    "%}
+
+    {% include project_card.html 
+     name = "Golang Fiber Swagger"
+
+     is_hobby_project = true
+     is_open_sourced = true
+     is_publicly_available = false
+
+     source_code_link = "https://github.com/TDiblik/gofiber-swagger"
+
+     description = "
+      I really, really, really hate defining the swagger docs using swaggo/swag. It's a cool project, but it just isn't for me. 
+      So, I built this Go library that automatically generates Swagger/OpenAPI documentation based on your Fiber codebase using reflection. 
+      You can basically drop it in, or use the custom wrappers to let your wildest OpenAPI dreams come true haha.
+    "%}
+
+    {% include project_card.html 
+     name = "C HTTP Server - macOS System Monitor"
+
+     is_hobby_project = true
+     is_open_sourced = true
+     is_publicly_available = false
+
+     source_code_link = "https://github.com/TDiblik/c-http-server"
+
+     description = "
+      This was a semester project for my 4IZ110 class at VŠE where I built a cross-platform HTTP server in C from scratch using STB-style libraries. 
+      It serves as a real-time macOS system monitor (CPU, RAM, Disk, etc.) utilizing multithreading and raw socket reading. I handled memory management manually 
+      and implemented hard limits to prevent buffer overflows.
+    "%}
+
+    {% include project_card.html 
+     name = "Git Forge"
+
+     is_hobby_project = true
+     is_open_sourced = true
+     is_publicly_available = false
+
+     source_code_link = "https://github.com/TDiblik/git-forge"
+
+     description = "
+      A CLI tool written in Go designed for educational and penetration-testing purposes to demonstrate vulnerabilities in unsigned Git repositories. 
+      It allows you to forge commits like a pro by manipulating Git identities (Author/Committer), rewriting history, and even generating temporary 
+      GPG keys to spoof signatures and snag that 'Verified' badge. Educational use only, of course!
+    "%}
 
     {% include project_card.html 
      name = "VSCode number peeker"
