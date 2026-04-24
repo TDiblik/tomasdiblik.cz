@@ -115,17 +115,19 @@
 * {
   box-sizing: border-box;
 
+  /* Fix raleway numbers */
+  -webkit-font-feature-settings: "lnum";
+  -moz-font-feature-settings: "lnum";
+  font-feature-settings: "lnum";
+}
+
+body {
   color: var(--white);
   font-family: var(--font-family);
   font-style: normal;
   font-weight: 400;
   font-size: 1rem;
   line-height: 24px;
-
-  /* Fix raleway numbers */
-  -webkit-font-feature-settings: "lnum" !important;
-  -moz-font-feature-settings: "lnum" !important;
-  font-feature-settings: "lnum" !important;
 }
 
 @view-transition {

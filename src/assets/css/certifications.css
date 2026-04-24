@@ -18,6 +18,11 @@
   justify-items: center;
 }
 
+.certification-wrapper {
+  margin: 15px;
+  will-change: transform;
+}
+
 .certification {
   width: 90%;
   height: 90%;

@@ -6,10 +6,10 @@
 
   transform: scale(0.95);
 
-  transition: all 0.2s ease !important;
-  -o-transition: all 0.2s ease !important;
-  -moz-transition: all 0.2s ease !important;
-  -webkit-transition: all 0.2s ease !important;
+  transition: transform 0.2s ease !important;
+  -o-transition: transform 0.2s ease !important;
+  -moz-transition: transform 0.2s ease !important;
+  -webkit-transition: transform 0.2s ease !important;
 }
 .blog-post:hover {
   cursor: pointer;
