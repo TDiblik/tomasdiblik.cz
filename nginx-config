@@ -24,7 +24,7 @@ server {
   }
 
   location ~* \.(css|gif|jpg|js|png|ico|otf|svg|sng|xls|doc|exe|jpeg|tgx|tex|webp|webm|mp4|pdf|zip|tar|gz|woff2)$ {
-    add_header Cache-Control "public, max-age=2592000";
+    add_header Cache-Control "public, max-age=2592000, no-transform";
   }
 
   error_page 404 /404.html;
