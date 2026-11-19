@@ -1,0 +1,125 @@
+---
+import Default from '../../layouts/Default.astro';
+
+// Newest first.
+const posts = [
+	{
+		title: 'PicoCTF 2023 writeup - Special',
+		href: '/pages/blog/technical/27-06-2023/picoctf-2023---writeup---special',
+		date: '2023-06-27',
+		category: 'Technical',
+	},
+	{
+		title: 'My experience teaching middle schoolers programming',
+		href: '/pages/blog/personal/25-06-2023/my-experience-teaching-middle-schoolers-programming',
+		date: '2023-06-25',
+		category: 'Personal',
+	},
+	{
+		title: 'Create a custom rick roll link using GitHub Pages',
+		href: '/pages/blog/tutorial/01-05-2023/create-custom-rick-roll-link-using-github-pages',
+		date: '2023-05-01',
+		category: 'Tutorial',
+	},
+	{
+		title: 'Completing Microsoft STC',
+		href: '/pages/blog/pr/30-04-2023/completing-microsoft-stc',
+		date: '2023-04-30',
+		category: 'PR',
+	},
+	{
+		title: 'Bruteforce default strava.cz login',
+		href: '/pages/blog/technical/27-04-2023/bruteforce-default-strava.cz-login',
+		date: '2023-04-27',
+		category: 'Technical',
+	},
+	{
+		title: 'Revision Books',
+		href: '/pages/blog/pr/25-04-2023/revision-books',
+		date: '2023-04-25',
+		category: 'PR',
+	},
+	{
+		title: 'Winning UHK Hackathon 2022',
+		href: '/pages/blog/pr/23-04-2023/winning-uhk-hackathon-2022',
+		date: '2023-04-23',
+		category: 'PR',
+	},
+	{
+		title: 'Attending Funovation Hackathon 22',
+		href: '/pages/blog/pr/20-04-2023/attending-funovation-hackathon-22',
+		date: '2023-04-20',
+		category: 'PR',
+	},
+	{
+		title: 'Main Gate ALPR (deprecated)',
+		href: '/pages/blog/pr/14-03-2023/main-gate-alpr-(deprecated)',
+		date: '2023-03-14',
+		category: 'PR',
+	},
+	{
+		title: 'Tank parameterization',
+		href: '/pages/blog/pr/13-03-2023/tank-parameterization',
+		date: '2023-03-13',
+		category: 'PR',
+	},
+	{
+		title: 'Lunch Ordering and Management System',
+		href: '/pages/blog/pr/12-03-2023/lunch-ordering-and-management-system',
+		date: '2023-03-12',
+		category: 'PR',
+	},
+	{
+		title: 'Multi-Device Monitor and Control System',
+		href: '/pages/blog/pr/11-03-2023/multi-device-monitor-and-control-system',
+		date: '2023-03-11',
+		category: 'PR',
+	},
+	{
+		title: 'Robot-Assisted Laser Plate Processing',
+		href: '/pages/blog/pr/10-03-2023/robot-assisted-laser-plate-processing',
+		date: '2023-03-10',
+		category: 'PR',
+	},
+	{
+		title: 'Learn Azure Functions with 3 easy projects',
+		href: '/pages/blog/tutorial/15-02-2022/learn-azure-functions-with-3-easy-projects',
+		date: '2022-02-15',
+		category: 'Tutorial',
+	},
+	{
+		title: 'How to install WSL (Windows Subsystem for Linux)',
+		href: '/pages/blog/tutorial/30-12-2021/how-to-install-wsl',
+		date: '2021-12-30',
+		category: 'Tutorial',
+	},
+	{
+		title: 'How to explore Azure Web App files',
+		href: '/pages/blog/tutorial/10-05-2021/how-to-explore-azure-web-app-files',
+		date: '2021-05-10',
+		category: 'Tutorial',
+	},
+];
+---
+
+<Default
+	title="Blog"
+	description="From time to time, I write something: tutorials, technical writeups and the stories behind the software I built, mostly at VPSR."
+	current="Blog"
+>
+	<h1 class="page-title">Blog</h1>
+	<ol class="entries post-list" reversed>
+		{posts.map((post) => (
+			<li>
+				<div class="entry-head">
+					<h2 class="entry-title">
+						<a href={post.href}>{post.title}</a>
+					</h2>
+					<time class="entry-date" datetime={post.date}>
+						{post.date.slice(5, 7)}/{post.date.slice(0, 4)}
+					</time>
+				</div>
+			</li>
+		))}
+	</ol>
+</Default>

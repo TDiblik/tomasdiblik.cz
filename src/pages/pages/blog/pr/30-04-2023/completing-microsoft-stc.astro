@@ -1,0 +1,127 @@
+---
+import BlogPostImage from '../../../../../components/BlogPostImage.astro';
+import Heading from '../../../../../components/Heading.astro';
+import BlogPost from '../../../../../layouts/BlogPost.astro';
+---
+
+<BlogPost
+	title="Completing Microsoft STC"
+	description="What it was like to go through Microsoft Student Trainee Center, a selective program for high school students - the good, the bad and whether it's worth it."
+	seoKeywords="Microsoft STC, Student Trainee Center, Czech education program"
+	postReleaseDate="30-04-2023"
+	postCategory="PR"
+	postIntroduction="Microsoft Student Trainee Center is a selective program for high school students with a passion for modern technologies and a desire to pass on their knowledge. They/We are a community that shares their passion for innovation. I somehow got into this program two years ago and, here's how it went :D"
+>
+	<Heading level="2" text="Introduction" />
+	<p>
+		In January 2021 I got accepted into
+		<a href="https://www.microsoft.com/cs-cz/education/students/stc" class="underline" target="_blank" rel="nofollow noreferrer noopener external"
+			>Microsoft Student Trainee Center</a
+		>, and I was really hyped about it. As a programmer, I was logically put into the Azure Programming Action Group. I was thrilled about being
+		put into Azure Programming AG, because I knew it will be the perfect fit for me. I knew beforehand that this program is more IT/Marketing
+		focused as opposed to being purely technical, however, I was ok with that, since my PR/Marketing/Soft skills were mid at best at the time
+		(still kinda struggling :D) and needed some polishment. But what is STC anyways? Well, for a more PR(e) version, you can use the link above,
+		however, if you want to experience it from my point of view, keep on reading!
+	</p>
+	<p>
+		First of all, they set you up with their Microsoft accounts, since it's fully remote. Then they explain to you their values and beliefs, which
+		is totally reasonable since they are a community and every community has some rules. Then in the span of half a year, you get an in-depth
+		introduction into the office suite with certification vouchers at the end, to prove your skills. The second half of the year and the second
+		year, in general, is more cloud-oriented, you will gain a lot of in-depth knowledge about Microsoft's cloud ecosystem, especially Azure and
+		Microsoft 365 Administration through a countless number of webinars.
+	</p>
+	<p>
+		During all of this, there are a lot of other webinars about a wide array of topics, team buildings, hackathons, Microsoft events, STC events,
+		and a lot of other optional extra activities you can participate in. If you want to spend time learning and growing, you will be given the
+		opportunity, however, it has to be from your own initiative (healthy/good approach imo). You're not forced to do anything extra, nonetheless
+		students usually still decide to put their (free) time and effort into these extra activities. In general, the more time you put into the
+		program and help out others, the more opportunities and gained knowledge will come back your way.
+	</p>
+	<p>
+		Then "graduation" comes around. You can either choose your own topic for your "graduation project", or you can pick one of the options that
+		are provided every year. Personally, I believe that it's better to pick one of the provided options, instead of making-up your own, because a
+		lot of the times, you'll be cooperating on it with STC partnered company (like
+		<a href="https://www.kpcs.cz/" class="underline" target="_blank" rel="nofollow noreferrer noopener external">KPCS CZ</a> in my case). After
+		some consideration, I picked migration from on-premises to Cloud as my final project. I don't actually know how much of the finished work can
+		be published, so (just to be sure) here's only the abstract and table of contents:
+	</p>
+	<pre class="code-wrapper medium"><code is:raw class="language-zsh">  --------- ABSTRACT ---------
+  The topic of this thesis will be the migration of one Ubuntu 22.04 server from on-premises to the cloud. 
+  Maximum downtime is one hour, between 18:00 and 19:00 on an earlier specified day. 
+  The server is running automated tasks, docker containers, nginx, and a bunch of other services. 
+  The task assignment is to move the Linux server to the cloud, configure ssh server, 
+  check that all programs are set up and running correctly. 
+  The work will include an analysis of cloud options, an analysis of the on-premises server, 
+  analysis of the options provided by the selected cloud provider for migration, 
+  several migration plans, selection of the best strategy, execution of the work and a 
+  final summary of the whole work.
+  
+  .-----------------------------------.
+  |         TABLE OF CONTENTS         |
+  |-----------------------------------|
+  | 1. Introduction                   |
+  |     1.1 Assumptions               |
+  |     1.2 Limitations               |
+  | 2. Analysis of On-premises Server |
+  | 3. Analysis of Cloud Providers    |
+  |     3.1 AWS                       |
+  |     3.2 Azure                     |
+  |     3.3 Conclusion                |
+  | 5. Possible Migration Plans       |
+  |     5.1 Manual Migration          |
+  |     5.2 Azure Migrate             |
+  | 6. Execution of the chosen plan   |
+  | 7. Summary                        |
+  | 8. Acknowledgments                |
+  '-----------------------------------'
+</code></pre>
+
+	<Heading level="2" text="The good" />
+	<ol>
+		<li>
+			I was given the opportunity to develop part of the internal infrastructure for like half a year. During this time, I got really familiar
+			with Microsoft's Graph API and generally coding with tight integration of Microsoft products. Personally, this alone could be the sole
+			reason to go into STC once again.
+		</li>
+		<li>STC provided me with certification vouches, which allow(ed) me to prove that I actually know the things I claim to know.</li>
+		<li>STC started and fueled my passion for writing blog posts and sharing code/information in general.</li>
+		<li>
+			The
+			<a
+				href="https://www.linkedin.com/company/studenttraineecenter/"
+				class="underline"
+				target="_blank"
+				rel="nofollow noreferrer noopener external"
+				>in-person meetings</a
+			>
+			- just trust me on this one, because it could be another post in itself :D
+		</li>
+	</ol>
+
+	<Heading level="2" text="The bad" />
+	<p>
+		Everything has some negative aspects to it, unfortunately, STC has/had some as well. One of the biggest problems I saw, was the management.
+		The program was still in its (what I would consider) "early" days when I got in. This meant that during the two years, I was there, I saw the
+		leadership "restructure" at least twice! I believe that nowadays it's not that big of a problem and the current management is more or less
+		stable, however, I found that kinda annoying at the time.
+	</p>
+
+	<Heading level="2" text="Is it worth it?" />
+	<p>
+		Yeah, <span class="strong-text">probably</span>. If you're more technical (like me), there are a lot of people who are more than happy to help
+		you with anything related to security/programming/IoT/IT/etc with in-depth explanations, as for the rest of the "org", they're more
+		PR/Marketing focused. If you don't know where to start or want to perfect your understanding of Microsoft technologies, you should consider
+		joining, however, if you already have a really solid understanding of Microsoft technologies, and keep yourself periodically informed about
+		the latest Microsoft stuff, the program itself will not provide you with any new knowledge. That being said, the two crucial benefits that the
+		program will provide you with, regardless of your knowledge/skill level, are: connections to talented people (from a range of domains) who
+		know their stuff AND opportunities (like certifications, internal development, helping out at Microsoft events, and many more). Is that worth
+		it? Depends on your own personal/professional goals, but I would highly suggest you give it a shot.
+	</p>
+
+	<Heading level="2" text="Proof that I actually finished it :D" />
+	<BlogPostImage src="./graduation.jpg" width="500px" />
+
+	<BlogPostImage src="./diplom.jpg" width="500px" />
+
+	<BlogPostImage src="./glass-plaque.jpg" width="500px" />
+</BlogPost>

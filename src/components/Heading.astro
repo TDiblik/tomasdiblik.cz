@@ -1,0 +1,13 @@
+---
+interface Props {
+	level: '1' | '2' | '3' | '4' | '5' | '6';
+	text: string;
+	additionalUniqueIdentifier?: string;
+}
+
+const { level, text, additionalUniqueIdentifier = '' } = Astro.props;
+const Tag = `h${level}` as const;
+const id = `${text.toLowerCase().replaceAll(' ', '-').replaceAll(':', '').replaceAll('?', '')}-${additionalUniqueIdentifier}`;
+---
+
+<Tag id={id} set:html={text} />

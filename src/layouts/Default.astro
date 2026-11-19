@@ -1,0 +1,156 @@
+---
+import '../styles/global.css';
+
+import headingFontSemiBold from '../assets/fonts/barlow-semi-condensed-600.woff2?url';
+import headingFont from '../assets/fonts/barlow-semi-condensed-700.woff2?url';
+import { CONTACT, TAGLINE } from '../data/profile';
+import { canonicalUrl, SITE_URL } from '../lib/site';
+
+export type NavKey = 'Projects' | 'Experience' | 'Blog' | 'About' | 'Certifications';
+
+export interface BlogPostMeta {
+	category: string;
+	releaseDate: string;
+}
+
+interface Props {
+	title: string;
+	fullTitle?: string;
+	description: string;
+	seoKeywords?: string;
+	current?: NavKey;
+	blogPost?: BlogPostMeta;
+	isHome?: boolean;
+}
+
+const { title, fullTitle, description, seoKeywords, current, blogPost, isHome = false } = Astro.props;
+
+const pageTitle = fullTitle ?? `${title} - Tomáš Diblík`;
+const pageUrl = canonicalUrl(Astro.url.pathname);
+const ogImage = `${SITE_URL}/assets/img/og-image.jpg`;
+
+let keywords = `Tomáš Diblík, Tomas Diblik, TDiblik, tdiblik, ${title}`;
+if (blogPost) keywords += `, blog post, ${blogPost.category}`;
+if (seoKeywords) keywords += `, ${seoKeywords}`;
+
+const navLinks: { key: NavKey; href: string }[] = [
+	{ key: 'Projects', href: '/pages/projects' },
+	{ key: 'Experience', href: '/pages/work-experience' },
+	{ key: 'Blog', href: '/pages/blog' },
+	{ key: 'Certifications', href: '/pages/certifications' },
+	{ key: 'About', href: '/pages/about-me' },
+];
+const activeNav = current ?? (blogPost ? 'Blog' : undefined);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- All content on this page is licensed under the terms specified at https://tomasdiblik.cz/LICENSE (AGPL-3.0) -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="preload" href={headingFont} as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href={headingFontSemiBold} as="font" type="font/woff2" crossorigin />
+
+		<title>{pageTitle}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<meta name="robots" content="index, follow" />
+		<meta name="author" content="Tomáš Diblík" />
+		<link rel="canonical" href={pageUrl} />
+
+		{/* References: https://ogp.me/ */}
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:type" content={blogPost ? 'article' : 'website'} />
+		<meta property="og:url" content={pageUrl} />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="Tomáš Diblík" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={pageTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		{blogPost && <meta name="twitter:image:alt" content={`Thumbnail of the blog post ${title}`} />}
+
+		<meta name="theme-color" content="#f7f9fb" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#0b1b2e" media="(prefers-color-scheme: dark)" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	</head>
+	<body>
+		<a class="skip-link" href="#main">Skip to content</a>
+		<div class="container">
+			<header class="site-header">
+				<div class="site-header-bar">
+					{isHome ? (
+						<h1 class="site-name">Tomáš Diblík</h1>
+					) : (
+						<a class="site-name" href="/">
+							Tomáš Diblík
+						</a>
+					)}
+					<nav class="site-nav" aria-label="Main">
+						<ul>
+							{navLinks.map((link) => (
+								<li>
+									<a href={link.href} aria-current={activeNav === link.key ? 'page' : undefined}>
+										{link.key}
+									</a>
+								</li>
+							))}
+						</ul>
+					</nav>
+				</div>
+				{isHome && (
+					<div class="intro">
+						<p class="tagline">{TAGLINE}</p>
+						<ul class="actions">
+							<li>
+								<a class="button" href="/pages/work-experience">
+									CV
+								</a>
+							</li>
+							<li>
+								<a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+							</li>
+							<li>
+								<a href={CONTACT.github}>GitHub</a>
+							</li>
+							<li>
+								<a href={CONTACT.linkedin}>LinkedIn</a>
+							</li>
+							<li>
+								<a href={CONTACT.youtube}>YouTube</a>
+							</li>
+						</ul>
+					</div>
+				)}
+			</header>
+
+			<main id="main">
+				<slot />
+			</main>
+
+			<footer class="site-footer">
+				<ul>
+					<li>
+						<a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+					</li>
+					<li>
+						<a href={CONTACT.github}>GitHub</a>
+					</li>
+					<li>
+						<a href={CONTACT.linkedin}>LinkedIn</a>
+					</li>
+					<li>
+						<a href={CONTACT.youtube}>YouTube</a>
+					</li>
+				</ul>
+				<p>© Tomáš Diblík, 2020 - {new Date().getFullYear()}</p>
+			</footer>
+		</div>
+	</body>
+</html>

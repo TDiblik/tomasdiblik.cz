@@ -1,0 +1,759 @@
+---
+import BlogPostImage from '../../../../../components/BlogPostImage.astro';
+import Heading from '../../../../../components/Heading.astro';
+import BlogPost from '../../../../../layouts/BlogPost.astro';
+---
+
+<BlogPost
+	title="Learn Azure Functions with 3 easy projects"
+	description="A beginner friendly intro to Azure Functions and serverless through 3 small projects: a simple HTTP endpoint, a more complex one and a timer trigger."
+	seoKeywords="Azure Functions, serverless, beginner, learn"
+	showToc
+	postReleaseDate="15-02-2022"
+	postCategory="Tutorial"
+	postCoAuthors={[{ name: 'Josef Kahoun', href: 'https://twitter.com/kahy_dot_sh' }]}
+	postIntroduction="Have you ever needed to create a simple REST API with a few endpoints? Did you ever need to run some code at some specified time? It's often impractical and slow to create an entire backend / linux machine for these types of taks. That's where Azure Functions comes in, cutting that process down to a few clicks."
+>
+	<p class="meta-note">
+		If you get stuck anywhere along the way, you can download the source code of those 3 projects by
+		<a href="./learn-azure-functions-with-3-easy-projects-article-tutorial-source-code.zip" class="underline" target="_blank">
+			<span class="strong-text">clicking here</span></a
+		>.
+	</p>
+
+	<Heading level="2" text="What are Azure Functions?" />
+	<p>
+		Azure functions is one of the many cloud services on Azure. This service was created to run code without the need to deal with setup or any
+		other server configuration at all. This allows you to focus jump into writing code right away. This type of service is called
+		<a
+			href="https://www.redhat.com/en/topics/cloud-native-apps/what-is-serverless"
+			class="underline"
+			target="_blank"
+			rel="nofollow noreferrer noopener external"
+		>
+			serverless</a
+		>. It's as simple as, picking a runtime, a version of that runtime, an operating system, setting up dev environment and you can jump into
+		coding. Be it WEP API, IOT request handling, CRON taks, or
+		<a
+			href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview#scenarios"
+			class="underline"
+			target="_blank"
+			rel="nofollow noreferrer noopener external"
+		>
+			many more</a
+		>.
+	</p>
+
+	<Heading level="3" text="What is serverless?" />
+	<p>
+		Serverless is a cloud computing model in the Platform as a Service (PaaS) domain, that enables you to build and run applications without
+		having to manage the underlying infrastructure. Your and many more applications run on shared servers owned and managed by a cloud provider,
+		and you typically don't have direct access to these servers (hence PaaS). Providers usually cluster applications with same runtime
+		environment, version, and operating system on same servers. When your application is not in use, it is inactive, or in a state we call sleep.
+		When a function is triggered, the runtime environment for your application is spun up, resulting in cold-starts, your code is executed, and
+		then your trigger goes back to sleep after a period of inactivity (usually around 5 minutes). The provider charges you only for the time that
+		your application is active, rather than for an entire month, so you only pay for the actual time your code is running. Serverless solutions
+		are know for generous free tiers.
+	</p>
+
+	<Heading level="3" text="Pros and cons of serverless" />
+	<p>As you probably learned in the previous paragraph, the probably the biggest advantages are:</p>
+	<ol>
+		<li>Serverless triggers are much cheaper than dedicated servers</li>
+		<li>Very generous free tiers</li>
+		<li>Automatic scalability in times of high demand for your site</li>
+	</ol>
+	<p>However, there are also disadvantages:</p>
+	<ol>
+		<li>You cannot predict cost of the hosting beforehand as it depends on demand which varies monthly. (Although you can set limits)</li>
+		<li>Adding any kind of middleware is nearly impossible, it can be done, but it's relatively hard</li>
+		<li>
+			Your app goes into inactive state every few minutes (usually 5), which means that the next person to request it will encounter a
+			<a
+				href="https://azure.microsoft.com/en-us/blog/understanding-serverless-cold-start/"
+				class="underline"
+				target="_blank"
+				rel="nofollow noreferrer noopener external"
+			>
+				cold-start</a
+			>
+			in the range of
+			<a href="https://mikhail.io/serverless/coldstarts/azure/" class="underline" target="_blank" rel="nofollow noreferrer noopener external">
+				1 - 20 seconds</a
+			>.
+		</li>
+	</ol>
+	<p>With each technology, it's important to keep in mind all of these factors, before locking yourself into using it.</p>
+
+	<Heading level="3" text="When would I (personaly) use Azure functions?" />
+	<p>
+		Personally, I would use Azure Functions for simple endpoints (APIs) and repeating scripts (CRON), if I didn't have Linux machine available,
+		for the following reasons:
+	</p>
+	<ul>
+		<li>Free 1 000 000 requests per month (yeap, that's all :D)</li>
+	</ul>
+	<p>
+		I will probably never use Azure functions in production for products I care about. It's because everything they provide can be easily set up
+		on my Linux server, where I feel more comfortable making changes, keeping things functional, and maintaining code for longer periods of time.
+		I had some Azure Functions running for a while, but decided to transfer them to VPS, mostly because of the cold start, but if you want
+		something small (project size), cheap, and fast to publish, I think you could find Azure Functions usefull.
+	</p>
+
+	<Heading level="2" text="Steps to setup" />
+	<ol>
+		<li>
+			Open your
+			<a href="https://portal.azure.com" class="underline" target="_blank" rel="nofollow noreferrer noopener external"> Azure portal</a>.
+		</li>
+
+		<li>Under the "Azure services" heading, click on "Create a resource".</li>
+
+		<li>In the marketplace, find "Function App" and click on "Create".</li>
+
+		<li>
+			After that, you should be in the following menu:
+			<BlogPostImage
+				src="./azure-functions-setup-basics-menu.jpg"
+				width="650px"
+				caption="Azure Functions creation page in the basics tab"
+				imgSource="Azure functions creation page"
+				imgSourceHref="https://portal.azure.com/#create/Microsoft.FunctionApp"
+			/>
+		</li>
+
+		<li>
+			The most important setting here, is
+			<a
+				href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale"
+				class="underline"
+				target="_blank"
+				rel="nofollow noreferrer noopener external"
+			>
+				Plan type</a
+			>. This setting has affect on the following:
+			<ol>
+				<li>
+					<a
+						href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale?WT.mc_id=Portal-WebsitesExtension#scale"
+						class="underline"
+						target="_blank"
+						rel="nofollow noreferrer noopener external"
+					>
+						Scalability</a
+					>
+				</li>
+
+				<li>
+					<a
+						href="https://learn.microsoft.com/azure/azure-functions/functions-scale?WT.mc_id=Portal-WebsitesExtension#service-limits"
+						class="underline"
+						target="_blank"
+						rel="nofollow noreferrer noopener external"
+					>
+						Service limits</a
+					>
+				</li>
+
+				<li>
+					<a
+						href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale?WT.mc_id=Portal-WebsitesExtension#networking-features"
+						class="underline"
+						target="_blank"
+						rel="nofollow noreferrer noopener external"
+					>
+						Networking features</a
+					>
+				</li>
+
+				<li>
+					<a
+						href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale?WT.mc_id=Portal-WebsitesExtension#billing"
+						class="underline"
+						target="_blank"
+						rel="nofollow noreferrer noopener external"
+					>
+						Billing</a
+					>
+				</li>
+			</ol>
+		</li>
+
+		<li>Other settings will depend on what you need, however one thing I would suggest is: using Linux as an operating system</li>
+
+		<li>
+			After you selectd what you want, click on "Create" button and you're done. The rest of the options in the top row are just add-ons for
+			more complex functions that interact with other Azure resources. We won't get into that here.
+		</li>
+	</ol>
+
+	<Heading level="2" text="Setting up development environment" />
+	<p>
+		As you can notice in the picture above, we have selected Linux as the operating system. Since most backends run on Linux, we will also use
+		Linux in this article. The problem with this is that if you are using Linux, you cannot edit the code online. That's why in the next section
+		I'll show you how to setup the local development environment, which tools you need, and how to publish the function / trigger to Azure
+		afterwards. What we'll do is basically mimick Azure Functions locally. When it comes to it, this approach should be always preferred instead
+		of using Azure's code editor and testing in production.
+	</p>
+
+	<p>Prerequisites:</p>
+	<ul>
+		<li>
+			Have NodeJs
+			<a href="https://nodejs.org/en/download/" class="underline" target="_blank" rel="nofollow noreferrer noopener external"> installed</a> (v.
+			16.5.0 in my case, but every version <code is:raw class="language-bash inline">^14.0.0</code> should be ok)
+		</li>
+	</ul>
+	<p>Once you have NodeJs installed, the first thing you need to do is open the command prompt and type in the following command:</p>
+	<pre class="code-wrapper small"><code is:raw class="language-bash">npm install -g azure-functions-core-tools@3 --unsafe-perm true</code></pre>
+	<p>
+		This installs the <code is:raw class="language-bash inline">func</code> CLI and adds it to your path. You need this CLI to mimic azure
+		functions localy. To verify that the command has been added, type <code is:raw class="language-bash inline">func -help</code>, if you get an
+		output with CLI arguments help, you have followed the steps correctly, if not, check your node installation using
+		<code is:raw class="language-bash inline">node -v</code> or <code is:raw class="language-bash inline">npm -v</code> and try again.
+	</p>
+	<p>
+		If you're still stuck, you can download
+		<a
+			href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-node-azure-pack"
+			class="underline"
+			target="_blank"
+			rel="nofollow noreferrer noopener external"
+		>
+			Azure tools plugin</a
+		>
+		into Visual Studio Code. You can then press CTRL&nbsp;+&nbsp;SHIFT&nbsp;+&nbsp;P (opens command palette) and execute the same commands using
+		<code is:raw class="language-bash inline">func</code> inside VSCode instead of terminal. However, I recommend this as a last option, because
+		the plugin has a few issues at the moment and the <code is:raw class="language-bash inline">func</code> CLI it uses (v2) is deprecated.
+	</p>
+
+	<Heading level="2" text="First project - Simple HTTP API endpoint" />
+	<p>Prerequisites:</p>
+	<ul>
+		<li>Created Azure Functions resource</li>
+		<li>Ready to use development environment</li>
+	</ul>
+	<Heading level="3" text="Project creation" />
+	<p>
+		Once we have the environment set up, we can start creating a new project. Since this is a first project, we're going to go step by step
+		through the creation process. As a first step, cd into the location, where you want to create this new project. Then run the following
+		command:
+	</p>
+	<pre class="code-wrapper small"><code is:raw class="language-bash">func init</code></pre>
+	<p>
+		Once you ran this command, a list of options will appear, use the arrow keys to decide what type of project you want to create. In our case,
+		we'll hover over to "node" and press ENTER. Next we get to decide the language to use. In our case, we'll select Javascript. Once we make the
+		choice, we should get the following project structure:
+	</p>
+	<BlogPostImage src="./azure-functions-structure-before-adding-trigger.jpg" width="200px" caption="Project structure before adding HTTP trigger" />
+	<p>
+		Nice! Now, we have a new project ready, all we need to do, now is add various endpoints or event handlers to it. We can do this with the
+		following command:
+	</p>
+	<pre class="code-wrapper small"><code is:raw class="language-bash">func new</code></pre>
+	<p>
+		This command may take some time, but when it loads, you should see a table of different triggers. Using arrows, once again, hover over to the
+		HTTP trigger and select it using ENTER. Next, you'll be asked for a trigger / function name. This name will be the name of the folder and
+		trigger generated. In our case, we'll leave it as a default <code is:raw class="language-bash inline">HttpTrigger</code>. Your folder
+		structure should look like this:
+	</p>
+	<BlogPostImage src="./azure-functions-structure-after-adding-trigger.webp" width="200px" caption="Project structure after adding HTTP trigger" />
+	<p>
+		In the newly generated folder, there are 2 files (index.js and functions.json). However, right now, we're only interested in the index.js,
+		because it's the place we'll be writing our code. That being said, functions.json is also an important file as it contains the trigger
+		settings - if you're interested in learning more about these settings, Microsoft has
+		<a
+			href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference?tabs=blob"
+			class="underline"
+			target="_blank"
+			rel="nofollow noreferrer noopener external"
+		>
+			good-enough documentation</a
+		>
+		about it.
+	</p>
+	<p>Inside your HttpTriger/index.js, you should have basic pre-generated "Hello World" code that looks like this:</p>
+	<pre class="code-wrapper small"><code is:raw class="language-js">module.exports = async function (context, req) {
+  context.log("JavaScript HTTP trigger function processed a request.");
+ 
+  const name = req.query.name || (req.body && req.body.name);
+  const responseMessage = name ? "Hello, " + name + ". This HTTP triggered function executed successfully." : "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.";
+ 
+  context.res = {
+    // status: 200, /* Defaults to 200 */
+    body: responseMessage,
+  };
+};
+</code></pre>
+
+	<Heading level="3" text="Running and debugging the project" />
+	<p>
+		If you're following along, now comes the most important part, we can finally start our project. You can do this by running the following
+		command:
+	</p>
+	<pre class="code-wrapper small"><code is:raw class="language-bash">func start</code></pre>
+	<p>
+		This command will start the project locally. After starting, the program reports which endpoints are available and continually prints out a
+		log of what it is doing. If you'd like more detailed logging than what is currently being printed, append a
+		<code is:raw class="language-bash inline">--verbose</code> flag to the previous command. If you're using VSCode, you can also enter this
+		command via the command palette, or just click F5.
+	</p>
+
+	<Heading level="3" text="Publishing to Azure" />
+	<p>Once we have tested our project locally, we can easily publish it by running the following command:</p>
+	<pre class="code-wrapper small"><code is:raw class="language-bash">func azure functionapp publish {name of the azure resource}</code></pre>
+	<p>Chances are, that this command threw you an error. Most likely the error looked like this:</p>
+	<pre
+		class="code-wrapper small"
+	><code is:raw class="language-bash">Unable to connect to Azure. Make sure you have the `az` CLI or `Az.Accounts` PowerShell module installed and logged in and try again</code></pre>
+	<p>
+		In order to publish to Azure Functions, we need to install
+		<a
+			href="https://learn.microsoft.com/en-us/cli/azure/what-is-azure-cli"
+			class="underline"
+			target="_blank"
+			rel="nofollow noreferrer noopener external"
+		>
+			Azure CLI</a
+		>. You can easily download this CLI from
+		<a
+			href="https://learn.microsoft.com/en-us/cli/azure/install-azure-cli"
+			class="underline"
+			target="_blank"
+			rel="nofollow noreferrer noopener external"
+		>
+			Microsoft documentation</a
+		>. Once you've installed the Azure CLI, all you have to do is restart your terminal (or refresh path), run
+		<code is:raw class="language-bash inline">az login</code>
+		and pick up where we left off (Re-enter the command above).
+	</p>
+	<p>
+		Voiala, this is the end of the first project. We have created a HTTP trigger, we tested it locally and the pusblished it to Azure Functions.
+		Don't worry, the next two are more interesting :D!
+	</p>
+
+	<Heading level="2" text="Second project - More complex HTTP API endpoint" />
+	<p>
+		You might be wondering, "What am I going to build in this project?" We will be developing a simple Azure Functions HTTP Trigger endpoint that
+		converts an image into ASCII art.
+	</p>
+	<p>Technical specification: User sends a Base64 text to our endpoint, and it returns the ASCII art in response.</p>
+	<p>For those unfamiliar with ASCII art, here's an example produced by the code we're going to create:</p>
+	<BlogPostImage src="./azure-functions-ascii-art-final-example.jpg" width="500px" caption="ASCII art of the famous Mona Lisa painting" />
+	<p>Prerequisites:</p>
+	<ul>
+		<li>Ready to use development environment</li>
+	</ul>
+	<p>
+		Furthermore, to spice things up, we will develop this project in Python. What does that mean for you? Well, just that you have to select on
+		Azure that you want the project to be written in Python, and you also have to select Python after the
+		<code is:raw class="language-bash inline">func init</code> command. But nothing else changes. That's the beauty of Azure Functions, once you
+		have it set up, it can be written in most popular languages without any problems. Lastly, you then add a new HTTP Trigger via
+		<code is:raw class="language-bash inline">func new</code>. We'll use this trigger to convert images to ASCII art.
+	</p>
+	<p>After completing the steps above, your project structure should look like this:</p>
+	<BlogPostImage src="./azure-functions-second-project-structure.webp" width="200px" caption="Project structure after following steps above" />
+	<p>
+		Notice how the structure of this project differs from the Node.js project. If you're interested in what each file in the project does, you can
+		go ahead and read <code is:raw class="language-bash inline">getting_started.md</code>. But for us, the main files will be
+		<code is:raw class="language-bash inline">requirements.txt</code> and <code is:raw class="language-bash inline">__init__.py</code>. The
+		<code is:raw class="language-bash inline">requirements.txt</code> file lists all the packages we'll be using. We then write the program itself
+		into <code is:raw class="language-bash inline">__init__.py</code>, which should currently have following pre-generated code:
+	</p>
+	<pre class="code-wrapper medium"><code is:raw class="language-python">import logging
+import azure.functions as func
+ 
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
+ 
+    name = req.params.get('name')
+    if not name:
+        try:
+            req_body = req.get_json()
+        except ValueError:
+            pass
+        else:
+            name = req_body.get('name')
+ 
+    if name:
+        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
+    else:
+        return func.HttpResponse(
+             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
+             status_code=200
+        )
+</code></pre>
+
+	<Heading level="3" text="Creating the main functionality" additionalUniqueIdentifier="second-project" />
+	<p>
+		As a first step, we need to clean up the <code is:raw class="language-bash inline">__init__.py</code> file a bit to remove the "Hello World"
+		bloat :D.
+	</p>
+	<pre class="code-wrapper small"><code is:raw class="language-python">import logging
+import azure.functions as func
+ 
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP endpoint triggered.')
+ 
+    return func.HttpResponse(
+        "This HTTP triggered function executed successfully.",
+        status_code=200
+    )
+</code></pre>
+	<p>
+		Already looks better! Now we have a clean application that only returns HTTP code 200 and a message. We can assume that our application will
+		receive a lot of data per request, so it's a good idea to outright deny requests other than POST. We do this by going to
+		<code is:raw class="language-bash inline">functions.json</code> and changing the methods field to
+		<code is:raw class="language-bash inline">["post"]</code> only.
+	</p>
+	<p>Now that we have everything set up we just need to program the conversion of base64 images into ASCII art.</p>
+	<p>Logically, the first thing we need is to code in, is retrieving the picture from the request body:</p>
+	<pre class="code-wrapper"><code is:raw class="language-python">image_obj = {}
+try:
+    req_body = req.get_json()
+except ValueError:
+    pass
+else:
+    image_obj = req_body.get('image_obj')
+ 
+if not image_obj:
+    return func.HttpResponse(
+        "Please send base64 'image_obj' argument",
+        status_code=422
+    )
+</code></pre>
+	<p>
+		Next, we'll need to add some image-processing libraries. That's the purpose of the
+		<code is:raw class="language-bash inline">requirements.txt</code> file. Our project will need the following libraries:
+		<code is:raw class="language-bash inline">PIL</code>, <code is:raw class="language-bash inline">io</code>,
+		<code is:raw class="language-bash inline">base64</code>. All you have to do to "install" libraries is write them into the
+		<code is:raw class="language-bash inline">requirements.txt</code>. Your file should then look like this:
+	</p>
+	<pre
+		class="code-wrapper small"
+	><code is:raw class="language-bash"># Do not include azure-functions-worker as it may conflict with the Azure Functions platform
+azure-functions #Should be there by default
+PIL
+io
+base64
+</code></pre>
+	<p>
+		After adding the packages, we can use them in our project by importing them at the top of the
+		<code is:raw class="language-bash inline">__init__.py</code> file.
+	</p>
+	<pre class="code-wrapper"><code is:raw class="language-python">import logging
+import azure.functions as func
+ 
+from PIL import Image
+from io import BytesIO
+import base64
+</code></pre>
+	<p>
+		After a long setup, we can finally start processing the image itself. First we need to convert the image from base64 to Image type. Next we
+		adjust the resolution of the image, because we don't want our ASCII art to be huge. The last thing we'll do is convert our image to black and
+		white.
+	</p>
+	<pre class="code-wrapper"><code is:raw class="language-python">img = Image.open(BytesIO(base64.b64decode(image_obj)))
+ 
+new_width = 180
+width, height = img.size
+aspect_ratio = height/width
+new_height = aspect_ratio * new_width * 0.55
+img = img.resize((new_width, int(new_height)))
+ 
+# Convert image to black and white
+img = img.convert('L')
+</code></pre>
+	<p>
+		Once we've processed the image, we need to go pixel by pixel, take the value, and assign it to a predefined character, put the ASCII art
+		together and set it back in HTTP response. That's what this piece of code does:
+	</p>
+	<pre class="code-wrapper"><code is:raw class="language-python">chars = ["@", "#", "$", "%", "?", "*", "+", ";", ":", ",", "."]    
+ 
+pixels = img.getdata()
+ 
+new_pixels = [chars[pixel//25] for pixel in pixels]
+new_pixels = ''.join(new_pixels)
+ 
+new_pixels_count = len(new_pixels)
+ascii_image = [new_pixels[index:index + new_width] for index in range(0, new_pixels_count, new_width)]
+ascii_image = "\n".join(ascii_image)
+ 
+logging.info(ascii_image)
+ 
+return func.HttpResponse(
+    ascii_image,
+    status_code=200
+)
+</code></pre>
+	<p>Finished version of the trigger code should look like this:</p>
+	<pre class="code-wrapper"><code is:raw class="language-python">import logging
+import azure.functions as func
+ 
+from PIL import Image
+from io import BytesIO
+import base64
+ 
+# Set constants 
+new_width = 180
+chars = ["@", "#", "$", "%", "?", "*", "+", ";", ":", ",", "."]
+ 
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    # Log that endpoint has been triggered
+    logging.info('Python HTTP endpoint triggered.')
+ 
+    # Try get image from req body
+    image_obj = {}
+    try:
+        req_body = req.get_json()
+    except ValueError:
+        pass
+    else:
+        image_obj = req_body.get('image_obj')
+     
+    if not image_obj:
+        return func.HttpResponse(
+            "Please send base64 'image_obj' argument",
+            status_code=422
+        )
+ 
+    img = Image.open(BytesIO(base64.b64decode(image_obj)))
+ 
+    width, height = img.size
+    aspect_ratio = height/width
+    new_height = aspect_ratio * new_width * 0.55
+    img = img.resize((new_width, int(new_height)))
+ 
+    # Convert image to black and white
+    img = img.convert('L')
+     
+    pixels = img.getdata()
+ 
+    new_pixels = [chars[pixel//25] for pixel in pixels]
+    new_pixels = ''.join(new_pixels)
+ 
+    new_pixels_count = len(new_pixels)
+    ascii_image = [new_pixels[index:index + new_width] for index in range(0, new_pixels_count, new_width)]
+    ascii_image = "\n".join(ascii_image)
+ 
+    logging.info(ascii_image)
+ 
+    return func.HttpResponse(
+        ascii_image,
+        status_code=200
+    )
+</code></pre>
+
+	<Heading level="3" text="Test out our endpoint" />
+	<p>
+		Since our function only accepts POST requests, and we're programmers, we should write our own code to test it out. Since this project is using
+		Python, we'll write the code to test our endpoint in Python.
+	</p>
+	<p>
+		To recap, we have an endpoint that accepts POST requests and requires a JSON with an image variable in the request body. This variable must be
+		base64 data of an image. Once we send out correctly formatted request, we get back ASCII art representation of the image sent. For the purpose
+		of testing, let's say that we then want to save this ASCII art to a txt file, so we can keep it for bragging purposes :D.
+	</p>
+	<pre
+		class="code-wrapper"
+	><code is:raw class="language-python"># If you're missing any of the dependencies listed, install them using: pip install {name}
+import requests
+import json
+ 
+url = "http://localhost:7071/api/HttpTrigger"
+ 
+payload = json.dumps({
+  "image_obj": "{place_image_base64}"
+})
+headers = {
+  'Content-Type': 'application/json'
+}
+ 
+response = requests.request("POST", url, headers=headers, data=payload)
+ 
+with open("ASCII_art.txt", "w") as text_file:
+    text_file.write(response.text)
+</code></pre>
+	<p>
+		And that's it! You should have simple working API. You can now do whatever you want with it :D. This project was heavily inspired by the
+		<a
+			href="https://dev.to/anuragrana/generating-ascii-art-from-colored-image-using-python-4ace"
+			class="underline"
+			target="_blank"
+			rel="nofollow noreferrer noopener external"
+		>
+			following article</a
+		>, where the author describes more in detail, how the pixel-to-ASCII conversion actually works and I heavily recommend reading it as well.
+	</p>
+
+	<Heading level="2" text="Third project - Timer Trigger" />
+	<p>
+		Timer Trigger is a piece of code that runs at a given time based on CRON settings. Use case examples could include, sending an email every day
+		at 8:00 (which is what we're going to build) This is basically a serverless crontab
+	</p>
+	<p>Prerequisites:</p>
+	<ul>
+		<li>Ready to use development environment</li>
+	</ul>
+
+	<Heading level="3" text="Setup" />
+	<p>
+		To create the project we need to run the command <code is:raw class="language-bash inline">func init</code>, select
+		<code is:raw class="language-bash inline">node</code>, and then select <code is:raw class="language-bash inline">javascript</code>. Once we
+		have a project created, we need to add a timer trigger to it. So run the <code is:raw class="language-bash inline">func new</code>. If it
+		takes a while, don't worry. This is normal for new projects Once your menu loads select
+		<code is:raw class="language-bash inline">Timer Trigger</code> (at the bottom). Next, you need to run the following command:
+	</p>
+	<pre class="code-wrapper"><code is:raw class="language-bash">func settings add AzureWebJobsStorage UseDevelopmentStorage=true
+</code></pre>
+	<p>
+		We need to do this because Timer Trigger requires an Azure Storage account / connection. If you ever wanted to publish this, you'll need to
+		run the command above again, but this time instead of <code is:raw class="language-bash inline">UseDevelopmentStorage=true</code>, pass it
+		your Azure Storage connection string as an argument.
+	</p>
+	<p>
+		At this point, we need to do one more thing, which is to turn on the Azure Storage emulator. To do this, go into the
+		<code is:raw class="language-bash inline">C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator</code> directory. Open your terminal
+		here and enter the following 2 commands. First command will create an Azure Storage instance locally and the second one will turn on the
+		created instance on. The first command is: <code is:raw class="language-bash inline">./AzureStorageEmulator.exe init</code>. The second
+		command is: <code is:raw class="language-bash inline">./AzureStorageEmulator.exe start</code>.
+	</p>
+	<p>If everything worked, you should have the following project structure:</p>
+	<BlogPostImage src="./azure-functions-third-project-structure.webp" width="200px" caption="Project structure after following the steps above" />
+	<p>
+		Check out the folder with your trigger's name. It has a file named <code is:raw class="language-bash inline">readme.md</code> which I suggest
+		you read, but for now, we'll only focus on following two files.
+	</p>
+	<p class="strong-text">First one is function.json</p>
+	<pre class="code-wrapper"><code is:raw class="language-json">{
+  "bindings": [
+    {
+      "name": "myTimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 */5 * * * *"
+    }
+  ]
+}
+</code></pre>
+	<p class="strong-text">Second one is index.js</p>
+	<pre class="code-wrapper"><code is:raw class="language-js">module.exports = async function (context, myTimer) {
+    var timeStamp = new Date().toISOString();
+     
+    if (myTimer.IsPastDue)
+    {
+        context.log('JavaScript is running late!');
+    }
+    context.log('JavaScript timer trigger function ran!', timeStamp);   
+};
+</code></pre>
+
+	<Heading level="3" text="Creating the main functionality" additionalUniqueIdentifier="third-project" />
+	<p>
+		For development purposes, let's just make this function run every 5 seconds for now. We can achieve this by editing
+		<code is:raw class="language-bash inline">function.json</code>
+	</p>
+	<pre class="code-wrapper"><code is:raw class="language-json">{
+  "bindings": [
+    {
+      "name": "myTimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "*/5 * * * * *"
+    }
+  ]
+}
+</code></pre>
+	<p>
+		Let's test if everything works by making the function run every 5 seconds and logging some output to the console. We can achieve this by
+		editing <code is:raw class="language-bash inline">index.js</code>
+	</p>
+	<pre class="code-wrapper small"><code is:raw class="language-js">module.exports = async function (context, myTimer) {
+  console.log("Function ran correctly.");
+};
+</code></pre>
+	<p>
+		Start the app using the <code is:raw class="language-bash inline">func start</code> command and you should see the text
+		<code is:raw class="language-bash inline">Function ran correctly.</code>
+		appear in console every 5 seconds
+	</p>
+	<p>
+		Everything works? Great, that was the initial setup to test everything working, and now we can get to sending emails. Since we want to
+		simplify the process as much as we can, we'll install the Nodemailer library to send emails for us using generated temp accounts. We do this
+		with the following command:
+	</p>
+	<pre class="code-wrapper small"><code is:raw class="language-bash">npm install nodemailer</code></pre>
+	<p>
+		The next thing we need to do is: connect to the SMTP server with our data. In our case, we will use the SMTP server provided by Nodemailer
+		with the possibility of generating a new temporary account:
+	</p>
+	<pre class="code-wrapper"><code is:raw class="language-js">const nodemailer = require("nodemailer");
+ 
+module.exports = async function (context, myTimer) {
+  let testAcc = await nodemailer.createTestAccount();
+ 
+  let transporter = nodemailer.createTransport({
+    host: "smtp.ethereal.email",
+    port: 587,
+    secure: false, // true for 465, false for every other port
+    auth: {
+      user: testAcc.user, // generated ethereal username
+      pass: testAcc.pass, // generated ethereal password
+    },
+  });
+};
+</code></pre>
+	<p>Lastly, we want to send the email itself. This can be done using following:</p>
+	<pre class="code-wrapper medium"><code is:raw class="language-js">const nodemailer = require("nodemailer");
+ 
+module.exports = async function (context, myTimer) {
+  let testAcc = await nodemailer.createTestAccount();
+ 
+  let transporter = nodemailer.createTransport({
+    host: "smtp.ethereal.email",
+    port: 587,
+    secure: false, // true for 465, false for every other port
+    auth: {
+      user: testAcc.user, // generated ethereal username
+      pass: testAcc.pass, // generated ethereal password
+    },
+  });
+ 
+  let messageInfo = await transporter.sendMail({
+    from: '"Examle" < foo@example.com >',
+    to: "bar@example.com, baz@example.com",
+    subject: "Example email",
+    text: "Hello world?",
+  });
+ 
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(messageInfo));
+};
+</code></pre>
+
+	<Heading level="3" text="How to CRON" />
+	<p>
+		Simply put, the timer schedule for timer trigger execution is set using
+		<a href="https://en.wikipedia.org/wiki/Cron#CRON_expression" class="underline" target="_blank" rel="nofollow noreferrer noopener external">
+			standardized cron expressions</a
+		>. The pattern is <code is:raw class="language-bash inline">{seconds} {minutes} {hours} {days} {months} {days of the week}</code>
+		with each part being represented by an asterisk (<code is:raw class="language-bash inline">*</code>) which means
+		<code is:raw class="language-bash inline">"Every"</code>. The <code is:raw class="language-bash inline">"/"</code> symbol followed by a number
+		represents the frequency of the action, for example, every 5 seconds would be <code is:raw class="language-bash inline">*/5 * * * * </code>,
+		but every fifth second in a minute would look like this: <code is:raw class="language-bash inline">5 * * * * *</code>.
+	</p>
+	<p>
+		So, to send emails every day at 8am, the expression would be <code is:raw class="language-bash inline">* * 8 * * *</code>, all that remains is
+		to enter it into the <code is:raw class="language-bash inline">function.json</code> file and publish it to Azure.
+	</p>
+	<pre class="code-wrapper medium"><code is:raw class="language-json">{
+  "bindings": [
+    {
+      "name": "myTimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "* * 8 * * *"
+    }
+  ]
+}
+</code></pre>
+</BlogPost>

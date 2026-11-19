@@ -1,0 +1,58 @@
+---
+import Img from '../../components/Img.astro';
+import Default from '../../layouts/Default.astro';
+---
+
+<Default
+	title="About me"
+	description="Who I am: a developer from Prague at MONETA Money Bank, Applied Informatics student at VŠE, working on C++ and Linux performance on the side."
+	seoKeywords="about me, background"
+	current="About"
+>
+	<h1 class="page-title">About me</h1>
+	<div class="about">
+		<figure class="about-figure">
+			<Img
+				class="about-photo"
+				src="/assets/img/about-me-photo-above-the-clouds.jpg"
+				widths={[256, 352, 704]}
+				sizes="(max-width: 48rem) 8rem, 22rem"
+				alt="Tomáš Diblík sitting on a rock above the clouds at sunrise"
+				fetchpriority="high"
+			/>
+			<figcaption>Madeira, sunrise near the PR1 trail</figcaption>
+		</figure>
+		<div class="about-text">
+			<p>
+				Hi, I'm Tomáš Diblík (male, 2005, currently in Prague). I've been shipping production software since 2020. Right now I work as a
+				Developer at
+				<a href="https://www.moneta.cz/">MONETA Money Bank</a> (mostly frontend in TypeScript and React, with some Java on the backend) and I
+				study Applied Informatics at VŠE (graduating in 2028).
+			</p>
+
+			<p>
+				I prefer long-term work projects, which (unfortunately) can't be open sourced, but I write <a href="/pages/blog">blog posts</a>
+				about the interesting parts. I love that the software I create makes people's day-to-day work easier, and I like it when they
+				appreciate or constructively criticize it. To be honest, I get a really strong adrenaline rush every time a complex program I've spent
+				months on finally runs correctly and fast.
+			</p>
+
+			<p>
+				Outside of work, I like programming stuff just for fun. Lately it's mostly low-level performance work in C++ (that's where I want to
+				grow), some embedded work, 3D printing, TUIs, or tools I wish existed.
+			</p>
+
+			<p>
+				I also love to travel. To break the ice, ask me about Madeira, Albania, or driving a '97 Škoda Octavia with 350k km on the clock to
+				the Netherlands for the tulip season, I've got some crazy stories from all of them.
+			</p>
+
+			<p>
+				I've also done a couple of hackathons and taught a programming course, more on the
+				<a href="/pages/work-experience#teaching-and-hackathons">Experience page</a>.
+			</p>
+
+			<p>English is my second language, so if you spot a mistake, please <a href="mailto:dibla.tomas@post.cz">let me know</a>.</p>
+		</div>
+	</div>
+</Default>

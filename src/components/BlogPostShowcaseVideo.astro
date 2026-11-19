@@ -1,0 +1,31 @@
+---
+interface Props {
+	src: string;
+	isVertical?: boolean;
+	videoType?: string;
+}
+
+const { src, isVertical = false, videoType = 'video/webm' } = Astro.props;
+---
+
+<figure style="text-align: center;">
+	<video
+		class:list={['blog-post-video', { vertical: isVertical }]}
+		poster={`${src}-video-preview-thumbnail.webp`}
+		preload="metadata"
+		controls="false"
+		crossorigin="anonymous"
+		muted
+	>
+		<source src={src} type={videoType} />
+	</video>
+
+	<figcaption class="small-text" style="text-align: center;">
+		(if the video glitches,
+		<a href={Astro.url.pathname.replace(/\.html$/, '')} class="small-text underline">refresh the page</a>
+		or
+		<a href={src} class="small-text underline" target="_blank">view it in a new tab</a>
+		or
+		<a href={src} class="small-text underline" target="_blank" download>download it</a>)
+	</figcaption>
+</figure>

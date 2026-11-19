@@ -1,0 +1,100 @@
+---
+import { highlightCode } from '../lib/highlight';
+import { squish } from '../lib/liquid';
+import { buildToc, injectAnchors } from '../lib/toc';
+import Default from './Default.astro';
+
+export interface CoAuthor {
+	name: string;
+	href: string;
+}
+
+interface Props {
+	title: string;
+	description: string;
+	seoKeywords?: string;
+	showToc?: boolean;
+	postReleaseDate: string;
+	postCategory: 'Tutorial' | 'Technical' | 'PR' | 'Personal';
+	postCoAuthors?: CoAuthor[];
+	postIntroduction: string;
+}
+
+const { title, description, seoKeywords, showToc = false, postReleaseDate, postCategory, postCoAuthors, postIntroduction } = Astro.props;
+
+const introduction = squish(postIntroduction);
+const [day, month, year] = postReleaseDate.split('-');
+const isoDate = `${year}-${month}-${day}`;
+
+const categoryNames: Record<Props['postCategory'], string> = {
+	Tutorial: 'Tutorial',
+	Technical: 'Technical',
+	PR: 'Project story',
+	Personal: 'Personal',
+};
+
+const { html: content, headings } = injectAnchors(highlightCode(await Astro.slots.render('default')));
+const toc = buildToc(headings);
+---
+
+<Default
+	title={title}
+	description={description}
+	seoKeywords={seoKeywords}
+	blogPost={{
+		category: postCategory,
+		releaseDate: postReleaseDate,
+	}}
+>
+	<article class="post">
+		<header class="post-header">
+			<p class="small"><a href="/pages/blog">Blog</a></p>
+			<h1>{title}</h1>
+			<dl class="post-meta">
+				<dt class="visually-hidden">Published</dt>
+				<dd><time datetime={isoDate}>{`${month}/${year}`}</time></dd>
+				<dt class="visually-hidden">Category</dt>
+				<dd>{categoryNames[postCategory]}</dd>
+				{postCoAuthors && (
+					<>
+						<dt>Co-authored by</dt>
+						<dd>
+							{postCoAuthors.map((author, i) => (
+								<>
+									<a href={author.href}>{author.name}</a>
+									{i < postCoAuthors.length - 1 && ', '}
+								</>
+							))}
+						</dd>
+					</>
+				)}
+			</dl>
+			<p class="post-intro" set:html={introduction} />
+		</header>
+
+		{showToc && headings.length > 0 && (
+			<div class="toc-wrap">
+				<nav class="toc" aria-labelledby="toc-title">
+					<h2 id="toc-title">Contents</h2>
+					<Fragment set:html={toc} />
+				</nav>
+			</div>
+		)}
+
+		<div class="prose">
+			<Fragment set:html={content} />
+		</div>
+
+		<footer class="post-footer">
+			<p>
+				If you have any questions, problems or want to start a discussion, don't hesitate to
+				<a href="mailto:dibla.tomas@post.cz">write me an email</a>.
+			</p>
+			<p class="small muted">
+				Disclaimer: The opinions, views and values expressed in this post are solely my own and do not reflect the opinions, views and values
+				of my current or past employer, any open source groups I am or have been involved with, or any other groups/organizations I am or have
+				been associated with.
+			</p>
+		</footer>
+	</article>
+</Default>

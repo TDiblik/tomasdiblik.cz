@@ -1,0 +1,55 @@
+---
+import Img from '../../components/Img.astro';
+import Section from '../../components/Section.astro';
+import { CERTIFICATION_GROUPS } from '../../data/certifications';
+import Default from '../../layouts/Default.astro';
+
+const ZONES = Array.from({ length: 25 });
+const formatDate = (date: string) => (date.length === 4 ? date : `${date.slice(5, 7)}/${date.slice(0, 4)}`);
+const slug = (name: string) =>
+	name
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-|-$/g, '');
+---
+
+<Default
+	title="Certifications"
+	description="My certifications: Cambridge C1 Advanced, Microsoft and Cisco fundamentals, Microsoft Office Specialist and the Microsoft Student Trainee Center."
+	seoKeywords="certifications, Cambridge C1 Advanced, Microsoft, Cisco"
+	current="Certifications"
+>
+	<h1 class="page-title">Certifications</h1>
+	{CERTIFICATION_GROUPS.map((group) => (
+		<Section title={group.name} id={slug(group.name)}>
+			<ul class="badges">
+				{group.items.map((certification) => (
+					<li>
+						<a href={certification.href} class="badge">
+							<span class="badge-tilt">
+								<Img
+									src={certification.image}
+									widths={[340, 680]}
+									sizes="(max-width: 40rem) 80vw, 12rem"
+									alt={`${certification.name} certificate`}
+									loading="lazy"
+									decoding="async"
+								/>
+							</span>
+							<span class="badge-zones" aria-hidden="true">
+								{ZONES.map(() => (
+									<span />
+								))}
+							</span>
+						</a>
+						<p class="badge-caption">
+							{certification.name}
+							<br />
+							<time datetime={certification.date}>{formatDate(certification.date)}</time>
+						</p>
+					</li>
+				))}
+			</ul>
+		</Section>
+	))}
+</Default>

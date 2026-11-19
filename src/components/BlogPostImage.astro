@@ -1,0 +1,44 @@
+---
+import { getImage } from 'astro:assets';
+import { resolveBlogImage } from '../lib/assets';
+import { squish } from '../lib/liquid';
+import Img from './Img.astro';
+
+interface Props {
+	src: string;
+	caption?: string;
+	alt?: string;
+	width?: string;
+	imgSource?: string;
+	imgSourceHref?: string;
+}
+
+const { src, caption = '', alt, width = '', imgSource, imgSourceHref } = Astro.props;
+const source = resolveBlogImage(Astro.url.pathname, src);
+const fullImage = await getImage({ src: source });
+const imageAlt = alt ?? `Picture of ${squish(caption)}`.toLowerCase();
+---
+
+<figure class="image-container" style={width ? `max-width: ${width};` : undefined}>
+	<a href={fullImage.src} target="_blank">
+		<Img
+			src={source}
+			widths={[480, 800, 1140, 1600, 2280]}
+			sizes={`min(100vw, ${width || '66ch'})`}
+			alt={imageAlt}
+			loading="lazy"
+			decoding="async"
+		/>
+	</a>
+	<figcaption class="small-text">
+		<Fragment set:html={caption} />
+		{imgSource && (
+			<>
+				{' | '}
+				<a href={imgSourceHref} class="small-text strong-text underline" rel="nofollow noreferrer noopener external">
+					{imgSource}
+				</a>
+			</>
+		)}
+	</figcaption>
+</figure>

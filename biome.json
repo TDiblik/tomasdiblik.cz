@@ -1,0 +1,92 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+	"files": {
+		"ignoreUnknown": true,
+		"includes": ["**", "!!**/dist", "!!**/.astro", "!!**/*.d.ts", "!!**/*.svg"]
+	},
+	"overrides": [
+		{
+			"includes": ["src/styles/global.css"],
+			"linter": { "rules": { "style": { "noDescendingSpecificity": "off" } } }
+		}
+	],
+	"formatter": {
+		"enabled": true,
+		"formatWithErrors": false,
+		"indentStyle": "tab",
+		"indentWidth": 4,
+		"lineEnding": "crlf",
+		"lineWidth": 150,
+		"attributePosition": "auto",
+		"bracketSameLine": false,
+		"bracketSpacing": true,
+		"expand": "auto"
+	},
+	"linter": {
+		"enabled": true,
+		"domains": {
+			"astro": "recommended"
+		},
+		"rules": {
+			"preset": "recommended",
+			"suspicious": {
+				"noThenProperty": "off",
+				"noConfusingVoidType": "off",
+				"noDocumentCookie": "off"
+			},
+			"correctness": {
+				"useExhaustiveDependencies": "off",
+				"useHookAtTopLevel": "error",
+				"useJsxKeyInIterable": "error",
+				"noNestedComponentDefinitions": "error",
+				"noVoidTypeReturn": "error",
+				"noInvalidUseBeforeDeclaration": "error"
+			},
+			"style": {
+				"noNonNullAssertion": "off",
+				"useComponentExportOnlyModules": "error"
+			},
+			"complexity": {
+				"noImportantStyles": "off"
+			},
+			"a11y": {
+				"noStaticElementInteractions": "off",
+				"useKeyWithClickEvents": "off",
+				"useKeyWithMouseEvents": "off"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"jsxQuoteStyle": "double",
+			"quoteProperties": "asNeeded",
+			"trailingCommas": "es5",
+			"semicolons": "always",
+			"arrowParentheses": "always",
+			"bracketSameLine": false,
+			"quoteStyle": "single",
+			"attributePosition": "auto",
+			"bracketSpacing": true
+		}
+	},
+	"html": {
+		"experimentalFullSupportEnabled": true,
+		"formatter": {
+			"enabled": true,
+			"indentScriptAndStyle": false,
+			"selfCloseVoidElements": "always"
+		}
+	},
+	"assist": {
+		"enabled": true,
+		"actions": { "source": { "organizeImports": "on" } }
+	},
+	"json": {
+		"formatter": {
+			"trailingCommas": "none",
+			"enabled": true,
+			"expand": "auto"
+		}
+	}
+}

@@ -1,0 +1,116 @@
+---
+import BlogPostShowcaseVideo from '../../../../../components/BlogPostShowcaseVideo.astro';
+import Heading from '../../../../../components/Heading.astro';
+import BlogPost from '../../../../../layouts/BlogPost.astro';
+---
+
+<BlogPost
+	title="Bruteforce default strava.cz login"
+	description="New strava.cz accounts came with the same username and password, and usernames just go up by one. A proof of concept of how easy that is to abuse."
+	seoKeywords="strava.cz, bruteforce, education"
+	showToc
+	postReleaseDate="27-04-2023"
+	postCategory="Technical"
+	postIntroduction="One day, my friend noticed that when you get a strava.cz account, intentionally or not, username and password are the same - at least at the place we got our accounts from. Also, account's username is a number that goes up gradually - again, at least at the place we got our accounts from. We wondered how many people did not change their default passwords (being same as given username). This tool is a proof of concept .... or .... This is what happens when I get bored on saturdays .... ba dum tss (I am 100% aware that was a really lame joke)"
+>
+	<Heading level="2" text="Showcase" />
+	<BlogPostShowcaseVideo src="./showcase-bruteforcing-in-action.webm" />
+
+	<Heading level="2" text="What's the problem?" />
+	<p>
+		New/Existing strava.cz accounts from a specific canteen (I don't have data on other canteens) have default and predictable username +
+		password. Change is not enforced upon users, so some users may leave it like that. We can then send login requests using these predictable
+		credentials and obtain access to these accounts.
+	</p>
+
+	<Heading level="2" text="How big of a problem is this?" />
+	<p>
+		It's hard to tell without having internal data/statistics, but I believe that this specific "vulnerability" (arguable if it even is a
+		vulnerability) is not affecting a large chunk of users. I don't even know whether to call this a vulnerability, because it's no different than
+		running a script that goes through a rainbow table. However, I believe that the chunk of users that it affects could have a bad time :D. After
+		some digging, I found some interesting functionalities, that the potential attacker could use to cause some damage to the company's
+		reputation, presuming that the attacker has obtained a list of all vulnerable accounts using this "vulnerability", after running the
+		<a
+			href="https://github.com/TDiblik/strava_cz_bruteforce_default_login"
+			class="underline"
+			target="_blank"
+			rel="nofollow noreferrer noopener external"
+			>code provided</a
+		>
+		for like a month.
+	</p>
+	<ol>
+		<li>
+			Fun fact, if you want to reset e-mail or password, you can do that with 1 request (after obtaining authentication). NO need to login once
+			again, or confirm the reset through email, it just resets it. This means that the potential attacker could take the list of people with
+			default login and then massively reset everybody's email and password (causing irl Denial of Service).
+		</li>
+		<li>
+			If this potential attacker has a list of all vulnerable accounts, they could theoretically cancel everybody's lunches at the same time,
+			causing supply chain problems (if the number of vulnerable accounts is big enough).
+		</li>
+		<li>
+			As an attacker you could also use this "vulnerability" on a smaller scale, attacking individuals by changing their lunches or seeing part
+			of their schedule without "stalking them" in real-world (on the spot).
+		</li>
+	</ol>
+	<p>
+		The severity of all of these potential attacks depends on the number of vulnerable accounts, which I don't have, legally cannot find out and
+		won't take a guess.
+	</p>
+	<p>
+		Also, a bonus fun fact I came across while playing around with the website: You don't need a valid email address for registering new accounts
+		(or confirming the ownership of said email address). You can even have multiple accounts linked to one email address. How much of an issue is
+		this? I don't know ¯\_(ツ)_/¯, because I didn't decide to dig deeper as it's outside of the scope of this blog post.
+	</p>
+
+	<Heading level="2" text="How hard is this to 'exploit'?" />
+	<p>
+		First of all, I have only a basic level of understanding when it comes to black box penetration testing (atm). This whole program could have
+		been a simple bash for-loop. As a matter of fact, this is something that can be done by every average script-kiddie :/ (meaning, no fancy/cool
+		hacking techniques were used :D). Somebody could theoretically make this run as multiple tasks on multiple cores and scale somewhat well, at a
+		real-time of
+	</p>
+	<pre class="code-wrapper small"><code is:raw class="language-zsh">([r * k] / [t * c])
+  r => number_of_requests 
+  k => request response time 
+  t => tasks spawned 
+  c => cores used
+</code></pre>
+	<p>
+		however since this project is for educational purposes only, I am NOT going to implement that. Nevertheless, that approach should be currently
+		possible to implement, because AFAIK strava does not rate limit requests.
+	</p>
+
+	<Heading level="2" text="Possible fixes" />
+	<ol>
+		<li>
+			The obvious one is to not allow the same username and password (After first login show users page prompting them to change their password
+			or something...)
+		</li>
+		<li>Implement two factor authentication</li>
+		<li>Instruct administrators of canteens to use randomly generated usernames and passwords</li>
+		<li>Place already existing bot/spam prevention solution in front of the website (eg. Cloudflare's WAF)</li>
+		<li>
+			Rate limit login attempts using fingerprinting - although this could be penetrated by randomly changing values used for said
+			fingerprinting.
+		</li>
+	</ol>
+
+	<Heading level="2" text="Legal notice" />
+	<p>
+		The
+		<a
+			href="https://github.com/TDiblik/strava_cz_bruteforce_default_login"
+			class="underline"
+			target="_blank"
+			rel="nofollow noreferrer noopener external"
+			>code provided</a
+		>
+		is for educational purposes only and should not be used for any malicious or illegal activities. Any unauthorized use of this code is strictly
+		prohibited and violators will be held liable for their actions. The code is intended to be used solely for the purpose of learning and
+		understanding vulnerabilities and should not be executed on any systems without proper authorization and oversight. The author of this code
+		takes no responsibility for any actions taken by any party using this code and is not liable for any damages or harm caused as a result of its
+		use.
+	</p>
+</BlogPost>

@@ -1,0 +1,39 @@
+---
+import { formatPeriod, type Period } from '../data/profile';
+
+export interface TimelineItem {
+	title: string;
+	place: string;
+	placeHref?: string;
+	details?: string[];
+	period: Period;
+	description?: string;
+}
+
+interface Props {
+	items: TimelineItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<ol class="entries" reversed>
+	{items.map((item) => {
+		const period = formatPeriod(item.period);
+		return (
+			<li>
+				<div class="entry-head">
+					<h3 class="entry-title">
+						{item.title}, {item.placeHref ? <a href={item.placeHref}>{item.place}</a> : item.place}
+					</h3>
+					<span class="entry-date">
+						<time datetime={period.datetime}>{period.dates}</time>
+						{period.duration && ` (${period.duration})`}
+					</span>
+				</div>
+				{item.details && item.details.length > 0 && <p class="entry-meta">{item.details.join(', ')}</p>}
+				{item.description && <p class="entry-text" set:html={item.description} />}
+			</li>
+		);
+	})}
+</ol>

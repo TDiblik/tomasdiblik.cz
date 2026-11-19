@@ -1,0 +1,40 @@
+---
+import ProjectList from '../components/ProjectList.astro';
+import Section from '../components/Section.astro';
+import Timeline from '../components/Timeline.astro';
+import { ALSO, EDUCATION, JOBS } from '../data/profile';
+import { FEATURED } from '../data/projects';
+import Default from '../layouts/Default.astro';
+
+const byId = (id: string) => FEATURED.filter((project) => project.id === id);
+const selected = [...byId('cpp-web-server'), ...byId('main-gate-alpr'), ...byId('factory-monitoring')];
+
+const experience = JOBS.map((job) => ({ title: job.role, place: job.company, placeHref: job.companyHref, period: job.period }));
+const education = EDUCATION.map(({ description: _, ...entry }) => entry);
+const also = ALSO.map(({ description: _, ...entry }) => entry);
+---
+
+<Default
+	title="Home"
+	fullTitle="Tomáš Diblík - Developer, C++ & Linux performance on the side"
+	description="Tomáš Diblík, a developer at MONETA Money Bank from Prague. Shipping production software since 2020, working on C++ and Linux performance on the side."
+	seoKeywords="developer, C++, Linux, performance, Prague"
+	isHome
+>
+	<Section title="Selected work" id="selected-work">
+		<ProjectList projects={selected} />
+		<p class="small"><a href="/pages/projects">All projects</a></p>
+	</Section>
+
+	<Section title="Experience" id="experience">
+		<Timeline items={experience} />
+	</Section>
+
+	<Section title="Education" id="education">
+		<Timeline items={education} />
+	</Section>
+
+	<Section title="Teaching and hackathons" id="teaching-and-hackathons">
+		<Timeline items={also} />
+	</Section>
+</Default>

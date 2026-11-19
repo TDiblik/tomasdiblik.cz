@@ -1,0 +1,63 @@
+---
+import ProjectList from '../../components/ProjectList.astro';
+import Section from '../../components/Section.astro';
+import Timeline from '../../components/Timeline.astro';
+import { ALSO, CONTACT, EDUCATION, JOBS, SKILLS, TAGLINE } from '../../data/profile';
+import { FEATURED } from '../../data/projects';
+import Default from '../../layouts/Default.astro';
+
+const jobs = JOBS.map((job) => ({
+	title: job.role,
+	place: job.company,
+	placeHref: job.companyHref,
+	details: [`${job.employment}, ${job.location}`],
+	period: job.period,
+	description: job.description,
+}));
+const education = EDUCATION.map((entry) => ({ ...entry, details: entry.detail ? [entry.detail] : [] }));
+const cvProjects = FEATURED.filter((project) => !['7941W RFID card cloner', 'Lunch Ordering and Management System'].includes(project.name));
+---
+
+<Default
+	title="Experience"
+	description="My experience and CV: Developer at MONETA Money Bank, 4 years of in-house software at VPSR, a PwC internship, education, hackathons and side projects."
+	seoKeywords="work experience, CV, resume, education, hackathons"
+	current="Experience"
+>
+	<article class="cv">
+		<header class="cv-header">
+			<p class="print-only cv-name">Tomáš Diblík</p>
+			<p class="print-only">{TAGLINE}</p>
+			<h1 class="page-title">Experience</h1>
+			<ul class="links">
+				<li>Prague</li>
+				<li><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
+				<li class="print-only"><a href="https://tomasdiblik.cz">tomasdiblik.cz</a></li>
+				<li><a href={CONTACT.github}>github.com/TDiblik</a></li>
+				<li><a href={CONTACT.linkedin}>linkedin.com/in/tdiblik</a></li>
+			</ul>
+			<p class="small muted no-print">This page is also my CV, you can print it or save it as a PDF.</p>
+		</header>
+
+		<Section title="Work" id="work">
+			<Timeline items={jobs} />
+		</Section>
+
+		<Section title="Education" id="education">
+			<Timeline items={education} />
+		</Section>
+
+		<Section title="Projects" id="projects">
+			<ProjectList projects={cvProjects} />
+			<p class="small no-print"><a href="/pages/projects">All projects</a></p>
+		</Section>
+
+		<Section title="Teaching and hackathons" id="teaching-and-hackathons">
+			<Timeline items={ALSO} />
+		</Section>
+
+		<Section title="Skills" id="skills">
+			<p>{SKILLS}</p>
+		</Section>
+	</article>
+</Default>

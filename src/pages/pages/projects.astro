@@ -1,0 +1,23 @@
+---
+import ProjectList from '../../components/ProjectList.astro';
+import Section from '../../components/Section.astro';
+import { FEATURED, OTHER, SMALLER } from '../../data/projects';
+import Default from '../../layouts/Default.astro';
+---
+
+<Default
+	title="Projects"
+	description="Production systems I built at VPSR, C++, C and Rust side projects and smaller tools. Details in the READMEs and blog posts."
+	seoKeywords="projects, C++, C, Rust, systems"
+	current="Projects"
+>
+	<h1 class="page-title">Projects</h1>
+
+	<Section title="Featured" id="featured">
+		<ProjectList projects={FEATURED} />
+	</Section>
+
+	<Section title="Other" id="other">
+		<ProjectList projects={[...OTHER, ...SMALLER]} />
+	</Section>
+</Default>

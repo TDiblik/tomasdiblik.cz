@@ -1,0 +1,28 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+	projects: Project[];
+}
+
+const { projects } = Astro.props;
+---
+
+<ul class="entries">
+	{projects.map((project) => (
+		<li id={project.id}>
+			<div class="entry-head project-head">
+				<h3 class="entry-title">{project.name}</h3>
+				<span class="entry-date">{project.date}</span>
+			</div>
+			<p class="entry-text" set:html={project.line} />
+			<ul class="links">
+				{project.links.map((link) => (
+					<li>
+						<a href={link.href}>{link.text}</a>
+					</li>
+				))}
+			</ul>
+		</li>
+	))}
+</ul>

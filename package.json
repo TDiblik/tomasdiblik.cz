@@ -1,0 +1,22 @@
+{
+	"name": "tomasdiblik.cz",
+	"type": "module",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "astro dev",
+		"build": "biome check --write --max-diagnostics none && astro check && astro build",
+		"preview": "astro preview"
+	},
+	"dependencies": {
+		"astro": "^7.4.12",
+		"sharp": "^0.35.5",
+		"shiki": "4.6.0"
+	},
+	"devDependencies": {
+		"@astrojs/check": "^0.9.12",
+		"@biomejs/biome": "2.6.8",
+		"typescript": "^6.0.3"
+	},
+	"packageManager": "pnpm@12.21.0"
+}

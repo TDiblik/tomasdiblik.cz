@@ -1,44 +1,24 @@
 # ==========================================
 # Stage 1: Builder
 # ==========================================
-FROM ruby:3.4-slim AS builder
-
-RUN apt-get update
-RUN apt-get install -y \
-  build-essential \
-  libimage-exiftool-perl \
-  webp \
-  tidy \
-  ffmpeg \
-  libpng-dev \
-  libjpeg-dev \
-  libtiff-dev \
-  imagemagick \
-  && rm -rf /var/lib/apt/lists/*
+FROM ghcr.io/pnpm/pnpm:12.21.0 AS builder
+RUN pnpm runtime set node 26 -g
 
 WORKDIR /build
-COPY ./src/Gemfile ./
-RUN bundle install
+COPY ./package.json ./pnpm-lock.yaml ./
+RUN --mount=type=cache,id=pnpm,target=/var/cache/pnpm \
+  pnpm install --store-dir /var/cache/pnpm --frozen-lockfile
+
+COPY ./astro.config.ts ./tsconfig.json ./biome.json ./.gitignore ./
+COPY ./public ./public
 COPY ./src ./src
 
-WORKDIR /build/src
-ENV JEKYLL_ENV=production
-RUN bundle exec jekyll build
+RUN pnpm build
 
-COPY ./LICENSE ./src/_site/LICENSE
-RUN find ./_site/pages/blog/ -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.webp" -o -name "*.jpeg" -o -name "*.ico" \) -exec sh -c ' \
-  echo "Optimizing $1"; \
-  exiftool -all= "$1"; \
-  convert -strip -interlace Plane -quality 80% "$1" "$1"; \
-  rm -f "${1}_original"; \
-  ' _ {} \;
+COPY ./LICENSE ./dist/LICENSE
 
-RUN find ./_site/ -type f -name "*.webm" -exec sh -c ' \
-  echo "Generating preview for $1"; \
-  ffmpeg -i "$1" -vf "select=eq(n\,49)" -vframes 1 "$(dirname "$1")/$(basename "$1")-video-preview-thumbnail.png"; \
-  ' _ {} \;
-
-RUN find ./_site/ -type f -name "*.html" -exec tidy -i -m -ashtml -utf8 -w 160 --drop-empty-elements no --drop-empty-paras no --drop-proprietary-attributes no --merge-divs no --merge-spans no {} \; || true
+RUN find ./dist/ -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" -o -name "*.svg" -o -name "*.xml" -o -name "*.txt" \) \
+  -size +1k -exec gzip -9 -k -n {} +
 
 # ==========================================
 # Stage 2: Production (Nginx)
@@ -47,7 +27,7 @@ FROM nginx:alpine
 
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx-config /etc/nginx/conf.d/tomasdiblik.conf
-COPY --from=builder /build/src/_site /app/tomasdiblik.cz/
+COPY --from=builder /build/dist /app/tomasdiblik.cz/
 EXPOSE 20342
 
 CMD ["nginx", "-g", "daemon off;"]
