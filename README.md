@@ -6,6 +6,7 @@ prerequisites: `pnpm install` <br/>
 development build: `pnpm dev` <br/>
 local prod build (lint + type-check + build): `pnpm build && pnpm preview` <br/>
 prod build: `docker build -t tomasdiblik.cz . && docker run -p 80:20342 tomasdiblik.cz`
+update: `pnpn update && pnpm build`
 
 TODO:
 
