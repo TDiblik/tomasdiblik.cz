@@ -79,6 +79,21 @@ const activeNav = current ?? (blogPost ? 'Blog' : undefined);
 		<meta name="theme-color" content="#0b1b2e" media="(prefers-color-scheme: dark)" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<script
+			is:inline
+			defer
+			data-domain="tomasdiblik.cz"
+			src="https://plausible.dev.tomasdiblik.cz/js/script.file-downloads.outbound-links.js"
+		></script>
+		<script is:inline>
+		window.plausible =
+			window.plausible ||
+			((...args) => {
+				window.plausible.q = window.plausible.q || [];
+				window.plausible.q.push(args);
+			});
+		</script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main">Skip to content</a>
