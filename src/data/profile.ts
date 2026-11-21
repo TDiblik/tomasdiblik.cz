@@ -53,7 +53,7 @@ export const JOBS: Job[] = [
 		companyHref: 'https://www.pwc.com/sk/en.html',
 		employment: 'Internship, in person, full time',
 		location: 'Bratislava',
-		period: { from: '2022-06', to: '2022-06', label: '06/2022', durationOverride: '2 months' },
+		period: { from: '2022-06', to: '2022-07' },
 		summary: 'Whole projects in small teams: React, Express + MongoDB, Django, Docker, Azure.',
 		description: `I was an intern in the Risk Assurance team, where I helped plan out and build the technical/analytical foundation which the project stood upon, in a small team, on both the frontend and the backend.`,
 	},
@@ -117,9 +117,8 @@ function month_year(value: string) {
 
 function duration(from: string, to: string) {
 	const [fy, fm] = from.split('-').map(Number);
-	const now = new Date();
-	const [ty, tm] = to === 'present' ? [now.getFullYear(), now.getMonth() + 1] : to.split('-').map(Number);
-	const months = Math.max((ty - fy) * 12 + (tm - fm), 1);
+	const [ty, tm] = to.split('-').map(Number);
+	const months = (ty - fy) * 12 + (tm - fm) + 1;
 	const years = Math.floor(months / 12);
 	const rest = months % 12;
 	const parts: string[] = [];
@@ -133,7 +132,7 @@ export function formatPeriod(period: Period): { dates: string; duration?: string
 	if (period.durationOverride) return { dates: period.from.slice(0, 4), duration: period.durationOverride, datetime: period.from };
 	return {
 		dates: `${month_year(period.from)} - ${period.to === 'present' ? 'present' : month_year(period.to)}`,
-		duration: duration(period.from, period.to),
+		duration: period.to === 'present' ? undefined : duration(period.from, period.to),
 		datetime: period.from,
 	};
 }
