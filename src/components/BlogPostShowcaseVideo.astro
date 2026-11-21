@@ -13,8 +13,7 @@ const { src, isVertical = false, videoType = 'video/webm' } = Astro.props;
 		class:list={['blog-post-video', { vertical: isVertical }]}
 		poster={`${src}-video-preview-thumbnail.webp`}
 		preload="metadata"
-		controls="false"
-		crossorigin="anonymous"
+		controls
 		muted
 	>
 		<source src={src} type={videoType} />
