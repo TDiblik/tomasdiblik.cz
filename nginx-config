@@ -38,6 +38,18 @@ server {
     return 301 https://$host/pages$request_uri;
   }
 
+  location = /blog/ {
+    return 301 https://$host/pages/blog;
+  }
+
+  location = /pages/blog/ {
+    return 301 https://$host/pages/blog;
+  }
+
+  location ^~ /blog/ {
+    return 301 https://$host/pages$request_uri;
+  }
+
   index index.html;
   location / {
     add_header Cache-Control "no-cache";
