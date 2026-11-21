@@ -29,6 +29,7 @@ const { items } = Astro.props;
 					<span class="entry-date">
 						<time datetime={period.datetime}>{period.dates}</time>
 						{period.duration && ` (${period.duration})`}
+						{item.period.to === 'present' && <span data-duration-from={item.period.from} />}
 					</span>
 				</div>
 				{item.details && item.details.length > 0 && <p class="entry-meta">{item.details.join(', ')}</p>}
@@ -37,3 +38,17 @@ const { items } = Astro.props;
 		);
 	})}
 </ol>
+
+<script is:inline>
+for (const el of document.querySelectorAll('[data-duration-from]')) {
+	const [fy, fm] = el.dataset.durationFrom.split('-').map(Number);
+	const now = new Date();
+	const months = (now.getFullYear() - fy) * 12 + (now.getMonth() + 1 - fm) + 1;
+	const years = Math.floor(months / 12);
+	const rest = months % 12;
+	const parts = [];
+	if (years > 0) parts.push(`${years} ${years === 1 ? 'year' : 'years'}`);
+	if (rest > 0) parts.push(`${rest} ${rest === 1 ? 'month' : 'months'}`);
+	el.textContent = ` (${parts.join(' ')})`;
+}
+</script>
