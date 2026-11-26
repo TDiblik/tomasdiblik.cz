@@ -1,7 +1,7 @@
 # ==========================================
 # Stage 1: Builder
 # ==========================================
-FROM ghcr.io/pnpm/pnpm:12.21.0 AS builder
+FROM ghcr.io/pnpm/pnpm:12.23.0 AS builder
 RUN pnpm runtime set node 26 -g
 ENV ASTRO_TELEMETRY_DISABLED=1
 
