@@ -21,9 +21,10 @@ interface Props {
 	current?: NavKey;
 	blogPost?: BlogPostMeta;
 	isHome?: boolean;
+	noindex?: boolean;
 }
 
-const { title, fullTitle, description, seoKeywords, current, blogPost, isHome = false } = Astro.props;
+const { title, fullTitle, description, seoKeywords, current, blogPost, isHome = false, noindex = false } = Astro.props;
 
 const pageTitle = fullTitle ?? `${title} - Tomáš Diblík`;
 const pageUrl = canonicalUrl(Astro.url.pathname);
@@ -56,7 +57,7 @@ const activeNav = current ?? (blogPost ? 'Blog' : undefined);
 		<title>{pageTitle}</title>
 		<meta name="description" content={description} />
 		<meta name="keywords" content={keywords} />
-		<meta name="robots" content="index, follow" />
+		<meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
 		<meta name="author" content="Tomáš Diblík" />
 		<link rel="canonical" href={pageUrl} />
 

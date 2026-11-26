@@ -19,6 +19,14 @@ server {
   gzip_min_length 1024;
   gzip_types text/css application/javascript text/javascript image/svg+xml application/xml text/xml text/plain application/json;
 
+  if ($request_uri ~ ^/index(?:\.html)?(\?.*)?$) {
+    return 301 https://$host/$1;
+  }
+
+  if ($request_uri ~ ^([^?]*)\.html(\?.*)?$) {
+    return 301 https://$host$1$2;
+  }
+
   location ^~ /_astro/ {
     add_header Cache-Control "public, max-age=31536000, immutable";
   }
