@@ -1,7 +1,8 @@
 import type { APIRoute } from 'astro';
 import { canonicalPath, SITE_URL } from '../lib/site';
 
-const PAGES_LAST_UPDATED = '2026-11-19';
+// todo: dont forget to update on website changes
+const PAGES_LAST_UPDATED = '2026-11-26';
 const POSTS_LAST_UPDATED = '2026-11-19';
 
 const pages = Object.keys(import.meta.glob('./**/*.astro'))
